@@ -219,396 +219,396 @@
     "model": "auth.permission",
     "pk": 25,
     "fields": {
-        "name": "Can add muebles",
+        "name": "Can add calzado",
         "content_type": 7,
-        "codename": "add_muebles"
+        "codename": "add_calzado"
     }
 },
 {
     "model": "auth.permission",
     "pk": 26,
     "fields": {
-        "name": "Can change muebles",
+        "name": "Can change calzado",
         "content_type": 7,
-        "codename": "change_muebles"
+        "codename": "change_calzado"
     }
 },
 {
     "model": "auth.permission",
     "pk": 27,
     "fields": {
-        "name": "Can delete muebles",
+        "name": "Can delete calzado",
         "content_type": 7,
-        "codename": "delete_muebles"
+        "codename": "delete_calzado"
     }
 },
 {
     "model": "auth.permission",
     "pk": 28,
     "fields": {
-        "name": "Can view muebles",
+        "name": "Can view calzado",
         "content_type": 7,
-        "codename": "view_muebles"
+        "codename": "view_calzado"
     }
 },
 {
     "model": "auth.permission",
     "pk": 29,
     "fields": {
-        "name": "Can add producto",
+        "name": "Can add usuario",
         "content_type": 8,
-        "codename": "add_producto"
+        "codename": "add_usuario"
     }
 },
 {
     "model": "auth.permission",
     "pk": 30,
     "fields": {
-        "name": "Can change producto",
+        "name": "Can change usuario",
         "content_type": 8,
-        "codename": "change_producto"
+        "codename": "change_usuario"
     }
 },
 {
     "model": "auth.permission",
     "pk": 31,
     "fields": {
-        "name": "Can delete producto",
+        "name": "Can delete usuario",
         "content_type": 8,
-        "codename": "delete_producto"
+        "codename": "delete_usuario"
     }
 },
 {
     "model": "auth.permission",
     "pk": 32,
     "fields": {
-        "name": "Can view producto",
+        "name": "Can view usuario",
         "content_type": 8,
-        "codename": "view_producto"
+        "codename": "view_usuario"
     }
 },
 {
     "model": "auth.permission",
     "pk": 33,
     "fields": {
-        "name": "Can add categoria",
+        "name": "Can add chat",
         "content_type": 9,
-        "codename": "add_categoria"
+        "codename": "add_chat"
     }
 },
 {
     "model": "auth.permission",
     "pk": 34,
     "fields": {
-        "name": "Can change categoria",
+        "name": "Can change chat",
         "content_type": 9,
-        "codename": "change_categoria"
+        "codename": "change_chat"
     }
 },
 {
     "model": "auth.permission",
     "pk": 35,
     "fields": {
-        "name": "Can delete categoria",
+        "name": "Can delete chat",
         "content_type": 9,
-        "codename": "delete_categoria"
+        "codename": "delete_chat"
     }
 },
 {
     "model": "auth.permission",
     "pk": 36,
     "fields": {
-        "name": "Can view categoria",
+        "name": "Can view chat",
         "content_type": 9,
-        "codename": "view_categoria"
+        "codename": "view_chat"
     }
 },
 {
     "model": "auth.permission",
     "pk": 37,
     "fields": {
-        "name": "Can add chat",
+        "name": "Can add envio",
         "content_type": 10,
-        "codename": "add_chat"
+        "codename": "add_envio"
     }
 },
 {
     "model": "auth.permission",
     "pk": 38,
     "fields": {
-        "name": "Can change chat",
+        "name": "Can change envio",
         "content_type": 10,
-        "codename": "change_chat"
+        "codename": "change_envio"
     }
 },
 {
     "model": "auth.permission",
     "pk": 39,
     "fields": {
-        "name": "Can delete chat",
+        "name": "Can delete envio",
         "content_type": 10,
-        "codename": "delete_chat"
+        "codename": "delete_envio"
     }
 },
 {
     "model": "auth.permission",
     "pk": 40,
     "fields": {
-        "name": "Can view chat",
+        "name": "Can view envio",
         "content_type": 10,
-        "codename": "view_chat"
+        "codename": "view_envio"
     }
 },
 {
     "model": "auth.permission",
     "pk": 41,
     "fields": {
-        "name": "Can add usuario",
+        "name": "Can add producto categoria",
         "content_type": 11,
-        "codename": "add_usuario"
+        "codename": "add_productocategoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 42,
     "fields": {
-        "name": "Can change usuario",
+        "name": "Can change producto categoria",
         "content_type": 11,
-        "codename": "change_usuario"
+        "codename": "change_productocategoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 43,
     "fields": {
-        "name": "Can delete usuario",
+        "name": "Can delete producto categoria",
         "content_type": 11,
-        "codename": "delete_usuario"
+        "codename": "delete_productocategoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 44,
     "fields": {
-        "name": "Can view usuario",
+        "name": "Can view producto categoria",
         "content_type": 11,
-        "codename": "view_usuario"
+        "codename": "view_productocategoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 45,
     "fields": {
-        "name": "Can add compra",
+        "name": "Can add categoria",
         "content_type": 12,
-        "codename": "add_compra"
+        "codename": "add_categoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 46,
     "fields": {
-        "name": "Can change compra",
+        "name": "Can change categoria",
         "content_type": 12,
-        "codename": "change_compra"
+        "codename": "change_categoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 47,
     "fields": {
-        "name": "Can delete compra",
+        "name": "Can delete categoria",
         "content_type": 12,
-        "codename": "delete_compra"
+        "codename": "delete_categoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 48,
     "fields": {
-        "name": "Can view compra",
+        "name": "Can view categoria",
         "content_type": 12,
-        "codename": "view_compra"
+        "codename": "view_categoria"
     }
 },
 {
     "model": "auth.permission",
     "pk": 49,
     "fields": {
-        "name": "Can add producto categoria",
+        "name": "Can add muebles",
         "content_type": 13,
-        "codename": "add_productocategoria"
+        "codename": "add_muebles"
     }
 },
 {
     "model": "auth.permission",
     "pk": 50,
     "fields": {
-        "name": "Can change producto categoria",
+        "name": "Can change muebles",
         "content_type": 13,
-        "codename": "change_productocategoria"
+        "codename": "change_muebles"
     }
 },
 {
     "model": "auth.permission",
     "pk": 51,
     "fields": {
-        "name": "Can delete producto categoria",
+        "name": "Can delete muebles",
         "content_type": 13,
-        "codename": "delete_productocategoria"
+        "codename": "delete_muebles"
     }
 },
 {
     "model": "auth.permission",
     "pk": 52,
     "fields": {
-        "name": "Can view producto categoria",
+        "name": "Can view muebles",
         "content_type": 13,
-        "codename": "view_productocategoria"
+        "codename": "view_muebles"
     }
 },
 {
     "model": "auth.permission",
     "pk": 53,
     "fields": {
-        "name": "Can add envio",
+        "name": "Can add valoracion",
         "content_type": 14,
-        "codename": "add_envio"
+        "codename": "add_valoracion"
     }
 },
 {
     "model": "auth.permission",
     "pk": 54,
     "fields": {
-        "name": "Can change envio",
+        "name": "Can change valoracion",
         "content_type": 14,
-        "codename": "change_envio"
+        "codename": "change_valoracion"
     }
 },
 {
     "model": "auth.permission",
     "pk": 55,
     "fields": {
-        "name": "Can delete envio",
+        "name": "Can delete valoracion",
         "content_type": 14,
-        "codename": "delete_envio"
+        "codename": "delete_valoracion"
     }
 },
 {
     "model": "auth.permission",
     "pk": 56,
     "fields": {
-        "name": "Can view envio",
+        "name": "Can view valoracion",
         "content_type": 14,
-        "codename": "view_envio"
+        "codename": "view_valoracion"
     }
 },
 {
     "model": "auth.permission",
     "pk": 57,
     "fields": {
-        "name": "Can add calzado",
+        "name": "Can add producto",
         "content_type": 15,
-        "codename": "add_calzado"
+        "codename": "add_producto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 58,
     "fields": {
-        "name": "Can change calzado",
+        "name": "Can change producto",
         "content_type": 15,
-        "codename": "change_calzado"
+        "codename": "change_producto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 59,
     "fields": {
-        "name": "Can delete calzado",
+        "name": "Can delete producto",
         "content_type": 15,
-        "codename": "delete_calzado"
+        "codename": "delete_producto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 60,
     "fields": {
-        "name": "Can view calzado",
+        "name": "Can view producto",
         "content_type": 15,
-        "codename": "view_calzado"
+        "codename": "view_producto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 61,
     "fields": {
-        "name": "Can add compra producto",
+        "name": "Can add compra",
         "content_type": 16,
-        "codename": "add_compraproducto"
+        "codename": "add_compra"
     }
 },
 {
     "model": "auth.permission",
     "pk": 62,
     "fields": {
-        "name": "Can change compra producto",
+        "name": "Can change compra",
         "content_type": 16,
-        "codename": "change_compraproducto"
+        "codename": "change_compra"
     }
 },
 {
     "model": "auth.permission",
     "pk": 63,
     "fields": {
-        "name": "Can delete compra producto",
+        "name": "Can delete compra",
         "content_type": 16,
-        "codename": "delete_compraproducto"
+        "codename": "delete_compra"
     }
 },
 {
     "model": "auth.permission",
     "pk": 64,
     "fields": {
-        "name": "Can view compra producto",
+        "name": "Can view compra",
         "content_type": 16,
-        "codename": "view_compraproducto"
+        "codename": "view_compra"
     }
 },
 {
     "model": "auth.permission",
     "pk": 65,
     "fields": {
-        "name": "Can add valoracion",
+        "name": "Can add compra producto",
         "content_type": 17,
-        "codename": "add_valoracion"
+        "codename": "add_compraproducto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 66,
     "fields": {
-        "name": "Can change valoracion",
+        "name": "Can change compra producto",
         "content_type": 17,
-        "codename": "change_valoracion"
+        "codename": "change_compraproducto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 67,
     "fields": {
-        "name": "Can delete valoracion",
+        "name": "Can delete compra producto",
         "content_type": 17,
-        "codename": "delete_valoracion"
+        "codename": "delete_compraproducto"
     }
 },
 {
     "model": "auth.permission",
     "pk": 68,
     "fields": {
-        "name": "Can view valoracion",
+        "name": "Can view compra producto",
         "content_type": 17,
-        "codename": "view_valoracion"
+        "codename": "view_compraproducto"
     }
 },
 {
@@ -664,36 +664,12 @@
     "pk": 7,
     "fields": {
         "app_label": "tienda",
-        "model": "muebles"
+        "model": "calzado"
     }
 },
 {
     "model": "contenttypes.contenttype",
     "pk": 8,
-    "fields": {
-        "app_label": "tienda",
-        "model": "producto"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 9,
-    "fields": {
-        "app_label": "tienda",
-        "model": "categoria"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 10,
-    "fields": {
-        "app_label": "tienda",
-        "model": "chat"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 11,
     "fields": {
         "app_label": "tienda",
         "model": "usuario"
@@ -701,23 +677,15 @@
 },
 {
     "model": "contenttypes.contenttype",
-    "pk": 12,
+    "pk": 9,
     "fields": {
         "app_label": "tienda",
-        "model": "compra"
+        "model": "chat"
     }
 },
 {
     "model": "contenttypes.contenttype",
-    "pk": 13,
-    "fields": {
-        "app_label": "tienda",
-        "model": "productocategoria"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 14,
+    "pk": 10,
     "fields": {
         "app_label": "tienda",
         "model": "envio"
@@ -725,716 +693,493 @@
 },
 {
     "model": "contenttypes.contenttype",
-    "pk": 15,
+    "pk": 11,
     "fields": {
         "app_label": "tienda",
-        "model": "calzado"
+        "model": "productocategoria"
     }
 },
 {
     "model": "contenttypes.contenttype",
-    "pk": 16,
+    "pk": 12,
     "fields": {
         "app_label": "tienda",
-        "model": "compraproducto"
+        "model": "categoria"
     }
 },
 {
     "model": "contenttypes.contenttype",
-    "pk": 17,
+    "pk": 13,
+    "fields": {
+        "app_label": "tienda",
+        "model": "muebles"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
     "fields": {
         "app_label": "tienda",
         "model": "valoracion"
     }
 },
 {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "tienda",
+        "model": "producto"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "tienda",
+        "model": "compra"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "tienda",
+        "model": "compraproducto"
+    }
+},
+{
     "model": "tienda.usuario",
     "pk": 1,
     "fields": {
-        "nombre": "Assume this federal thousand.",
-        "correo_electronico": "dhaney@example.org",
-        "telefono": "Before.",
-        "direccion": "Gas call popular national. Necessary side human democratic than. Next movement police doctor early discover."
+        "nombre": "Particularly free indeed number approach.",
+        "correo_electronico": "dawn87@example.com",
+        "telefono": "Wonder.",
+        "direccion": "Air her number understand sport."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 2,
     "fields": {
-        "nombre": "Finally fight pattern explain ball.",
-        "correo_electronico": "elizabethmccormick@example.com",
-        "telefono": "Building.",
-        "direccion": "Forget spring step throw. Almost director result degree hear soon. Who tree add least phone other guess."
+        "nombre": "War cup reveal west some above fall.",
+        "correo_electronico": "jmontoya@example.org",
+        "telefono": "Check.",
+        "direccion": "Discuss expect may discuss. Teacher sister chance through.\nHave top relate upon run. Couple cell response successful necessary."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 3,
     "fields": {
-        "nombre": "Over he your sport loss. Past green whole former spring.",
-        "correo_electronico": "ichurch@example.com",
-        "telefono": "Cut both.",
-        "direccion": "Of because name student play boy summer. Address white occur explain firm rest."
+        "nombre": "Rich never second piece western entire.",
+        "correo_electronico": "eric25@example.com",
+        "telefono": "Soon.",
+        "direccion": "Receive product side travel. Statement major of out by go possible accept. Between interesting teach of."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 4,
     "fields": {
-        "nombre": "North rather lot parent wear save.",
-        "correo_electronico": "maryfarley@example.net",
-        "telefono": "Cultural.",
-        "direccion": "Society network point community field. Conference who section single could relate."
+        "nombre": "Policy goal commercial finally well bad among.",
+        "correo_electronico": "paullopez@example.org",
+        "telefono": "Spend.",
+        "direccion": "Trade now general guess her for. Book material skin character less activity.\nRange partner medical hard. Build trip soldier usually."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 5,
     "fields": {
-        "nombre": "Hope glass low Mr economic policy.",
-        "correo_electronico": "allenjohn@example.com",
-        "telefono": "Position.",
-        "direccion": "Professional exist couple people herself. Realize rate coach hear. Most piece stay lose population between age ago."
+        "nombre": "Admit the word and heart north during.",
+        "correo_electronico": "cheryl12@example.com",
+        "telefono": "Above.",
+        "direccion": "Stock computer family throw. Health goal energy action rule hair responsibility."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 6,
     "fields": {
-        "nombre": "Human social movie not property thus day.",
-        "correo_electronico": "collinselizabeth@example.org",
-        "telefono": "Quickly.",
-        "direccion": "Opportunity give many might reflect."
+        "nombre": "Everyone difficult maintain drop answer.",
+        "correo_electronico": "guy09@example.org",
+        "telefono": "Will.",
+        "direccion": "Mother political act teach ok table attack. Skill never program see game."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 7,
     "fields": {
-        "nombre": "Business child under name.",
-        "correo_electronico": "ljones@example.org",
-        "telefono": "Dinner.",
-        "direccion": "Away evidence report hot say ask. Hot agree task individual big father address. Again already cell let letter throw. Surface rest despite."
+        "nombre": "Member part fish alone. Money sure follow seem.",
+        "correo_electronico": "halevincent@example.org",
+        "telefono": "No wear.",
+        "direccion": "Full analysis whom official. Able involve however call."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 8,
     "fields": {
-        "nombre": "Look black now kind must oil. Key store large.",
-        "correo_electronico": "beckdaniel@example.org",
-        "telefono": "Heart.",
-        "direccion": "Form crime edge section physical. Glass perhaps air your there and shake.\nSoldier determine cup on station sometimes. Let city lay pull as stuff."
+        "nombre": "Table explain argue Democrat around company door.",
+        "correo_electronico": "khunter@example.net",
+        "telefono": "Most.",
+        "direccion": "Career grow day stuff personal everybody structure court. Career board may huge accept class father."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 9,
     "fields": {
-        "nombre": "Policy pay step.",
-        "correo_electronico": "sramsey@example.org",
-        "telefono": "Health.",
-        "direccion": "Because girl everything local us. Wrong large hope Republican fast. Form sense institution idea floor reality especially a. Who food here just."
+        "nombre": "Remain economic vote career box operation kind.",
+        "correo_electronico": "timothy96@example.net",
+        "telefono": "Both.",
+        "direccion": "Teach position range southern edge describe see. Business note impact whose test. Media final deal book crime."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 10,
     "fields": {
-        "nombre": "Thing truth whether half wall effect.",
-        "correo_electronico": "sarah20@example.org",
-        "telefono": "State.",
-        "direccion": "School rule against after somebody agency soldier. Human current to. Hospital man consider service."
+        "nombre": "Street training politics almost everything system report.",
+        "correo_electronico": "codybecker@example.org",
+        "telefono": "Own.",
+        "direccion": "Executive occur class cause. Of meeting behavior operation too store director."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 11,
     "fields": {
-        "nombre": "Market more run ever season may ever.",
-        "correo_electronico": "darlene39@example.com",
-        "telefono": "Growth.",
-        "direccion": "Teacher of baby receive reach choose course. Chair whose vote president care. Important sing response since couple girl."
+        "nombre": "Student everybody bit mention several him.",
+        "correo_electronico": "chandlermary@example.org",
+        "telefono": "Movement.",
+        "direccion": "Off important western part operation usually. Media ball instead race four likely. Success budget military some."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 12,
     "fields": {
-        "nombre": "Man listen full threat. Social particular later himself.",
-        "correo_electronico": "heather37@example.net",
-        "telefono": "To up.",
-        "direccion": "Bank then power outside high research technology reason. Raise dream along might loss imagine far lead."
+        "nombre": "Including entire friend buy.",
+        "correo_electronico": "nicolegonzalez@example.com",
+        "telefono": "South.",
+        "direccion": "Wait common plan model place. Firm culture authority tonight support field popular."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 13,
     "fields": {
-        "nombre": "Approach participant may enjoy reality.",
-        "correo_electronico": "zkemp@example.com",
-        "telefono": "Man.",
-        "direccion": "Western say those order area official plan current. Part response follow animal recent. Indicate watch election heavy."
+        "nombre": "Project main enough pay marriage how.",
+        "correo_electronico": "uwalls@example.org",
+        "telefono": "Kid.",
+        "direccion": "Compare should green whatever interview. Region help likely some."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 14,
     "fields": {
-        "nombre": "Stop long tough my. Sometimes total college bad toward set.",
-        "correo_electronico": "joshua74@example.com",
-        "telefono": "Than.",
-        "direccion": "Over policy discover success. Resource pay social wrong build.\nWriter news country same health determine. Church hard see close. Ask stage job phone."
+        "nombre": "Value few cover reflect.",
+        "correo_electronico": "kelsey85@example.net",
+        "telefono": "Instead.",
+        "direccion": "Seat time increase major stop. Rock agency term figure.\nInclude job list want or. Establish response rich year send piece."
     }
 },
 {
     "model": "tienda.usuario",
     "pk": 15,
     "fields": {
-        "nombre": "Consider close hot stock next ask let base.",
-        "correo_electronico": "robert26@example.org",
-        "telefono": "Break.",
-        "direccion": "None color contain capital say."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 16,
-    "fields": {
-        "nombre": "Myself receive either hospital care son rate official.",
-        "correo_electronico": "bpotter@example.org",
-        "telefono": "Draw.",
-        "direccion": "Night turn fear government fact note. Report rate her degree. And beyond customer."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 17,
-    "fields": {
-        "nombre": "Feeling administration nation much million system computer.",
-        "correo_electronico": "leahshepard@example.com",
-        "telefono": "Those.",
-        "direccion": "Rich bar manage shake. Safe one way small such whole pick probably. Off quality because available."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 18,
-    "fields": {
-        "nombre": "Price him technology poor. None oil customer management.",
-        "correo_electronico": "patrickgary@example.com",
-        "telefono": "American.",
-        "direccion": "Nothing which vote have traditional consumer peace area."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 19,
-    "fields": {
-        "nombre": "Effort choose it ask outside everything.",
-        "correo_electronico": "martha37@example.net",
-        "telefono": "Discuss.",
-        "direccion": "Woman them resource easy lead small out industry. Like its white Mr call. Study likely investment put.\nStyle amount sign data foreign these wife."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 20,
-    "fields": {
-        "nombre": "Right early very wear world provide because.",
-        "correo_electronico": "jasonarmstrong@example.net",
-        "telefono": "Fear.",
-        "direccion": "Cell five short main could according wrong. Detail where gas bring box development above bag."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 21,
-    "fields": {
-        "nombre": "Each material dog.",
-        "correo_electronico": "nicholas38@example.net",
-        "telefono": "Contain.",
-        "direccion": "Responsibility artist special hot arrive society. Thousand work total threat fund. Write star health life wonder against."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 22,
-    "fields": {
-        "nombre": "Nice seven hair sea international source.",
-        "correo_electronico": "farrellbryan@example.org",
-        "telefono": "While.",
-        "direccion": "Change smile strong. Join benefit option notice bit management instead. Season research choice become affect visit note."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 23,
-    "fields": {
-        "nombre": "Partner none sense.",
-        "correo_electronico": "larry53@example.org",
-        "telefono": "Yeah.",
-        "direccion": "Current surface only once understand event at nature. Western too need husband week out successful impact."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 24,
-    "fields": {
-        "nombre": "Avoid almost fast blood. Story lose yourself official.",
-        "correo_electronico": "susanwilliams@example.org",
-        "telefono": "Seven.",
-        "direccion": "Force cup environment theory financial. Place over window.\nThey not culture those. Behavior town most never beat."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 25,
-    "fields": {
-        "nombre": "Try including all not south.",
-        "correo_electronico": "teresadean@example.org",
-        "telefono": "Guess.",
-        "direccion": "Official evening final heart ball. Believe seem audience opportunity need also defense sound. Artist author science only call."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 26,
-    "fields": {
-        "nombre": "It each marriage hundred.",
-        "correo_electronico": "james45@example.org",
-        "telefono": "Speak.",
-        "direccion": "Same real probably energy. House happen share understand later lay. May building of simple government reduce."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 27,
-    "fields": {
-        "nombre": "Every plan arrive per try morning whole.",
-        "correo_electronico": "kimberly84@example.org",
-        "telefono": "Realize.",
-        "direccion": "Arrive beat grow bag. Follow require past writer. Six write Democrat else.\nMore customer should son college effect girl. So ball can address let."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 28,
-    "fields": {
-        "nombre": "North cause thing event natural appear blood.",
-        "correo_electronico": "orrdebra@example.com",
-        "telefono": "Somebody.",
-        "direccion": "New nature rich trip term. Avoid child about seven control partner very.\nSummer too push property vote scientist. A experience marriage save spend."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 29,
-    "fields": {
-        "nombre": "Officer both their away away yeah hope federal.",
-        "correo_electronico": "dlittle@example.net",
-        "telefono": "Fear.",
-        "direccion": "Indeed left national night."
-    }
-},
-{
-    "model": "tienda.usuario",
-    "pk": 30,
-    "fields": {
-        "nombre": "Risk white culture field actually couple detail.",
-        "correo_electronico": "corey68@example.net",
-        "telefono": "Eat more.",
-        "direccion": "Staff nor TV loss source doctor. Story arm region. You memory whom.\nOf article by president street."
+        "nombre": "Himself our analysis culture worry including.",
+        "correo_electronico": "leahbarrett@example.org",
+        "telefono": "Either.",
+        "direccion": "Difficult admit you among. Police land hope religious property program.\nLeft off hope fund. On prevent practice sport parent certain."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 1,
     "fields": {
-        "nombre": "Believe house fund best off write. Hope trip hit. Environment Congress treat cultural hour."
+        "nombre": "Hard candidate win carry mouth move prove. Two great friend card standard step floor."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 2,
     "fields": {
-        "nombre": "Tv over voice shake trip arrive also. On catch hope bag age. Room base authority pretty born fact."
+        "nombre": "Office continue assume so well state."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 3,
     "fields": {
-        "nombre": "Late many debate have across age. Official poor inside animal. Manager instead coach."
+        "nombre": "Account other free every traditional place brother. Who situation morning."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 4,
     "fields": {
-        "nombre": "Baby who that place nice action son. Site others against give. Tree side to push society."
+        "nombre": "Along response thousand. Tonight big its add."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 5,
     "fields": {
-        "nombre": "Likely defense shoulder hope sit since. Must make cause themselves front."
+        "nombre": "Party nor food black officer oil follow. The shake side."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 6,
     "fields": {
-        "nombre": "Team total record buy. Wife involve actually really purpose race computer."
+        "nombre": "Figure player answer may. Shoulder voice character minute. Garden fight model above else nothing."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 7,
     "fields": {
-        "nombre": "Begin maintain sell hand. Board skin property personal weight another town."
+        "nombre": "On meet discussion movement city establish. Few skin individual party news lose."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 8,
     "fields": {
-        "nombre": "Compare maybe decade expect. Brother cost pass stop. Poor worry south time."
+        "nombre": "Safe long develop program site bit every. Environmental before dark occur."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 9,
     "fields": {
-        "nombre": "Any card edge reveal will reduce forward thought. Bring probably summer southern understand."
+        "nombre": "Agency outside first base with letter main. Bring find study soon material."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 10,
     "fields": {
-        "nombre": "Former simply thought because situation. Game never participant daughter become condition."
+        "nombre": "Play how goal create. Level do appear."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 11,
     "fields": {
-        "nombre": "Cause civil mission board region group. Mission beyond Democrat discover."
+        "nombre": "Everybody happy oil public arrive. Night none way woman as season small. Last music account issue."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 12,
     "fields": {
-        "nombre": "And situation sort they. Participant similar phone commercial."
+        "nombre": "Final try bar miss position say. Pressure base always. Write policy new language attorney fact."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 13,
     "fields": {
-        "nombre": "Data forward forward law."
+        "nombre": "Over but TV room. Decision building customer health pass during."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 14,
     "fields": {
-        "nombre": "Wonder present three lead.\nDescribe age almost animal several most."
+        "nombre": "Head success need several among. Medical play create art shake rise industry."
     }
 },
 {
     "model": "tienda.categoria",
     "pk": 15,
     "fields": {
-        "nombre": "Son explain huge late car his wrong. Brother team quickly right appear opportunity law."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 16,
-    "fields": {
-        "nombre": "Identify help decision. Send many when next white star knowledge."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 17,
-    "fields": {
-        "nombre": "Stay environment off office respond top. Carry red other star firm."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 18,
-    "fields": {
-        "nombre": "Watch executive few evidence. Financial including PM yourself.\nProbably reveal blue tough."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 19,
-    "fields": {
-        "nombre": "Just guess investment teacher everyone. Oil say sense. Probably notice from cold sign."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 20,
-    "fields": {
-        "nombre": "Field prepare statement almost movement. Ball talk threat result."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 21,
-    "fields": {
-        "nombre": "Growth page kind land factor for.\nStand many director cell executive."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 22,
-    "fields": {
-        "nombre": "Well result pull walk fish we. Two chair off join per wide evidence."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 23,
-    "fields": {
-        "nombre": "Family too peace hope TV.\nNow idea peace relationship."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 24,
-    "fields": {
-        "nombre": "Fill near story fear serious budget scene peace. Try total become through."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 25,
-    "fields": {
-        "nombre": "It part cell moment white memory. Brother network this not board sometimes cup."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 26,
-    "fields": {
-        "nombre": "Report head it interview five decision. Religious them politics lawyer blue. Within item bed find."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 27,
-    "fields": {
-        "nombre": "Road hope spring. Federal seven weight sing million outside similar speak."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 28,
-    "fields": {
-        "nombre": "Page good north take. Season third even world technology."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 29,
-    "fields": {
-        "nombre": "Example whatever include.\nOften artist man force. Sister every part recognize they senior."
-    }
-},
-{
-    "model": "tienda.categoria",
-    "pk": 30,
-    "fields": {
-        "nombre": "Change common letter thus. Old value agent sometimes. Offer something early good range moment bar."
+        "nombre": "After operation dark light activity. Seat effect shoulder smile throw."
     }
 },
 {
     "model": "tienda.producto",
     "pk": 1,
     "fields": {
-        "nombre": "Local draw if reflect reflect subject own. Recognize lead usually mother total forget would.",
-        "descripcion": "Recently baby the physical. Require everything agency north cup. Forward everybody mention never lose behind.",
+        "nombre": "Threat image series someone example subject among. Loss customer gun three.",
+        "descripcion": "Here which guess site hot black. Table today from eight nation which. Less image stage for whether heart image.",
+        "precio": "0.66",
+        "estado": "MU",
+        "vendedor": 6,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 2,
+    "fields": {
+        "nombre": "Song I she. Staff surface why goal practice laugh investment. Federal real writer own image.",
+        "descripcion": "Nor small account big physical fish happy rock. Yard project sign likely degree myself win to. Which ahead tough interesting no manager guess.",
+        "precio": "0.85",
+        "estado": "U",
+        "vendedor": 12,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 3,
+    "fields": {
+        "nombre": "Stuff answer brother film wall whose investment. Trouble likely rich agreement another above.",
+        "descripcion": "Most in call front everyone give stop drop. Business relate gas watch right suggest front. Truth attorney federal citizen fight simply leader.",
         "precio": "0.87",
-        "estado": "MU",
-        "vendedor": 27,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
-    }
-},
-{
-    "model": "tienda.producto",
-    "pk": 2,
-    "fields": {
-        "nombre": "Miss game pay describe to. Close future quite.",
-        "descripcion": "Card yet item interesting election late value. Along after American reveal scene really. Begin develop enough poor agency.\nCommon item PM detail whether. Allow side between thus decide financial.",
-        "precio": "0.48",
-        "estado": "MU",
-        "vendedor": 18,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
-    }
-},
-{
-    "model": "tienda.producto",
-    "pk": 3,
-    "fields": {
-        "nombre": "On remember baby win fill prepare Republican. Area care material child.",
-        "descripcion": "Let question day stop.\nPrepare son either price. Never ready training hard method age bed.",
-        "precio": "0.53",
-        "estado": "MU",
-        "vendedor": 26,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "estado": "U",
+        "vendedor": 1,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 4,
     "fields": {
-        "nombre": "Fish against thank hit. Some near respond source. Society every teach professor.",
-        "descripcion": "Position mission technology force up. Program lawyer activity tell. Your your adult war.",
-        "precio": "0.34",
+        "nombre": "State development author weight car notice least. Could manager wide watch.",
+        "descripcion": "Fill big help only. Subject when level size step. During its figure special. Education same here up turn paper bill.",
+        "precio": "0.83",
         "estado": "CN",
-        "vendedor": 20,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 3,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 5,
     "fields": {
-        "nombre": "Determine within probably study rate.",
-        "descripcion": "Him baby also machine quality. Him Mrs card respond space cover less. Water hand least common for.",
-        "precio": "0.95",
+        "nombre": "Range onto sing interview. Involve serve them answer. Career product music serve.",
+        "descripcion": "Budget hard issue. Place enter among.\nWest information early end once. Gas process challenge animal piece picture bag American.",
+        "precio": "0.38",
         "estado": "U",
-        "vendedor": 16,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 15,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 6,
     "fields": {
-        "nombre": "Them million reach book event system. Republican form finish hospital action human.",
-        "descripcion": "Wide weight mean chair artist. Specific seem Republican nature child dream of.\nQuality society fund explain anything. Group man actually including doctor serve get.",
-        "precio": "0.58",
-        "estado": "U",
-        "vendedor": 16,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "nombre": "Information imagine play various marriage. Tell hot conference food.",
+        "descripcion": "She several customer understand trial. Above foot most in at. Skin interesting move state east.\nWhite last later accept opportunity why. Current TV you industry.",
+        "precio": "0.89",
+        "estado": "MU",
+        "vendedor": 12,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 7,
     "fields": {
-        "nombre": "Within at power evening town itself strategy. In child contain could between.",
-        "descripcion": "Through standard loss because visit score standard positive. Factor edge land treatment item remember. Country nearly hospital weight nice wait economy health.",
-        "precio": "0.10",
-        "estado": "MU",
-        "vendedor": 29,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "nombre": "Thing east into create. Term wear prove exist bag end several book. Hotel sea consumer whole.",
+        "descripcion": "Ask letter ago good edge. Do amount he whom watch.\nResult attack produce into I. Realize player much tree. Certainly civil book care.\nTraditional recent performance radio member probably opportunity.",
+        "precio": "0.30",
+        "estado": "CN",
+        "vendedor": 2,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 8,
     "fields": {
-        "nombre": "Thing face focus attack interesting challenge me. Author house institution so.",
-        "descripcion": "Fish exist visit central. Happen sort cost huge suggest. Born why next hand listen near.\nBaby by feel change loss he. Theory hard with all support detail. Total oil during east country country son.",
-        "precio": "0.81",
+        "nombre": "Size of campaign. Real near small continue. Democrat suffer city source doctor instead situation.",
+        "descripcion": "Look whether economy similar place. Become last these middle night relationship particular.",
+        "precio": "0.24",
         "estado": "U",
-        "vendedor": 17,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 9,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 9,
     "fields": {
-        "nombre": "Investment name behind American season grow year house. Head meeting kitchen her raise speak south.",
-        "descripcion": "Republican of sit through.\nTheory imagine they study night ground. Off election resource toward because idea treatment.",
-        "precio": "0.47",
-        "estado": "CN",
-        "vendedor": 24,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "nombre": "Particular middle reality suffer remember either become.",
+        "descripcion": "Economic trip half machine character.\nGreen spend movement safe their think candidate. Allow film poor. Ask describe point half its let.\nCause window candidate director them start.",
+        "precio": "0.50",
+        "estado": "U",
+        "vendedor": 2,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 10,
     "fields": {
-        "nombre": "Them both later result place represent result. Pass TV blood site star.",
-        "descripcion": "Skin who together I. Sign main strategy consumer exactly increase. Professional explain science life pretty.",
-        "precio": "0.68",
+        "nombre": "Create arrive strategy quality throughout. Clearly project scientist group.",
+        "descripcion": "Office stop environmental catch pass music huge. Institution think dog debate eye apply. Worker might community song skill listen measure.",
+        "precio": "0.50",
         "estado": "U",
-        "vendedor": 27,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 13,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 11,
     "fields": {
-        "nombre": "Report organization entire challenge. Similar also follow decision on knowledge.",
-        "descripcion": "Foreign book heart choice minute level political. Computer him force interesting up last another. Should all back plant.\nNation give example at ahead attorney.",
-        "precio": "0.27",
-        "estado": "U",
-        "vendedor": 18,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
-    }
-},
-{
-    "model": "tienda.producto",
-    "pk": 12,
-    "fields": {
-        "nombre": "Sea pay anyone build. Church staff page response project thousand natural.",
-        "descripcion": "Agree nation movement challenge research ever. Be another operation. Structure effort hope tonight magazine then.",
-        "precio": "0.53",
-        "estado": "MU",
-        "vendedor": 26,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
-    }
-},
-{
-    "model": "tienda.producto",
-    "pk": 13,
-    "fields": {
-        "nombre": "Citizen sometimes state from resource floor.\nPush compare ten wide recognize kid as.",
-        "descripcion": "Community more answer apply book husband southern. Family still imagine. Car government design spring near side she. Research first read already.",
-        "precio": "0.97",
-        "estado": "U",
-        "vendedor": 29,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
-    }
-},
-{
-    "model": "tienda.producto",
-    "pk": 14,
-    "fields": {
-        "nombre": "Think its field civil lot key family. Soldier onto run tree.",
-        "descripcion": "Explain reality sometimes not easy case character prove. Finish popular reach perhaps economic. Hold age say toward senior court.\nItem team land again feeling. Member dark teach push alone last.",
+        "nombre": "Building bag affect view right often. Direction can seem order worker fact result.",
+        "descripcion": "Top lose continue firm both career realize purpose. Hear add true drive require. Fine vote be peace open.",
         "precio": "0.22",
         "estado": "CN",
-        "vendedor": 24,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 3,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 12,
+    "fields": {
+        "nombre": "Beat create side above white us. Of history experience south look goal. Its animal per.",
+        "descripcion": "Subject hair group ball several figure. Door tax computer similar around budget away any. Matter adult natural.\nNot discover suffer election have officer. Onto seven form.",
+        "precio": "0.58",
+        "estado": "U",
+        "vendedor": 10,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 13,
+    "fields": {
+        "nombre": "Soon job suddenly budget public test power dream. Effort compare performance.",
+        "descripcion": "Table face month. Without wind second example sport.\nWear decide never cell suffer entire. Seek ability government window police administration such. While today sell any crime third I.",
+        "precio": "0.30",
+        "estado": "U",
+        "vendedor": 9,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 14,
+    "fields": {
+        "nombre": "Contain indeed letter goal. Sound require trip no similar area.",
+        "descripcion": "Wear compare city detail tend ten. Thousand bar himself seven knowledge for student. Focus who through another growth list.",
+        "precio": "0.25",
+        "estado": "U",
+        "vendedor": 1,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.producto",
     "pk": 15,
     "fields": {
-        "nombre": "Treatment cause hour focus time stay. Cover year knowledge red.",
-        "descripcion": "Maintain project bank scene choose. Scene yourself others police generation ten.\nSit usually close red also law. Focus begin production attack son medical many. Personal whom across rule born of.",
-        "precio": "0.87",
+        "nombre": "Price talk determine actually together marriage coach member. Rise sit manager young as person.",
+        "descripcion": "Speak professor increase offer happy. Expect ever president. Build thank improve.\nWeek by write early wonder treat tax. Each movement property population. May range his sign herself.",
+        "precio": "0.22",
         "estado": "CN",
-        "vendedor": 30,
-        "fecha_de_publicacion": "2024-10-17T16:54:01.414"
+        "vendedor": 14,
+        "fecha_de_publicacion": "2024-10-17T17:17:32.914"
     }
 },
 {
@@ -1442,7 +1187,7 @@
     "pk": 1,
     "fields": {
         "producto": 1,
-        "categoria": 19
+        "categoria": 9
     }
 },
 {
@@ -1450,15 +1195,15 @@
     "pk": 2,
     "fields": {
         "producto": 1,
-        "categoria": 23
+        "categoria": 1
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 3,
     "fields": {
-        "producto": 2,
-        "categoria": 19
+        "producto": 1,
+        "categoria": 11
     }
 },
 {
@@ -1466,23 +1211,23 @@
     "pk": 4,
     "fields": {
         "producto": 2,
-        "categoria": 22
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 5,
     "fields": {
-        "producto": 3,
-        "categoria": 21
+        "producto": 2,
+        "categoria": 3
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 6,
     "fields": {
-        "producto": 3,
-        "categoria": 17
+        "producto": 2,
+        "categoria": 13
     }
 },
 {
@@ -1490,23 +1235,23 @@
     "pk": 7,
     "fields": {
         "producto": 3,
-        "categoria": 22
+        "categoria": 8
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 8,
     "fields": {
-        "producto": 4,
-        "categoria": 19
+        "producto": 3,
+        "categoria": 10
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 9,
     "fields": {
-        "producto": 4,
-        "categoria": 26
+        "producto": 3,
+        "categoria": 9
     }
 },
 {
@@ -1514,7 +1259,7 @@
     "pk": 10,
     "fields": {
         "producto": 4,
-        "categoria": 16
+        "categoria": 5
     }
 },
 {
@@ -1522,15 +1267,15 @@
     "pk": 11,
     "fields": {
         "producto": 4,
-        "categoria": 27
+        "categoria": 8
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 12,
     "fields": {
-        "producto": 5,
-        "categoria": 28
+        "producto": 4,
+        "categoria": 7
     }
 },
 {
@@ -1538,135 +1283,135 @@
     "pk": 13,
     "fields": {
         "producto": 5,
-        "categoria": 19
+        "categoria": 1
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 14,
     "fields": {
-        "producto": 6,
-        "categoria": 30
+        "producto": 5,
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 15,
     "fields": {
-        "producto": 6,
-        "categoria": 24
+        "producto": 5,
+        "categoria": 11
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 16,
     "fields": {
-        "producto": 7,
-        "categoria": 23
+        "producto": 5,
+        "categoria": 4
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 17,
     "fields": {
-        "producto": 7,
-        "categoria": 25
+        "producto": 6,
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 18,
     "fields": {
-        "producto": 8,
-        "categoria": 25
+        "producto": 6,
+        "categoria": 12
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 19,
     "fields": {
-        "producto": 8,
-        "categoria": 21
+        "producto": 7,
+        "categoria": 8
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 20,
     "fields": {
-        "producto": 9,
-        "categoria": 17
+        "producto": 7,
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 21,
     "fields": {
-        "producto": 9,
-        "categoria": 20
+        "producto": 8,
+        "categoria": 1
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 22,
     "fields": {
-        "producto": 9,
-        "categoria": 28
+        "producto": 8,
+        "categoria": 12
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 23,
     "fields": {
-        "producto": 10,
-        "categoria": 16
+        "producto": 9,
+        "categoria": 15
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 24,
     "fields": {
-        "producto": 10,
-        "categoria": 28
+        "producto": 9,
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 25,
     "fields": {
-        "producto": 10,
-        "categoria": 27
+        "producto": 9,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 26,
     "fields": {
-        "producto": 11,
-        "categoria": 28
+        "producto": 9,
+        "categoria": 6
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 27,
     "fields": {
-        "producto": 11,
-        "categoria": 25
+        "producto": 10,
+        "categoria": 7
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 28,
     "fields": {
-        "producto": 11,
-        "categoria": 18
+        "producto": 10,
+        "categoria": 9
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 29,
     "fields": {
-        "producto": 12,
-        "categoria": 26
+        "producto": 11,
+        "categoria": 1
     }
 },
 {
@@ -1674,7 +1419,7 @@
     "pk": 30,
     "fields": {
         "producto": 12,
-        "categoria": 28
+        "categoria": 6
     }
 },
 {
@@ -1682,23 +1427,23 @@
     "pk": 31,
     "fields": {
         "producto": 13,
-        "categoria": 30
+        "categoria": 4
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 32,
     "fields": {
-        "producto": 13,
-        "categoria": 27
+        "producto": 14,
+        "categoria": 3
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 33,
     "fields": {
-        "producto": 13,
-        "categoria": 28
+        "producto": 14,
+        "categoria": 7
     }
 },
 {
@@ -1706,7 +1451,7 @@
     "pk": 34,
     "fields": {
         "producto": 14,
-        "categoria": 27
+        "categoria": 15
     }
 },
 {
@@ -1714,1270 +1459,1283 @@
     "pk": 35,
     "fields": {
         "producto": 14,
-        "categoria": 29
+        "categoria": 11
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 36,
     "fields": {
-        "producto": 14,
-        "categoria": 28
+        "producto": 15,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 37,
     "fields": {
-        "producto": 14,
-        "categoria": 22
+        "producto": 15,
+        "categoria": 14
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 38,
     "fields": {
-        "producto": 15,
-        "categoria": 29
+        "producto": 7,
+        "categoria": 3
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 39,
     "fields": {
-        "producto": 15,
-        "categoria": 24
+        "producto": 1,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 40,
     "fields": {
-        "producto": 15,
-        "categoria": 30
+        "producto": 10,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 41,
     "fields": {
-        "producto": 15,
-        "categoria": 19
+        "producto": 7,
+        "categoria": 7
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 42,
     "fields": {
-        "producto": 4,
-        "categoria": 24
+        "producto": 5,
+        "categoria": 1
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 43,
     "fields": {
-        "producto": 14,
-        "categoria": 20
+        "producto": 10,
+        "categoria": 13
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 44,
     "fields": {
-        "producto": 6,
-        "categoria": 21
+        "producto": 8,
+        "categoria": 8
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 45,
     "fields": {
-        "producto": 8,
-        "categoria": 16
+        "producto": 10,
+        "categoria": 10
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 46,
     "fields": {
-        "producto": 12,
-        "categoria": 18
+        "producto": 14,
+        "categoria": 7
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 47,
     "fields": {
-        "producto": 4,
-        "categoria": 20
+        "producto": 15,
+        "categoria": 8
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 48,
     "fields": {
-        "producto": 13,
-        "categoria": 25
+        "producto": 10,
+        "categoria": 15
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 49,
     "fields": {
-        "producto": 1,
-        "categoria": 23
+        "producto": 15,
+        "categoria": 2
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 50,
     "fields": {
-        "producto": 14,
-        "categoria": 27
+        "producto": 1,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 51,
     "fields": {
-        "producto": 7,
-        "categoria": 29
+        "producto": 10,
+        "categoria": 7
     }
 },
 {
     "model": "tienda.productocategoria",
     "pk": 52,
     "fields": {
-        "producto": 7,
-        "categoria": 25
-    }
-},
-{
-    "model": "tienda.productocategoria",
-    "pk": 53,
-    "fields": {
-        "producto": 5,
-        "categoria": 20
-    }
-},
-{
-    "model": "tienda.productocategoria",
-    "pk": 54,
-    "fields": {
-        "producto": 13,
-        "categoria": 20
-    }
-},
-{
-    "model": "tienda.productocategoria",
-    "pk": 55,
-    "fields": {
-        "producto": 2,
-        "categoria": 19
-    }
-},
-{
-    "model": "tienda.productocategoria",
-    "pk": 56,
-    "fields": {
-        "producto": 5,
-        "categoria": 21
+        "producto": 4,
+        "categoria": 5
     }
 },
 {
     "model": "tienda.calzado",
     "pk": 1,
     "fields": {
-        "producto": 9,
-        "talla": "pa",
-        "marca": "NIKE",
-        "color": "Final experience."
+        "producto": 3,
+        "talla": "fi",
+        "marca": "PUMA",
+        "color": "His lot among which.",
+        "material": "Up hope other window."
     }
 },
 {
     "model": "tienda.calzado",
     "pk": 2,
     "fields": {
-        "producto": 5,
-        "talla": "su",
+        "producto": 13,
+        "talla": "sp",
         "marca": "RBK",
-        "color": "Your parent ground."
+        "color": "Happy minute.",
+        "material": "Huge imagine scene."
     }
 },
 {
     "model": "tienda.calzado",
     "pk": 3,
     "fields": {
-        "producto": 10,
-        "talla": "no",
-        "marca": "ADID",
-        "color": "Hotel once per and."
+        "producto": 1,
+        "talla": "na",
+        "marca": "PUMA",
+        "color": "Leg step move.",
+        "material": "Ability interview though."
     }
 },
 {
     "model": "tienda.calzado",
     "pk": 4,
-    "fields": {
-        "producto": 11,
-        "talla": "so",
-        "marca": "GUCCI",
-        "color": "Little choose."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 5,
-    "fields": {
-        "producto": 15,
-        "talla": "ac",
-        "marca": "NIKE",
-        "color": "Dark middle after."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 6,
     "fields": {
         "producto": 7,
         "talla": "st",
-        "marca": "GUCCI",
-        "color": "Morning common wide."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 7,
-    "fields": {
-        "producto": 1,
-        "talla": "lo",
-        "marca": "CLRK",
-        "color": "Five probably break."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 8,
-    "fields": {
-        "producto": 3,
-        "talla": "al",
         "marca": "NB",
-        "color": "Each each maintain."
+        "color": "People part crime.",
+        "material": "No decade window."
     }
 },
 {
     "model": "tienda.calzado",
-    "pk": 9,
-    "fields": {
-        "producto": 6,
-        "talla": "ea",
-        "marca": "NB",
-        "color": "Without receive."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 10,
-    "fields": {
-        "producto": 8,
-        "talla": "re",
-        "marca": "NIKE",
-        "color": "Participant thing."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 11,
-    "fields": {
-        "producto": 14,
-        "talla": "le",
-        "marca": "ADID",
-        "color": "Piece road increase."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 12,
-    "fields": {
-        "producto": 2,
-        "talla": "ma",
-        "marca": "ADID",
-        "color": "Security defense."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 13,
-    "fields": {
-        "producto": 4,
-        "talla": "ma",
-        "marca": "RBK",
-        "color": "Structure anything."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 14,
-    "fields": {
-        "producto": 13,
-        "talla": "an",
-        "marca": "ADID",
-        "color": "About activity."
-    }
-},
-{
-    "model": "tienda.calzado",
-    "pk": 15,
-    "fields": {
-        "producto": 12,
-        "talla": "cu",
-        "marca": "NIKE",
-        "color": "Somebody near staff."
-    }
-},
-{
-    "model": "tienda.muebles",
-    "pk": 1,
-    "fields": {
-        "producto": 2,
-        "material": "Now reveal agree bring.",
-        "dimensiones": "Size lay even thing. Least together administration economic small. Open health similar whatever fast.\nCould a girl raise tend nice. Answer particularly above carry condition.",
-        "peso": 9486
-    }
-},
-{
-    "model": "tienda.muebles",
-    "pk": 2,
-    "fields": {
-        "producto": 8,
-        "material": "Central interview ok record.",
-        "dimensiones": "Box personal special.\nBy garden trade enjoy. Everyone back art cut almost. Find six where.\nWay great who size. Bar treatment understand this. Answer week mind up mother finish project.",
-        "peso": -15467
-    }
-},
-{
-    "model": "tienda.muebles",
-    "pk": 3,
+    "pk": 5,
     "fields": {
         "producto": 5,
-        "material": "Word exist coach top network.",
-        "dimensiones": "Power page run. East choice their bit yeah. Treat amount energy continue performance material beat.",
-        "peso": 26833
+        "talla": "te",
+        "marca": "PUMA",
+        "color": "Leader improve whom.",
+        "material": "Low phone rather strong."
     }
 },
 {
-    "model": "tienda.muebles",
-    "pk": 4,
-    "fields": {
-        "producto": 9,
-        "material": "Minute federal cold.",
-        "dimensiones": "Prove power vote analysis necessary. Middle material bring fire far admit her senior.\nLittle take miss recent perform. Father father building soldier customer soon season.\nDrug arm chance however. Sometimes most out develop young age personal.",
-        "peso": -16323
-    }
-},
-{
-    "model": "tienda.muebles",
-    "pk": 5,
-    "fields": {
-        "producto": 1,
-        "material": "Commercial deep rather many.",
-        "dimensiones": "You live recently early. Chance order change keep short.\nBelieve throw even. Them citizen firm mention physical activity hope.\nHerself ahead action when hard send. Something great claim officer benefit individual keep.",
-        "peso": 513
-    }
-},
-{
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 6,
     "fields": {
-        "producto": 10,
-        "material": "Bad matter somebody.",
-        "dimensiones": "Use true different risk hear same. Discuss machine glass reality. Whether especially important answer fight. Seat next beautiful forward pick offer benefit.",
-        "peso": -248
+        "producto": 15,
+        "talla": "pl",
+        "marca": "CLRK",
+        "color": "Western difficult.",
+        "material": "Manage also contain project."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 7,
     "fields": {
-        "producto": 3,
-        "material": "Part actually their else.",
-        "dimensiones": "Yourself admit should economic campaign. Education personal wide reason whom. Commercial tax like church.\nEffect this enough day respond. Imagine nice turn imagine.",
-        "peso": 17302
+        "producto": 11,
+        "talla": "lo",
+        "marca": "CLRK",
+        "color": "Law kid soon long.",
+        "material": "Room former beautiful."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 8,
     "fields": {
-        "producto": 13,
-        "material": "Them concern whose.",
-        "dimensiones": "Spring charge rule quite. Charge though result.\nReason send challenge special executive popular even. Well opportunity road very important. Use phone worker son call it quite.",
-        "peso": 14097
+        "producto": 8,
+        "talla": "ma",
+        "marca": "GUCCI",
+        "color": "Hot fund college.",
+        "material": "Order sense spend."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 9,
     "fields": {
-        "producto": 14,
-        "material": "Some west card.",
-        "dimensiones": "Woman together affect sense. Hair everybody unit civil this. Develop economic approach know light rest high.\nMost force very. Cell benefit wind.\nToward theory parent. Tv will thus protect ten north off like.\nCar whatever goal news.",
-        "peso": -13995
+        "producto": 9,
+        "talla": "te",
+        "marca": "RBK",
+        "color": "Full suggest.",
+        "material": "Site he choice could."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 10,
     "fields": {
-        "producto": 11,
-        "material": "Lawyer brother own.",
-        "dimensiones": "Cold become table give blood. Some fire former human.\nWear per nation speak affect. Audience research right rate start else. Visit friend lawyer want economy.",
-        "peso": -22493
+        "producto": 2,
+        "talla": "tr",
+        "marca": "RBK",
+        "color": "Dog peace way.",
+        "material": "Budget some real."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 11,
     "fields": {
-        "producto": 6,
-        "material": "True far article name.",
-        "dimensiones": "Grow loss plan move standard southern why. Southern catch piece child will black account wait. Recent real clear hundred water and. Find use sell.",
-        "peso": -25945
+        "producto": 10,
+        "talla": "sp",
+        "marca": "ADID",
+        "color": "Hospital our find.",
+        "material": "Point whose tend."
     }
 },
 {
-    "model": "tienda.muebles",
+    "model": "tienda.calzado",
     "pk": 12,
     "fields": {
         "producto": 4,
-        "material": "Hospital food support.",
-        "dimensiones": "Gas clear machine often court. Mr western off could position.\nNecessary turn federal word half idea. Color concern fall commercial particularly store despite. Environment none itself head bed whole people.",
-        "peso": -14260
+        "talla": "re",
+        "marca": "PUMA",
+        "color": "Agent court sport.",
+        "material": "Within animal many own."
+    }
+},
+{
+    "model": "tienda.calzado",
+    "pk": 13,
+    "fields": {
+        "producto": 12,
+        "talla": "se",
+        "marca": "ADID",
+        "color": "Sell year choice.",
+        "material": "Still candidate team action."
+    }
+},
+{
+    "model": "tienda.calzado",
+    "pk": 14,
+    "fields": {
+        "producto": 6,
+        "talla": "so",
+        "marca": "RBK",
+        "color": "Similar understand.",
+        "material": "Just age grow accept."
+    }
+},
+{
+    "model": "tienda.calzado",
+    "pk": 15,
+    "fields": {
+        "producto": 14,
+        "talla": "ma",
+        "marca": "GUCCI",
+        "color": "If poor finish.",
+        "material": "Above plan event boy."
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 1,
+    "fields": {
+        "producto": 14,
+        "material": "Form interview firm make.",
+        "ancho": 0.3916021026436415,
+        "alto": 0.9117941694797467,
+        "profundidad": 0.5492484786625469,
+        "peso": 18835
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 2,
+    "fields": {
+        "producto": 8,
+        "material": "Nothing seek rise share.",
+        "ancho": 0.5553150825260387,
+        "alto": 0.6429550670613232,
+        "profundidad": 0.9355335579135254,
+        "peso": 18299
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 3,
+    "fields": {
+        "producto": 1,
+        "material": "Save smile might vote.",
+        "ancho": 0.5020039235267829,
+        "alto": 0.516800513327512,
+        "profundidad": 0.7470833360072637,
+        "peso": 8550
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 4,
+    "fields": {
+        "producto": 10,
+        "material": "Right black cut low.",
+        "ancho": 0.5369774941427132,
+        "alto": 0.6850903476727273,
+        "profundidad": 0.5418370740336801,
+        "peso": 4609
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 5,
+    "fields": {
+        "producto": 15,
+        "material": "Water throw authority film.",
+        "ancho": 0.826236455375831,
+        "alto": 0.4085621219107478,
+        "profundidad": 0.2600985847929941,
+        "peso": 5683
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 6,
+    "fields": {
+        "producto": 6,
+        "material": "Hotel require development.",
+        "ancho": 0.5966240141560188,
+        "alto": 0.2973551237330174,
+        "profundidad": 0.2549187706405214,
+        "peso": -31246
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 7,
+    "fields": {
+        "producto": 7,
+        "material": "Law its six need yes his.",
+        "ancho": 0.39279148118306806,
+        "alto": 0.15030091167706017,
+        "profundidad": 0.3898843237628399,
+        "peso": -22402
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 8,
+    "fields": {
+        "producto": 11,
+        "material": "Believe example player today.",
+        "ancho": 0.5878361034691998,
+        "alto": 0.9476460892224992,
+        "profundidad": 0.26069513061583904,
+        "peso": 2421
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 9,
+    "fields": {
+        "producto": 2,
+        "material": "Candidate nor his will.",
+        "ancho": 0.862788087101932,
+        "alto": 0.7736044996938222,
+        "profundidad": 0.6793392409995892,
+        "peso": 17622
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 10,
+    "fields": {
+        "producto": 3,
+        "material": "Either option bar lose exist.",
+        "ancho": 0.7113325767019434,
+        "alto": 0.5796220721814666,
+        "profundidad": 0.43178714554617303,
+        "peso": 30899
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 11,
+    "fields": {
+        "producto": 12,
+        "material": "Center car sure.",
+        "ancho": 0.6064401658782058,
+        "alto": 0.1861708294843829,
+        "profundidad": 0.4534721245557384,
+        "peso": -24943
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 12,
+    "fields": {
+        "producto": 9,
+        "material": "Sport notice send.",
+        "ancho": 0.7619219138906285,
+        "alto": 0.3936927427797978,
+        "profundidad": 0.5934688139197464,
+        "peso": -12270
     }
 },
 {
     "model": "tienda.muebles",
     "pk": 13,
     "fields": {
-        "producto": 7,
-        "material": "Almost drive nation animal.",
-        "dimensiones": "From suddenly development sister. Wife up difference nation apply scene role.\nPart any strong yet role miss peace. Very lose former drive.",
-        "peso": 8997
+        "producto": 4,
+        "material": "As face board dog our.",
+        "ancho": 0.5807962749520565,
+        "alto": 0.7298685440005571,
+        "profundidad": 0.8156087433387679,
+        "peso": -2093
     }
 },
 {
     "model": "tienda.muebles",
     "pk": 14,
     "fields": {
-        "producto": 15,
-        "material": "This agent air factor can.",
-        "dimensiones": "Movie area television save record alone set. Small about stand prevent per occur pay.\nCustomer one people admit option. Debate month top thought political very less step.",
-        "peso": 15610
+        "producto": 13,
+        "material": "Health toward court.",
+        "ancho": 0.27617602785913953,
+        "alto": 0.23515099329444578,
+        "profundidad": 0.08102658977952937,
+        "peso": -1279
     }
 },
 {
     "model": "tienda.muebles",
     "pk": 15,
     "fields": {
-        "producto": 12,
-        "material": "Over claim everybody account.",
-        "dimensiones": "Generation direction quality city. One claim stand represent figure. Wear second business political position family wish.\nRealize people gun business music same indicate.",
-        "peso": -10181
+        "producto": 5,
+        "material": "Put its hot final central.",
+        "ancho": 0.2609132619725333,
+        "alto": 0.766309369295408,
+        "profundidad": 0.12862800122802365,
+        "peso": -31250
     }
 },
 {
     "model": "tienda.chat",
     "pk": 1,
     "fields": {
-        "usuario1": 28,
-        "usuario2": 23,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2004-09-07T19:33:46.470"
+        "usuario1": 8,
+        "usuario2": 8,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1997-07-27T08:39:48.042"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 2,
     "fields": {
-        "usuario1": 16,
-        "usuario2": 26,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1971-12-22T03:57:06.887"
+        "usuario1": 12,
+        "usuario2": 6,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2023-01-29T04:01:57.197"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 3,
     "fields": {
-        "usuario1": 17,
-        "usuario2": 23,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1990-11-14T13:58:46.824"
+        "usuario1": 13,
+        "usuario2": 14,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1989-03-04T21:17:53.883"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 4,
     "fields": {
-        "usuario1": 25,
-        "usuario2": 27,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1995-11-21T07:37:46.721"
+        "usuario1": 5,
+        "usuario2": 10,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2005-10-22T21:45:14.294"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 5,
     "fields": {
-        "usuario1": 21,
-        "usuario2": 25,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2014-05-28T06:03:20.761"
+        "usuario1": 4,
+        "usuario2": 14,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1975-10-08T00:13:15.017"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 6,
     "fields": {
-        "usuario1": 25,
-        "usuario2": 21,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2003-03-31T06:53:59.638"
+        "usuario1": 9,
+        "usuario2": 10,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1989-03-19T17:33:13.142"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 7,
     "fields": {
-        "usuario1": 25,
-        "usuario2": 29,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1979-12-19T17:08:19.947"
+        "usuario1": 4,
+        "usuario2": 2,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2004-08-06T16:21:30.300"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 8,
     "fields": {
-        "usuario1": 30,
-        "usuario2": 29,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1997-08-08T14:07:12.634"
+        "usuario1": 3,
+        "usuario2": 12,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1976-05-10T20:51:15.468"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 9,
     "fields": {
-        "usuario1": 21,
-        "usuario2": 18,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2011-04-26T19:33:34.480"
+        "usuario1": 6,
+        "usuario2": 1,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1995-10-24T10:13:50.491"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 10,
     "fields": {
-        "usuario1": 29,
-        "usuario2": 30,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1998-06-27T06:54:44.667"
+        "usuario1": 6,
+        "usuario2": 9,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1994-04-26T10:41:15.165"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 11,
     "fields": {
-        "usuario1": 28,
-        "usuario2": 29,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2001-07-03T19:24:05.053"
+        "usuario1": 8,
+        "usuario2": 5,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2001-11-16T16:53:46.560"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 12,
     "fields": {
-        "usuario1": 19,
-        "usuario2": 29,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1985-06-14T13:30:57.791"
+        "usuario1": 3,
+        "usuario2": 4,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1995-06-23T09:01:22.653"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 13,
     "fields": {
-        "usuario1": 24,
-        "usuario2": 25,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1970-07-02T08:24:01.664"
+        "usuario1": 3,
+        "usuario2": 1,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2019-04-26T18:24:54.532"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 14,
     "fields": {
-        "usuario1": 20,
-        "usuario2": 17,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "2000-11-01T04:32:31.306"
+        "usuario1": 5,
+        "usuario2": 11,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "1987-05-17T01:18:01.328"
     }
 },
 {
     "model": "tienda.chat",
     "pk": 15,
     "fields": {
-        "usuario1": 20,
-        "usuario2": 27,
-        "fecha_inicio": "2024-10-17T16:54:01.414",
-        "fecha_fin": "1983-03-04T09:26:33.809"
+        "usuario1": 9,
+        "usuario2": 13,
+        "fecha_inicio": "2024-10-17T17:17:32.914",
+        "fecha_fin": "2009-02-13T18:10:18.721"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 1,
     "fields": {
-        "comprador": 20,
-        "vendedor": 16,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.24"
+        "comprador": 8,
+        "vendedor": 2,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.99"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 2,
     "fields": {
-        "comprador": 20,
-        "vendedor": 19,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.46"
+        "comprador": 7,
+        "vendedor": 8,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.80"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 3,
     "fields": {
-        "comprador": 18,
-        "vendedor": 28,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.37"
+        "comprador": 12,
+        "vendedor": 13,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.19"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 4,
     "fields": {
-        "comprador": 26,
-        "vendedor": 29,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.82"
+        "comprador": 14,
+        "vendedor": 5,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.96"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 5,
     "fields": {
-        "comprador": 28,
-        "vendedor": 16,
-        "fecha_compra": "2024-10-17T16:54:01.414",
+        "comprador": 15,
+        "vendedor": 10,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.20"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 6,
+    "fields": {
+        "comprador": 4,
+        "vendedor": 11,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.78"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 7,
+    "fields": {
+        "comprador": 2,
+        "vendedor": 9,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.96"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 8,
+    "fields": {
+        "comprador": 3,
+        "vendedor": 11,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.10"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 9,
+    "fields": {
+        "comprador": 3,
+        "vendedor": 3,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.48"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 10,
+    "fields": {
+        "comprador": 4,
+        "vendedor": 1,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.99"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 11,
+    "fields": {
+        "comprador": 4,
+        "vendedor": 15,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.78"
+    }
+},
+{
+    "model": "tienda.compra",
+    "pk": 12,
+    "fields": {
+        "comprador": 3,
+        "vendedor": 2,
+        "fecha_compra": "2024-10-17T17:17:32.914",
         "total": "0.41"
     }
 },
 {
     "model": "tienda.compra",
-    "pk": 6,
-    "fields": {
-        "comprador": 17,
-        "vendedor": 20,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.71"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 7,
-    "fields": {
-        "comprador": 27,
-        "vendedor": 30,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.21"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 8,
-    "fields": {
-        "comprador": 20,
-        "vendedor": 16,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.44"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 9,
-    "fields": {
-        "comprador": 30,
-        "vendedor": 22,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.76"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 10,
-    "fields": {
-        "comprador": 22,
-        "vendedor": 29,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.75"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 11,
-    "fields": {
-        "comprador": 29,
-        "vendedor": 18,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.08"
-    }
-},
-{
-    "model": "tienda.compra",
-    "pk": 12,
-    "fields": {
-        "comprador": 26,
-        "vendedor": 16,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.11"
-    }
-},
-{
-    "model": "tienda.compra",
     "pk": 13,
     "fields": {
-        "comprador": 21,
-        "vendedor": 23,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.08"
+        "comprador": 6,
+        "vendedor": 10,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.16"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 14,
     "fields": {
-        "comprador": 24,
-        "vendedor": 28,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.61"
+        "comprador": 4,
+        "vendedor": 14,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.65"
     }
 },
 {
     "model": "tienda.compra",
     "pk": 15,
     "fields": {
-        "comprador": 18,
-        "vendedor": 18,
-        "fecha_compra": "2024-10-17T16:54:01.414",
-        "total": "0.32"
+        "comprador": 13,
+        "vendedor": 11,
+        "fecha_compra": "2024-10-17T17:17:32.914",
+        "total": "0.43"
     }
 },
 {
     "model": "tienda.compraproducto",
     "pk": 1,
     "fields": {
-        "compra": 14,
-        "producto": 15,
-        "cantidad": -21717,
-        "precio_unitario": "0.26",
-        "subtotal": "0.51",
-        "descuento": "0.22"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 2,
-    "fields": {
-        "compra": 9,
-        "producto": 2,
-        "cantidad": 6527,
-        "precio_unitario": "0.57",
-        "subtotal": "0.91",
-        "descuento": "0.18"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 3,
-    "fields": {
-        "compra": 15,
-        "producto": 2,
-        "cantidad": -188,
-        "precio_unitario": "0.53",
-        "subtotal": "0.44",
-        "descuento": "0.53"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 4,
-    "fields": {
-        "compra": 4,
-        "producto": 10,
-        "cantidad": -30718,
-        "precio_unitario": "0.22",
-        "subtotal": "0.52",
-        "descuento": "0.31"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 5,
-    "fields": {
         "compra": 8,
-        "producto": 12,
-        "cantidad": 13778,
-        "precio_unitario": "0.83",
-        "subtotal": "0.90",
-        "descuento": "0.01"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 6,
-    "fields": {
-        "compra": 5,
-        "producto": 9,
-        "cantidad": 6504,
-        "precio_unitario": "0.27",
-        "subtotal": "0.72",
-        "descuento": "0.00"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 7,
-    "fields": {
-        "compra": 14,
-        "producto": 3,
-        "cantidad": -28563,
-        "precio_unitario": "0.38",
+        "producto": 2,
+        "cantidad": -27503,
+        "precio_unitario": "0.20",
         "subtotal": "0.74",
-        "descuento": "0.64"
+        "descuento": "0.10"
     }
 },
 {
     "model": "tienda.compraproducto",
-    "pk": 8,
-    "fields": {
-        "compra": 9,
-        "producto": 2,
-        "cantidad": -3560,
-        "precio_unitario": "0.98",
-        "subtotal": "0.60",
-        "descuento": "0.33"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 9,
-    "fields": {
-        "compra": 3,
-        "producto": 10,
-        "cantidad": 8220,
-        "precio_unitario": "0.08",
-        "subtotal": "0.24",
-        "descuento": "0.80"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 10,
-    "fields": {
-        "compra": 2,
-        "producto": 8,
-        "cantidad": 14849,
-        "precio_unitario": "0.59",
-        "subtotal": "0.91",
-        "descuento": "0.01"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 11,
-    "fields": {
-        "compra": 11,
-        "producto": 1,
-        "cantidad": 8820,
-        "precio_unitario": "0.24",
-        "subtotal": "0.33",
-        "descuento": "0.57"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 12,
-    "fields": {
-        "compra": 1,
-        "producto": 14,
-        "cantidad": -16,
-        "precio_unitario": "0.18",
-        "subtotal": "0.94",
-        "descuento": "0.64"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 13,
-    "fields": {
-        "compra": 14,
-        "producto": 12,
-        "cantidad": -19286,
-        "precio_unitario": "0.06",
-        "subtotal": "0.50",
-        "descuento": "0.80"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 14,
-    "fields": {
-        "compra": 3,
-        "producto": 1,
-        "cantidad": 10056,
-        "precio_unitario": "0.34",
-        "subtotal": "0.71",
-        "descuento": "0.95"
-    }
-},
-{
-    "model": "tienda.compraproducto",
-    "pk": 15,
-    "fields": {
-        "compra": 2,
-        "producto": 1,
-        "cantidad": -4506,
-        "precio_unitario": "0.51",
-        "subtotal": "0.73",
-        "descuento": "0.87"
-    }
-},
-{
-    "model": "tienda.envio",
-    "pk": 1,
-    "fields": {
-        "compra": 4,
-        "direccion": "Audience them myself decision so. West system shoulder sort particularly run. See guess guy share particularly administration card.",
-        "fecha_envio": "1974-11-26T12:14:13.901",
-        "fecha_recepcion": "1987-09-14T22:35:40.842"
-    }
-},
-{
-    "model": "tienda.envio",
     "pk": 2,
     "fields": {
-        "compra": 15,
-        "direccion": "Can available hundred budget simply. Government issue argue none. Government wait both middle.\nAccount water discuss certain himself behind. Create always manage door guy.",
-        "fecha_envio": "2024-10-12T11:55:05.048",
-        "fecha_recepcion": "1972-02-17T03:44:07.193"
+        "compra": 9,
+        "producto": 3,
+        "cantidad": -18526,
+        "precio_unitario": "0.97",
+        "subtotal": "0.47",
+        "descuento": "0.94"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 3,
-    "fields": {
-        "compra": 8,
-        "direccion": "Figure involve chair public though. Spend nearly cold. Economic miss push.",
-        "fecha_envio": "2007-05-07T09:13:32.879",
-        "fecha_recepcion": "1983-10-24T01:19:09.418"
-    }
-},
-{
-    "model": "tienda.envio",
-    "pk": 4,
     "fields": {
         "compra": 12,
-        "direccion": "Alone possible finally later. Trouble easy six drop laugh meet rate. Maintain could if size both end. Top sure amount final.",
-        "fecha_envio": "2006-12-10T20:15:18.396",
-        "fecha_recepcion": "1979-05-13T06:59:30.658"
+        "producto": 7,
+        "cantidad": 1212,
+        "precio_unitario": "0.15",
+        "subtotal": "0.43",
+        "descuento": "0.48"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
+    "pk": 4,
+    "fields": {
+        "compra": 15,
+        "producto": 11,
+        "cantidad": 20745,
+        "precio_unitario": "0.91",
+        "subtotal": "0.55",
+        "descuento": "0.26"
+    }
+},
+{
+    "model": "tienda.compraproducto",
     "pk": 5,
     "fields": {
-        "compra": 3,
-        "direccion": "Majority dream paper investment mean produce movie.\nVisit toward politics hear sister fall security. Discuss cultural trial may visit great population.",
-        "fecha_envio": "1992-12-08T17:51:10.475",
-        "fecha_recepcion": "1976-05-16T22:04:09.921"
+        "compra": 4,
+        "producto": 14,
+        "cantidad": -4142,
+        "precio_unitario": "0.08",
+        "subtotal": "0.34",
+        "descuento": "0.81"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 6,
     "fields": {
-        "compra": 2,
-        "direccion": "Player all three maybe.\nBudget protect my area dog military. Vote town ready baby born election over. Sell billion particularly line firm.\nSomebody fly site surface here person.",
-        "fecha_envio": "1998-05-11T00:56:02.904",
-        "fecha_recepcion": "1975-03-31T09:03:29.385"
+        "compra": 13,
+        "producto": 6,
+        "cantidad": 17116,
+        "precio_unitario": "0.55",
+        "subtotal": "0.77",
+        "descuento": "0.06"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 7,
     "fields": {
-        "compra": 7,
-        "direccion": "North generation data bring charge. Treat family watch term.\nPhysical degree especially. Job with military read clearly read.\nTest camera clear respond. Bill money speech success heart data stay.",
-        "fecha_envio": "1976-07-25T11:31:16.008",
-        "fecha_recepcion": "2022-10-16T23:44:19.205"
+        "compra": 14,
+        "producto": 9,
+        "cantidad": -31152,
+        "precio_unitario": "0.24",
+        "subtotal": "0.86",
+        "descuento": "0.35"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 8,
     "fields": {
-        "compra": 13,
-        "direccion": "Buy seven customer exactly might certain authority term. Institution produce both environment day threat.",
-        "fecha_envio": "2015-04-07T15:39:24.412",
-        "fecha_recepcion": "2020-03-11T08:00:59.972"
+        "compra": 11,
+        "producto": 11,
+        "cantidad": -9324,
+        "precio_unitario": "0.44",
+        "subtotal": "0.28",
+        "descuento": "0.60"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 9,
     "fields": {
-        "compra": 1,
-        "direccion": "Such our enter visit wide low. Save learn oil. Car movement guess customer yourself source fear smile. She born image can watch east answer.",
-        "fecha_envio": "1990-05-05T14:44:09.091",
-        "fecha_recepcion": "1975-09-08T12:45:48.250"
+        "compra": 7,
+        "producto": 12,
+        "cantidad": -11710,
+        "precio_unitario": "0.93",
+        "subtotal": "0.79",
+        "descuento": "0.11"
     }
 },
 {
-    "model": "tienda.envio",
+    "model": "tienda.compraproducto",
     "pk": 10,
     "fields": {
-        "compra": 11,
-        "direccion": "Six minute medical value high high arrive green. Fish cup crime realize city. Minute yourself catch. Student artist number challenge board center.",
-        "fecha_envio": "1988-07-18T11:34:56.092",
-        "fecha_recepcion": "1992-04-06T21:39:18.498"
+        "compra": 7,
+        "producto": 6,
+        "cantidad": -27383,
+        "precio_unitario": "0.15",
+        "subtotal": "0.04",
+        "descuento": "0.78"
+    }
+},
+{
+    "model": "tienda.compraproducto",
+    "pk": 11,
+    "fields": {
+        "compra": 6,
+        "producto": 9,
+        "cantidad": -13156,
+        "precio_unitario": "0.45",
+        "subtotal": "0.66",
+        "descuento": "0.16"
+    }
+},
+{
+    "model": "tienda.compraproducto",
+    "pk": 12,
+    "fields": {
+        "compra": 13,
+        "producto": 3,
+        "cantidad": 3089,
+        "precio_unitario": "0.58",
+        "subtotal": "0.72",
+        "descuento": "0.69"
+    }
+},
+{
+    "model": "tienda.compraproducto",
+    "pk": 13,
+    "fields": {
+        "compra": 5,
+        "producto": 7,
+        "cantidad": -31942,
+        "precio_unitario": "0.34",
+        "subtotal": "0.78",
+        "descuento": "0.55"
+    }
+},
+{
+    "model": "tienda.compraproducto",
+    "pk": 14,
+    "fields": {
+        "compra": 1,
+        "producto": 12,
+        "cantidad": -7635,
+        "precio_unitario": "0.32",
+        "subtotal": "0.56",
+        "descuento": "0.16"
+    }
+},
+{
+    "model": "tienda.compraproducto",
+    "pk": 15,
+    "fields": {
+        "compra": 1,
+        "producto": 2,
+        "cantidad": 21578,
+        "precio_unitario": "0.01",
+        "subtotal": "0.94",
+        "descuento": "0.49"
     }
 },
 {
     "model": "tienda.envio",
-    "pk": 11,
+    "pk": 1,
+    "fields": {
+        "compra": 11,
+        "direccion": "Low laugh beat appear chair need. National start scientist modern family. Everyone issue foreign card include reduce mother better.",
+        "fecha_envio": "2013-03-21T06:03:31.195",
+        "fecha_recepcion": "2011-05-30T01:44:53.120"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 2,
     "fields": {
         "compra": 10,
-        "direccion": "Force record almost. Or our where under offer star. Effect each it range before rock. Marriage end finish cup.\nWhat record pressure certain thus. Represent easy project.",
-        "fecha_envio": "2000-07-12T02:17:33.932",
-        "fecha_recepcion": "1984-07-12T22:40:43.513"
+        "direccion": "Space shake exactly help. Price spend none stuff matter. Let enter charge focus seat. Us actually usually point since.\nPopular majority eight teach the.",
+        "fecha_envio": "1993-09-03T01:24:54.572",
+        "fecha_recepcion": "2011-04-21T05:02:13.798"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 3,
+    "fields": {
+        "compra": 12,
+        "direccion": "Too sit wonder entire garden pretty score. Lose sell look paper find protect carry.",
+        "fecha_envio": "2006-04-30T17:18:39.157",
+        "fecha_recepcion": "2002-06-23T19:44:50.931"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 4,
+    "fields": {
+        "compra": 15,
+        "direccion": "Address or offer at its popular. Through friend pull clearly. Open change job agent add my of trial.\nInternational keep cultural history century something paper. Prepare discussion us body even.",
+        "fecha_envio": "1972-09-26T06:07:16.271",
+        "fecha_recepcion": "1986-07-13T06:44:51.380"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 5,
+    "fields": {
+        "compra": 2,
+        "direccion": "War ever member character animal yard.\nStory structure type all total woman like. Election long fill. Look still at go positive realize peace sound.",
+        "fecha_envio": "2014-09-29T18:12:44.294",
+        "fecha_recepcion": "1974-05-03T02:20:25.499"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 6,
+    "fields": {
+        "compra": 3,
+        "direccion": "Response ground resource whatever reveal. At cultural behavior among bill.\nMaybe stuff election each other where. Pick defense hour if particularly. Reality environment improve buy.",
+        "fecha_envio": "2006-04-08T15:13:36.797",
+        "fecha_recepcion": "1988-05-07T03:39:10.725"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 7,
+    "fields": {
+        "compra": 14,
+        "direccion": "Boy nor deal from likely state. Audience section protect level.\nArgue economy senior. Mind step various difficult raise.",
+        "fecha_envio": "1979-03-24T19:43:30.750",
+        "fecha_recepcion": "1971-02-14T01:51:52.061"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 8,
+    "fields": {
+        "compra": 6,
+        "direccion": "Certain sea interest skill customer. Story sing local meeting music age once.\nList boy politics like for since season. So growth enjoy once into blue. Wall a necessary specific hot city ask.",
+        "fecha_envio": "1985-09-06T15:18:43.647",
+        "fecha_recepcion": "2002-02-15T21:50:16.198"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 9,
+    "fields": {
+        "compra": 8,
+        "direccion": "In clear tell maybe. Close change any table. Generation yard happy sound even material green friend. Need he letter every artist record.\nDrive talk lot stop. Chair hard thousand street.",
+        "fecha_envio": "1995-10-08T12:30:57.687",
+        "fecha_recepcion": "2008-12-18T13:05:55.871"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 10,
+    "fields": {
+        "compra": 7,
+        "direccion": "Story certain half beyond same one those. Democratic card mind catch Congress I almost. Major check including.\nCar involve bed wrong friend first white detail. Score sense century college.",
+        "fecha_envio": "1978-11-26T21:57:31.955",
+        "fecha_recepcion": "1994-09-08T01:38:17.941"
+    }
+},
+{
+    "model": "tienda.envio",
+    "pk": 11,
+    "fields": {
+        "compra": 5,
+        "direccion": "Of put expert identify group edge election. Behavior try although usually.\nItself film main director. Budget kitchen nearly weight picture. Point raise investment easy.",
+        "fecha_envio": "1985-08-28T13:10:37.861",
+        "fecha_recepcion": "1997-04-10T07:03:19.868"
     }
 },
 {
     "model": "tienda.envio",
     "pk": 12,
     "fields": {
-        "compra": 14,
-        "direccion": "Often Democrat boy long item. Cell tree cultural down growth music.\nMorning quite challenge church almost front form. Us development focus game.",
-        "fecha_envio": "2003-10-15T05:20:37.959",
-        "fecha_recepcion": "1988-10-20T07:00:04.162"
+        "compra": 4,
+        "direccion": "Build eight daughter expert third street. Management mouth lot trip system rule. Audience prove seat which.\nWalk for want writer sea reflect. President industry stay soon PM yeah.",
+        "fecha_envio": "2006-05-12T13:00:08.055",
+        "fecha_recepcion": "2014-02-12T10:38:13.250"
     }
 },
 {
     "model": "tienda.envio",
     "pk": 13,
     "fields": {
-        "compra": 9,
-        "direccion": "Should true morning play public ahead me.\nBillion stuff hospital prevent face.\nSystem charge positive free experience.",
-        "fecha_envio": "1994-12-19T07:21:26.903",
-        "fecha_recepcion": "2021-09-09T02:45:57.360"
+        "compra": 1,
+        "direccion": "Various must reduce. Trip live discussion leave TV government about. Drop through professor foot table town rate writer.",
+        "fecha_envio": "2014-12-08T11:54:04.658",
+        "fecha_recepcion": "1973-05-05T15:49:48.666"
     }
 },
 {
     "model": "tienda.envio",
     "pk": 14,
     "fields": {
-        "compra": 6,
-        "direccion": "Too those study green skill.\nAt rock beautiful instead scene anyone her.\nBed brother line evidence whom team. Beat man less. Agent dinner here knowledge third last market.",
-        "fecha_envio": "1981-07-11T06:38:26.245",
-        "fecha_recepcion": "2007-08-22T16:16:34.084"
+        "compra": 13,
+        "direccion": "Draw fish begin west. The marriage put floor name. Baby recent expert produce.\nWorker prevent action machine put bag value. Letter remain question want lawyer name compare.",
+        "fecha_envio": "1985-10-28T06:17:58.076",
+        "fecha_recepcion": "1970-02-07T02:36:48.926"
     }
 },
 {
     "model": "tienda.envio",
     "pk": 15,
     "fields": {
-        "compra": 5,
-        "direccion": "So find check read key bag staff. Mouth series partner budget discussion article ten open. Feeling whatever you others off.\nMonth today adult benefit class. Responsibility laugh campaign.",
-        "fecha_envio": "2016-04-06T16:11:07.607",
-        "fecha_recepcion": "2013-10-29T16:33:58.756"
+        "compra": 9,
+        "direccion": "Wife prepare realize.\nEstablish song raise painting upon. Itself customer later year network risk.\nShow listen worker staff myself. Not leave market career analysis.",
+        "fecha_envio": "2021-09-21T11:28:14.046",
+        "fecha_recepcion": "1991-02-08T18:33:23.472"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 1,
     "fields": {
-        "usuario": 22,
-        "compra": 14,
-        "puntuacion": -19254,
-        "comentario": "Also sea choose born worker camera. Risk material continue cause. Blood response form stage recognize play. Need hit top near purpose one during.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 8,
+        "compra": 2,
+        "puntuacion": -1295,
+        "comentario": "Doctor notice range ask.\nApproach drop physical power value. Machine science why.\nBefore believe word position.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 2,
     "fields": {
-        "usuario": 20,
-        "compra": 1,
-        "puntuacion": 32720,
-        "comentario": "Suggest husband first step. Third course manage today production step film. Water reach movement fall.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 9,
+        "compra": 12,
+        "puntuacion": 21813,
+        "comentario": "Pick song prevent seek song. Do fire half loss weight center sometimes.\nMeet at board ball establish marriage life. Provide although him base laugh answer factor.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 3,
     "fields": {
-        "usuario": 28,
+        "usuario": 1,
         "compra": 1,
-        "puntuacion": 24973,
-        "comentario": "Window hot white for body future various. Anyone north movie growth PM.\nSea difference drive health. Vote their foot south. Whole year sort owner market box summer campaign.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "puntuacion": -969,
+        "comentario": "Others treat analysis meet with on. Final image own room still structure.\nBut main determine environment notice suggest rather. It network PM popular.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 4,
     "fields": {
-        "usuario": 25,
-        "compra": 14,
-        "puntuacion": -31621,
-        "comentario": "Answer affect chance herself blue human assume. Law human meet relate area. Drop structure central value.\nScientist leg probably. Law upon rise.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 15,
+        "compra": 7,
+        "puntuacion": -6355,
+        "comentario": "Forget national picture statement here town nature. According reduce write class. Summer machine send build soldier country crime.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 5,
     "fields": {
-        "usuario": 18,
+        "usuario": 2,
         "compra": 7,
-        "puntuacion": 25701,
-        "comentario": "Around claim break community show natural property prove. Model network drive oil animal go half worry. Finish support production ground result away worker.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "puntuacion": -20839,
+        "comentario": "Police southern up. High high machine since group be manage. Reach go manage.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 6,
     "fields": {
-        "usuario": 24,
-        "compra": 14,
-        "puntuacion": -12880,
-        "comentario": "Up treat leg of. Book generation attorney view leave identify two.\nWhole guy after according. Other pull executive cell region bed work.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 4,
+        "compra": 12,
+        "puntuacion": 28,
+        "comentario": "Let mention fall reflect ten. Respond approach side. System develop open party kind.\nHim green as energy information product property. Certainly collection customer development thousand season.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 7,
     "fields": {
-        "usuario": 16,
-        "compra": 12,
-        "puntuacion": 13324,
-        "comentario": "Woman role his future trip. Participant ago power training her ago senior stay.\nFly beautiful window activity. Baby leave out impact may.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 11,
+        "compra": 7,
+        "puntuacion": 15073,
+        "comentario": "Present north although couple difference. Job dinner political house.\nBenefit gas character goal. Central tough place down. Generation or develop agree air learn.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 8,
     "fields": {
-        "usuario": 25,
-        "compra": 13,
-        "puntuacion": -15461,
-        "comentario": "Response heart old experience early nearly since. Floor agreement apply soldier. Full modern care place.\nGirl home sister north. A catch something evening.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 7,
+        "compra": 7,
+        "puntuacion": -1900,
+        "comentario": "To production step pressure picture. This thank boy him stand find. Might character whom firm power visit machine.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 9,
     "fields": {
-        "usuario": 17,
-        "compra": 9,
-        "puntuacion": -6784,
-        "comentario": "Mother how whom out pass. Result cold push return.\nCan road ok cover at program. Notice might really set treatment later. Structure indicate really statement management.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 6,
+        "compra": 6,
+        "puntuacion": -1662,
+        "comentario": "Structure attorney its player wide road argue. Play group economy score four. Challenge rate street tax actually.\nTrade argue model produce TV recognize idea. Money between citizen buy old.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 10,
     "fields": {
-        "usuario": 19,
-        "compra": 9,
-        "puntuacion": 32021,
-        "comentario": "Material different one sign wife. Yeah drive price.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 13,
+        "compra": 3,
+        "puntuacion": -23213,
+        "comentario": "Far raise group appear must. Bad make subject collection production whether water.\nTv remain all.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 11,
     "fields": {
-        "usuario": 20,
-        "compra": 12,
-        "puntuacion": -28747,
-        "comentario": "Identify bad ground agency. Which early administration meet product fall partner.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 15,
+        "compra": 9,
+        "puntuacion": -6841,
+        "comentario": "American today myself fight company food.\nRegion of fish only. Growth science food then.\nWant though tonight five and pressure. Various east professional already will. Recent hard marriage rich join.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 12,
     "fields": {
-        "usuario": 25,
+        "usuario": 13,
         "compra": 13,
-        "puntuacion": -4115,
-        "comentario": "Option interest rich probably cultural ground piece sing. Now rock determine support themselves. Structure just eight or quickly decision.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "puntuacion": -3326,
+        "comentario": "Citizen arrive measure practice investment listen. Management measure talk group cut.\nMajor particularly center factor husband. Character authority task debate. Ability page too house heavy.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 13,
     "fields": {
-        "usuario": 19,
-        "compra": 13,
-        "puntuacion": 32437,
-        "comentario": "Your brother month others program agree easy. Body heavy authority finally argue challenge rest.\nYou up happen action chance. Become far father adult law cost.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 8,
+        "compra": 3,
+        "puntuacion": -22061,
+        "comentario": "Current ball business last thought. Wide bar better think conference hour suddenly under. Believe very week few.\nBad pick product home card. Both age chair item speech place.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 14,
     "fields": {
-        "usuario": 28,
-        "compra": 8,
-        "puntuacion": -26281,
-        "comentario": "Leader something pay it. Agency indicate east care lead week. Property really score will.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 15,
+        "compra": 10,
+        "puntuacion": -19698,
+        "comentario": "Pass company shoulder challenge history resource. Cultural later spend generation ten.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 },
 {
     "model": "tienda.valoracion",
     "pk": 15,
     "fields": {
-        "usuario": 23,
-        "compra": 6,
-        "puntuacion": -1974,
-        "comentario": "Federal week require easy. Rather gas away protect.\nMrs the peace risk. Participant own account often. Born window happen way market available different maintain.",
-        "fecha_valoracion": "2024-10-17T16:54:01.415"
+        "usuario": 14,
+        "compra": 12,
+        "puntuacion": -22864,
+        "comentario": "Stand finish open between. Wide air hand stay. Special maybe drop sure another police administration society.",
+        "fecha_valoracion": "2024-10-17T17:17:32.914"
     }
 }
 ]

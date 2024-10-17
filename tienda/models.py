@@ -48,13 +48,15 @@ class Calzado(models.Model):
         choices=MARCAS
     )
     color = models.CharField(max_length=20, blank=True)
-
+    material = models.CharField(max_length=30)
 
 class Muebles(models.Model):
     producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
     material = models.CharField(max_length=30)
-    dimensiones = models.CharField(max_length=255)
-    peso=models.IntegerField()
+    ancho = models.FloatField()
+    alto = models.FloatField()
+    profundidad = models.FloatField()
+    peso = models.IntegerField()
 
 class Chat(models.Model):
     usuario1 = models.ForeignKey(Usuario, related_name='chat_usuario1', on_delete=models.CASCADE)
