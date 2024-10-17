@@ -1,15 +1,15 @@
 from django.contrib import admin
 from .models import *
-# Register your models here.
 
-admin.site(Usuario)
-admin.site(Categoria)
-admin.site(Producto)
-admin.site(ProductoCategoria)
-admin.site(Calzado)
-admin.site(Muebles)
-admin.site(Chat)
-admin.site(Compra)
-admin.site(CompraProducto)
-admin.site(Envio)
-admin.site(Valoracion)
+# Register your models here.
+admin.site.register(Usuario)
+admin.site.register(Categoria)
+admin.site.register(Producto)
+admin.site.register(ProductoCategoria)
+admin.site.register(Calzado)
+admin.site.register(Muebles)
+admin.site.register(Chat)
+admin.site.register(Compra)
+admin.site.register(CompraProducto)
+admin.site.register(Envio)
+admin.site.register(Valoracion)
