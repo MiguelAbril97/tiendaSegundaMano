@@ -9,6 +9,9 @@ class Usuario(models.Model):
     
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
+    descripcion = models.CharField(max_length=50, blank=True)
+    existecias = models.IntegerField()
+    destacada = models.BooleanField(default=None)
 
 class Producto(models.Model):
     ESTADOS=[
@@ -49,6 +52,13 @@ class Calzado(models.Model):
     )
     color = models.CharField(max_length=20, blank=True)
     material = models.CharField(max_length=30)
+    
+class Consolas (models.Model):
+    producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50)
+    modelo = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+    memoria = models.CharField(max_length=20)
 
 class Muebles(models.Model):
     producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
@@ -63,12 +73,19 @@ class Chat(models.Model):
     usuario2 = models.ForeignKey(Usuario, related_name='chat_usuario2', on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField(default=timezone.now)
     fecha_fin= models.DateTimeField(blank=True)
+    historial = models.TextField()
+    reporte = models.BooleanField(default=False)
 
 class Compra(models.Model):
     comprador = models.ForeignKey(Usuario, related_name='compras_comprador', on_delete=models.CASCADE)
     vendedor = models.ForeignKey(Usuario, related_name='compras_vendedor',      on_delete=models.CASCADE)
     fecha_compra = models.DateTimeField(default=timezone.now)
     total = models.DecimalField(max_digits=10, decimal_places=2)
+    descuentoTotal= models.FloatField(blank=True)
+    GARANTIA=[
+        ("1", "1 año"),
+        ("2" "2 años"),
+    ]
 
 class CompraProducto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
@@ -84,6 +101,7 @@ class Envio(models.Model):
     direccion=models.TextField()	
     fecha_envio = models.DateTimeField()
     fecha_recepcion = models.DateTimeField()
+    recepcionEstimada = models.DateTimeField()
 
 class Valoracion(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -91,6 +109,7 @@ class Valoracion(models.Model):
     puntuacion = models.IntegerField()
     comentario = models.TextField(blank=True)
     fecha_valoracion = models.DateTimeField(default=timezone.now)
+    comentarioVerificado = models.BooleanField(default=False)
 
 
 
