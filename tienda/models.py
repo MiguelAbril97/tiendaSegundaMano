@@ -11,7 +11,7 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=50, blank=True)
     existecias = models.IntegerField()
-    destacada = models.BooleanField(default=None)
+    destacada = models.BooleanField(default=False)
 
 class Producto(models.Model):
     ESTADOS=[
@@ -78,14 +78,14 @@ class Chat(models.Model):
 
 class Compra(models.Model):
     comprador = models.ForeignKey(Usuario, related_name='compras_comprador', on_delete=models.CASCADE)
-    vendedor = models.ForeignKey(Usuario, related_name='compras_vendedor',      on_delete=models.CASCADE)
     fecha_compra = models.DateTimeField(default=timezone.now)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     descuentoTotal= models.FloatField(blank=True)
     GARANTIA=[
-        ("1", "1 año"),
-        ("2" "2 años"),
+        ("UNO", "Un año"),
+        ("DOS", "Dos años"),
     ]
+    garantia = models.CharField(max_length=3, choices=GARANTIA)
 
 class CompraProducto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
@@ -98,6 +98,7 @@ class CompraProducto(models.Model):
 
 class Envio(models.Model):
     compra = models.OneToOneField(Compra, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     direccion=models.TextField()	
     fecha_envio = models.DateTimeField()
     fecha_recepcion = models.DateTimeField()
