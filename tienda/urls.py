@@ -13,5 +13,6 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('productos/listar',views.listar_productos,name='lista_productos'),
     path('productos/<int:id_producto>/', views.muestra_producto,name="muestra_producto"),
-    path('productos/<int:anyo>/<int:mes>', views.listar_productos_fecha, name="lista_productos_fecha"),
+    path('productos/<int:anyo>/<int:mes>/', views.listar_productos_fecha, name="lista_productos_fecha"),
+    path('productos/<str:categoria>/', views.listar_productos_categoria,name="lista_productos_categoria"),
 ]
