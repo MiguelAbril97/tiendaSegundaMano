@@ -2,8 +2,6 @@ from django.urls import path,re_path
 from .import views
  
 """path('',views.index,name='index'),
-    path("libros/<int:id_libro>/", views.dame_libro,name="dame_libro"),
-    path("libros/listar/<int:anyo_libro>/<int:mes_libro>", views.dame_libros_fecha,name="dame_libros_fecha"),
     path("libros/listar/<str:idioma>/", views.dame_libros_idioma,name="dame_libros_idioma"),
     path("biblioteca/<int:id_biblioteca>/libros/<str:texto_libro>", views.dame_libros_biblioteca,name="dame_libros_biblioteca"),
     path('biblioteca/<int:id_biblioteca>/',views.dame_biblioteca,name='dame_biblioteca'),
@@ -15,4 +13,5 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('productos/listar',views.listar_productos,name='lista_productos'),
     path('productos/<int:id_producto>/', views.muestra_producto,name="muestra_producto"),
+    path('productos/<int:anyo>/<int:mes>', views.listar_productos_fecha, name="lista_productos_fecha"),
 ]

@@ -15,11 +15,19 @@
 
                 <h3>Fecha de publicacion: {{producto.fecha_de_publicacion}}</h3>
                 <h2>Categorias</h2>
-                <ul>
-                    {%for categoria in producto.categorias.all%}
-                    <li>{{categoria.nombre}}</li>
+                <ol>
+                    {%for categoria in producto_mostrar.categorias.all%}
+                    <li>
+                        <h3>{{categoria.nombre}}</h3>
+                        <ul>
+                            <li>{{categoria.descripcion}}</li>
+                            <li>{{categoria.exitencias}}</li>
+                            <li>{{categoria.destacada}}</li>
+                        </ul>
+
+                    </li>
                     {% endfor %}
-                </ul>
+                </ol>
             </div>
             {%endfor linebreaksbr%}
 
