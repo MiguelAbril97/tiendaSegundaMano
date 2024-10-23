@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+        <body>
+            <h1>Lista de productos</h1>
+            {%for producto in producto_mostrar %}
+            <div>
+
+                <h2>Nombre: {{producto.nombre}}</h2>
+                <h2>Vendedor: {{producto.vendedor.nombre}}</h2>
+                <h2>Estado: {{producto.estado}}</h2>
+                <h2>Precio: {{producto.precio}}</h2>
+                <h2>Descripcion:</h2>
+                <p>{{producto.descripcion}}</p>
+
+                <h3>Fecha de publicacion: {{producto.fecha_de_publicacion}}</h3>
+                <h2>Categorias</h2>
+                <ul>
+                    {%for categoria in producto.categorias.all%}
+                    <li>{{categoria.nombre}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {%endfor linebreaksbr%}
+
+
+        </body>
+</html>
