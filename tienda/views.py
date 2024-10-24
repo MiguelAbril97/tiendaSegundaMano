@@ -24,8 +24,8 @@ def listar_productos_fecha(request, anyo, mes):
     return render(request, "productos/lista.html", {"producto_mostrar":productos}) 
 
 #Muestra los productos de una categoria cuando le pasas el nombre de la categoria
-def listar_productos_categoria(request,categoria):
+def listar_productos_categoria(request,nombre_categoria):
     productos= Producto.objects.select_related("vendedor").prefetch_related("categorias")
-    productos=productos,filter(categorias=categoria)
-    return render(request, "productos/listar.html", {"producto_mostrar":productos})
+    productos=productos.filter(categorias__nombre=nombre_categoria)
+    return render(request, "productos/lista.html", {"producto_mostrar":productos})
 
