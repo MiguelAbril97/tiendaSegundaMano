@@ -29,3 +29,9 @@ def listar_productos_categoria(request,nombre_categoria):
     productos=productos.filter(categorias__nombre=nombre_categoria)
     return render(request, "productos/lista.html", {"producto_mostrar":productos})
 
+#Muestra el ultimo productos de un mes
+def ultimo_producto_fecha (request, anyo, mes):
+    productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
+    productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).order_by("-fecha_de_publicacion")[:1].get()
+    return render(request, "productos/producto.html", {"producto_mostrar":productos}) 
+    
