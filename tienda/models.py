@@ -26,7 +26,7 @@ class Producto(models.Model):
         max_length=2,
         choices=ESTADOS
     )
-    vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='producto_vendedor')
     fecha_de_publicacion = models.DateTimeField(default=timezone.now)
     categorias = models.ManyToManyField(Categoria, through='ProductoCategoria')
 

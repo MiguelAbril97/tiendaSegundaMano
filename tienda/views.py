@@ -6,13 +6,13 @@ from .models import Producto, Usuario, Categoria, ProductoCategoria
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
 
 
-### filtros con AND, CHECH
+### filtro con None CHECK
 ### order by, CHECK
 ### limit, CHECK
 ### aggregate, CHECK
 ### OR CHECK
 ### relacion reversa
-### filtro con NONE
+### filtros con AND preguntar si vale la , en un filtro
 
 # Create your views here.
 def index(request):
@@ -56,10 +56,18 @@ def ultimo_producto_fecha (request, anyo, mes):
 #Muestra los productos que sean de una categoria 
 # O
 # que sean inferior a un precio
-def productos_tipo_precio(request, nombre_categoria, precio_max):
-    productos = Producto.objects.filter(Q(categorias__nombre=nombre_categoria) | Q(precio__lt=precio_max))
+def productos_categoria_precio(request, nombre_categoria, precio_max):
+    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias")
+    productos = productos.filter(Q(categorias__nombre=nombre_categoria) | Q(precio__lt=precio_max))
     total = productos.aggregate(Count('id'))
     return render(request, 'productos/lista.html', {'producto_mostrar': productos, 'total':total})
+
+#Muestra los usuarios que no tienen productos en venta
+
+def usuario_sin_productos(request):
+    usuarios = Usuario.objects.filter(producto_vendedor=None).all()
+    return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
+
 
 
 ##Crear una página de Error personalizada para cada uno de los 4 

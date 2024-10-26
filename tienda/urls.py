@@ -24,7 +24,8 @@ urlpatterns = [
     path('productos/listar',views.listar_productos,name='lista_productos'),
     path('productos/<int:id_producto>/', views.muestra_producto,name="muestra_producto"),
     path('productos/<int:anyo>/<int:mes>/', views.listar_productos_fecha, name="lista_productos_fecha"),
-    path('productos/<str:nombre_categoria>/', views.listar_productos_categoria,name="lista_productos_categoria"),
+    path('productos/categoria/<str:nombre_categoria>/', views.listar_productos_categoria,name="lista_productos_categoria"),
     path('producto/<int:anyo>/<int:mes>/', views.ultimo_producto_fecha, name="ultimo_producto_fecha"),
-
+    path('productos/<str:nombre_categoria>/<int:precio_max>/', views.productos_categoria_precio,name="productos_categoria_precio"),
+    path('usuario/sinproductos', views.usuario_sin_productos, name="usuario_sin_productos"),
 ]
