@@ -7,13 +7,11 @@
             <ul>
                 <li><a href="{% url 'lista_productos'%}">Lista de productos</a></li>
                 <li><a href="{% url 'muestra_producto' 5%}">Ver un producto</a></li>
-                <li><a href="{%url 'lista_productos_fecha' 2024 10%}">Ver los productos publicados en Octubre de 2024</a></li>
+                <li><a href="{% url 'lista_productos_fecha' 2024 10%}">Ver los productos publicados en Octubre de 2024</a></li>
                 <li><a href="{% url 'lista_productos_categoria' "As manage she rule. Give event every like off majority certain. Describe leader blue stand."%}">
                     Productos de una categoria</a></li>
-                <li><a href="{%url 'ultimo_producto_fecha'  2024 10     %}">Último libro publicado en Octubre de 2024</a></li>
-
-
-                <li><a></a></li>
+                <li><a href="{% url 'ultimo_producto_fecha'  2024 10     %}">Último libro publicado en Octubre de 2024</a></li>
+                <li><a href="{% url 'usuario_sin_productos' %}">Ver usuarios sin productos en venta</a></li>
                 <li><a></a></li>
                 <li><a></a></li>
             </ul>
@@ -21,4 +19,5 @@
 
         </body>
 </html>
-           
+                <!--    <li><a href="{%url 'productos_categoria_precio' "Look soldier accept anything ability sing couple effort. Listen themselves job instead." 0.20%}"> 
+                    Ver productos de una categoria o inferiores a 0.20</a></li>  -->   

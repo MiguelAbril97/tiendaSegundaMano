@@ -14,6 +14,8 @@ from django.views.defaults import page_not_found, permission_denied, bad_request
 ### relacion reversa
 ### filtros con AND preguntar si vale la , en un filtro
 
+##Preguntar por que no funciona la vista productos_categoria_precio
+
 # Create your views here.
 def index(request):
     return render(request, "index.html")
