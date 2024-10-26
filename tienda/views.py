@@ -1,7 +1,18 @@
 from django.shortcuts import render
 from django.db.models import Q,F,Prefetch
 from django.db.models import Avg,Max,Min
+from django.db.models import Count
 from .models import Producto, Usuario, Categoria, ProductoCategoria
+from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
+
+
+### filtros con AND, CHECH
+### order by, CHECK
+### limit, CHECK
+### aggregate, CHECK
+### OR CHECK
+### relacion reversa
+### filtro con NONE
 
 # Create your views here.
 def index(request):
@@ -11,27 +22,57 @@ def index(request):
 def listar_productos (request):
     producto = Producto.objects.select_related("vendedor").prefetch_related("categorias")
     producto = producto.all()
-    return render(request, "productos/lista.html", {"producto_mostrar":producto})
+    total = producto.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"producto_mostrar":producto, 'total':total})
 
+#Esta view muestra toda la informacion de un producto
 def muestra_producto(request, id_producto):
     QSproducto = Producto.objects.select_related("vendedor").prefetch_related("categorias")
     producto = QSproducto.get(id=id_producto)
     return render(request, "productos/producto.html", {"producto_mostrar":producto})
 
+#Esta view muestra una lista con toda la informacion de todos 
+#los productos publicados en el anño y mes indicados
 def listar_productos_fecha(request, anyo, mes):
     productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
     productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes)
-    return render(request, "productos/lista.html", {"producto_mostrar":productos}) 
+    total = productos.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total}) 
 
-#Muestra los productos de una categoria cuando le pasas el nombre de la categoria
+#Muestra los productos de una categoria cuando le pasas el nombre de la
+# categoria y cuenta cuantos hay
 def listar_productos_categoria(request,nombre_categoria):
     productos= Producto.objects.select_related("vendedor").prefetch_related("categorias")
     productos=productos.filter(categorias__nombre=nombre_categoria)
-    return render(request, "productos/lista.html", {"producto_mostrar":productos})
+    total = productos.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
 
 #Muestra el ultimo productos de un mes
 def ultimo_producto_fecha (request, anyo, mes):
     productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
     productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).order_by("-fecha_de_publicacion")[:1].get()
     return render(request, "productos/producto.html", {"producto_mostrar":productos}) 
-    
+
+#Muestra los productos que sean de una categoria 
+# O
+# que sean inferior a un precio
+def productos_tipo_precio(request, nombre_categoria, precio_max):
+    productos = Producto.objects.filter(Q(categorias__nombre=nombre_categoria) | Q(precio__lt=precio_max))
+    total = productos.aggregate(Count('id'))
+    return render(request, 'productos/lista.html', {'producto_mostrar': productos, 'total':total})
+
+
+##Crear una página de Error personalizada para cada uno de los 4 
+# tipos de errores que pueden ocurrir en nuestra Web.
+
+def mi_error_400(request, exception=None):
+    return render(request, 'errores/400.html', None, None, 400)
+
+def mi_error_403(request, exception=None):
+    return render(request, 'errores/403.html', None, None, 403)
+
+def mi_error_404(request, exception=None):
+    return render(request, 'errores/404.html', None, None, 404)
+
+def mi_error_500(request):
+    return render(request, 'errores/500.html', None, None, 500)
