@@ -12,9 +12,14 @@ from django.views.defaults import page_not_found, permission_denied, bad_request
 ### aggregate, CHECK
 ### filtros con AND CHECK
 ### OR CHECK
-### relacion reversa
+### relacion reversa CHECK
 
 ##Preguntar por que no funciona la vista productos_categoria_precio
+
+##No uso Prefecht en la tabla productos para sacar informacion de compras en cada una de las 
+# solicitudes porque me parece que no tiene sentido sacar la informacion de las compras de los usuarios.
+# En la view que uso prefech es en la de listar productos de una categoria
+ 
 
 # Create your views here.
 def index(request):
@@ -42,14 +47,14 @@ def listar_productos_fecha(request, anyo, mes):
     return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total}) 
 
 #Muestra los productos de una categoria cuando le pasas el nombre de la
-# categoria y cuenta cuantos hay
+# categoria y cuenta cuantos hay. Hago una relacion reversa
 def listar_productos_categoria(request,nombre_categoria):
-    productos= Producto.objects.select_related("vendedor").prefetch_related("categorias")
-    productos=productos.filter(categorias__nombre=nombre_categoria)
+    productos = Categoria.objects.prefetch_related(Prefetch('categorias'))
+    productos=productos.filter(categoria__nombre=nombre_categoria)
     total = productos.aggregate(Count('id'))
     return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
 
-#Muestra el ultimo productos de un mes
+#Muestra el ultimo productos de un mes. Hago un filtro con OR
 def ultimo_producto_fecha (request, anyo, mes):
     productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
     productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).order_by("-fecha_de_publicacion")[:1].get()
@@ -64,11 +69,14 @@ def productos_categoria_precio(request, nombre_categoria, precio_max):
     total = productos.aggregate(Count('id'))
     return render(request, 'productos/lista.html', {'producto_mostrar': productos, 'total':total})
 
-#Muestra los usuarios que no tienen productos en venta
+#8 Muestra los usuarios que no tienen productos en venta
 
 def usuario_sin_productos(request):
-    usuarios = Usuario.objects.filter(producto_vendedor=None).all()
+    usuarios = Usuario.objects.select_related(Prefetch('producto_vendedor')).filter(producto_vendedor=None).all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
+
+#9 
+
 
 
 
