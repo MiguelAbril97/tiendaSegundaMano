@@ -28,7 +28,7 @@ class Producto(models.Model):
     )
     vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='producto_vendedor')
     fecha_de_publicacion = models.DateTimeField(default=timezone.now)
-    categorias = models.ManyToManyField(Categoria, through='ProductoCategoria')
+    categorias = models.ManyToManyField(Categoria, through='ProductoCategoria', related_name="categorias")
 
 class ProductoCategoria(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
@@ -82,6 +82,8 @@ class Compra(models.Model):
         ("DOS", "Dos años"),
     ]
     garantia = models.CharField(max_length=3, choices=GARANTIA)
+    producto = models.ManyToManyField(Producto, through='CompraProducto', related_name='producto_compra')
+    
 
 class CompraProducto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)

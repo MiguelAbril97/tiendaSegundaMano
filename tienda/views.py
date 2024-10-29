@@ -10,9 +10,9 @@ from django.views.defaults import page_not_found, permission_denied, bad_request
 ### order by, CHECK
 ### limit, CHECK
 ### aggregate, CHECK
+### filtros con AND CHECK
 ### OR CHECK
 ### relacion reversa
-### filtros con AND preguntar si vale la , en un filtro
 
 ##Preguntar por que no funciona la vista productos_categoria_precio
 
