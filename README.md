@@ -40,17 +40,17 @@ Los usuarios pueden dejar valoraciones sobre las compras hechas. Dejo comentario
 URLS
 1 Muestra un indice para probar las demas url
 
-2 Muestra una lista de todos los productos
+2 Muestra una lista de todos los productos usa aggregate y relacion reversa
 
 3 Muestra el producto con el id que le pases en la url. Requisito de 1 parametro int
 
-4 Muestra todos los productos del mes y año que se le indique. Requisito de los 2 parametros
+4 Muestra todos los productos del mes y año que se le indique. Requisito de los 2 parametros. La vista usa filtro con AND
 
 5 Muestra una lista de todos los productos de la categoria con el nombre que se le pase. Requisito del parametro str
 
 6 Muestra el ultimo producto publicado en el año y mes indicado. Esta view usa limit y order by
 
-7 Muestra todos los productos de la categoria con el nombre que se le indique O que sean inferior al precio indicado. Usa str e int
+7 Muestra todos los productos de la categoria con el nombre que se le indique O que sean inferior al precio indicado. Usa str e int. la vista cumple el requisito de filtro con OR y order by
 
 8 Muestra todos los usuarios que no tengan nigun producto en venta. Esta view usa None
 

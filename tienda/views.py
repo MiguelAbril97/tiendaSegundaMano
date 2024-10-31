@@ -6,13 +6,13 @@ from .models import *
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
 
 
-### filtro con None CHECK
-### order by, CHECK
-### limit, CHECK
-### aggregate, CHECK
-### filtros con AND CHECK
-### OR CHECK
-### relacion reversa CHECK
+### filtro con None CHECK en vista 8
+### order by, CHECK en vistas 6 y 7
+### limit, CHECK en vistas 6
+### aggregate, CHECK desde vista 2 cumplido
+### filtros con AND CHECK desde 4
+### OR CHECK vidta 7
+### relacion reversa CHECK desde la 2
 
 #Relacion 1:1 check
 #Relacion 1:N check
@@ -27,7 +27,8 @@ def index(request):
 
 #2 Esta view muestra una lista con toda la informacion de todos los productos que hay
 def listar_productos (request):
-    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra')).all()
+    productos = Producto.objects.select_related("vendedor").prefetch_related(
+        "categorias", Prefetch('producto_compra')).all()
     total = productos.aggregate(Count('id'))
     return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
 
@@ -54,16 +55,24 @@ def listar_productos_categoria(request,nombre_categoria):
 
 #6 Muestra el ultimo productos de un mes. 
 def ultimo_producto_fecha (request, anyo, mes):
-    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra'))
-    productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).order_by("-fecha_de_publicacion")[:1].get()
+    productos = Producto.objects.select_related("vendedor").prefetch_related(
+        "categorias", Prefetch('producto_compra'))
+    
+    productos = productos.filter(fecha_de_publicacion__year = anyo, 
+                                 fecha_de_publicacion__month = mes).order_by(
+                                     "-fecha_de_publicacion")[:1].get()
     return render(request, "productos/producto.html", {"producto_mostrar":productos}) 
 
 #7 Muestra los productos que sean de una categoria 
 # O
 # que sean SUPERIORES a un precio
 def productos_categoria_precio(request, nombre_categoria, precio_min):
-    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra'))
-    productos = productos.filter(Q(categorias__nombre=nombre_categoria) | Q(precio__gte=precio_min)).order_by("-precio")
+    productos = Producto.objects.select_related("vendedor").prefetch_related(
+        "categorias", Prefetch('producto_compra'))
+    
+    productos = productos.filter(Q(categorias__nombre=nombre_categoria)
+                                 | Q(precio__gte=precio_min)).order_by("-precio")
+    
     total = productos.aggregate(Count('id'))
     return render(request, 'productos/lista.html', {'producto_mostrar': productos, 'total':total})
 
