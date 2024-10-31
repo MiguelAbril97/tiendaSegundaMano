@@ -28,6 +28,9 @@
                     </li>
                     {% endfor %}
                 </ol>
+                {%for compra in producto_mostrar.producto_compra.all%}
+                <h3>Fecha compra: {{compra.fecha_compra}}</h3>
+                {% endfor %}
             </div>
             {%endfor linebreaksbr%}
 

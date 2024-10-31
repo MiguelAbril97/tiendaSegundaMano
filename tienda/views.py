@@ -19,48 +19,48 @@ from django.views.defaults import page_not_found, permission_denied, bad_request
 ##No uso Prefecht en la tabla productos para sacar informacion de compras en cada una de las 
 # solicitudes porque me parece que no tiene sentido sacar la informacion de las compras de los usuarios.
 # En la view que uso prefech es en la de listar productos de una categoria
- 
 
-# Create your views here.
+#Uso aggregate Count en muchas views porque lo añadi en la lista.html 
+# y tampoco me parece mal mostrarlo.
+
+#1 Create your views here.
 def index(request):
     return render(request, "index.html")
 
-#Esta view muestra una lista con toda la informacion de todos los productos que hay
+#2 Esta view muestra una lista con toda la informacion de todos los productos que hay
 def listar_productos (request):
-    producto = Producto.objects.select_related("vendedor").prefetch_related("categorias")
-    producto = producto.all()
-    total = producto.aggregate(Count('id'))
-    return render(request, "productos/lista.html", {"producto_mostrar":producto, 'total':total})
-
-#Esta view muestra toda la informacion de un producto
-def muestra_producto(request, id_producto):
-    QSproducto = Producto.objects.select_related("vendedor").prefetch_related("categorias")
-    producto = QSproducto.get(id=id_producto)
-    return render(request, "productos/producto.html", {"producto_mostrar":producto})
-
-#Esta view muestra una lista con toda la informacion de todos 
-#los productos publicados en el anño y mes indicados
-def listar_productos_fecha(request, anyo, mes):
-    productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
-    productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes)
-    total = productos.aggregate(Count('id'))
-    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total}) 
-
-#Muestra los productos de una categoria cuando le pasas el nombre de la
-# categoria y cuenta cuantos hay. Hago una relacion reversa
-def listar_productos_categoria(request,nombre_categoria):
-    productos = Categoria.objects.prefetch_related(Prefetch('categorias'))
-    productos=productos.filter(categoria__nombre=nombre_categoria)
+    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra')).all()
     total = productos.aggregate(Count('id'))
     return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
 
-#Muestra el ultimo productos de un mes. Hago un filtro con OR
+#3 Esta view muestra toda la informacion de un producto
+def muestra_producto(request, id_producto):
+    producto = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra')).get(id=id_producto)
+    return render(request, "productos/producto.html", {"producto_mostrar":producto})
+
+#4 Esta view muestra una lista con toda la informacion de todos 
+#los productos publicados en el anño y mes indicados
+def listar_productos_fecha(request, anyo, mes):
+    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra'))
+    productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).all()
+    total = productos.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total}) 
+
+#5 Muestra los productos de una categoria cuando le pasas el nombre de la
+# categoria y cuenta cuantos hay. Hago una relacion reversa
+def listar_productos_categoria(request,nombre_categoria):
+    productos = Categoria.objects.prefetch_related(Prefetch('categorias'))
+    productos=productos.filter(categoria__nombre=nombre_categoria).all()
+    total = productos.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
+
+#6 Muestra el ultimo productos de un mes. Hago un filtro con OR
 def ultimo_producto_fecha (request, anyo, mes):
-    productos=Producto.objects.select_related("vendedor").prefetch_related("categorias")
+    productos = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra'))
     productos = productos.filter(fecha_de_publicacion__year = anyo, fecha_de_publicacion__month = mes).order_by("-fecha_de_publicacion")[:1].get()
     return render(request, "productos/producto.html", {"producto_mostrar":productos}) 
 
-#Muestra los productos que sean de una categoria 
+#7 Muestra los productos que sean de una categoria 
 # O
 # que sean inferior a un precio
 def productos_categoria_precio(request, nombre_categoria, precio_max):
@@ -75,8 +75,7 @@ def usuario_sin_productos(request):
     usuarios = Usuario.objects.select_related(Prefetch('producto_vendedor')).filter(producto_vendedor=None).all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
-#9 
-
+#9
 
 
 
