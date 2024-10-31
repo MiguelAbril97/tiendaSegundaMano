@@ -56,6 +56,6 @@ URLS
 
 9 Muestra una lista de todos los usuarios
 
-10 Muestra una lista con todos los usuarios cuyos correos terminen en .org
+10 Muestra una lista con todos los usuarios cuyos correos terminen en .org. La expresion regular verifica si el correo electrónico comienza (^) con un conjunto de caracteres alfanuméricos (\w+), seguido de un @, seguido de más caracteres alfanuméricos y finalmente terminando con .org
 
 11 Muestra una lista de todas las consolas

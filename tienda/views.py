@@ -79,9 +79,10 @@ def usuarios_listar(request):
     usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
-#10 Muestra todos los usuarios que en su correo contenga .org
+#10 Muestra todos los usuarios que en su correo terminen en .org
 def usuarios_correo(request):
-    usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).filter(correo_electronico__contains=".org").all()
+    usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).filter(
+        correo_electronico__regex=r'^\w+[@]\w+\.org$').all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
 
