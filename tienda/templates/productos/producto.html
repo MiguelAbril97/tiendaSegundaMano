@@ -19,11 +19,6 @@
                     {%for categoria in producto_mostrar.categorias.all%}
                     <li>
                         <h3>{{categoria.nombre}}</h3>
-                        <ul>
-                            <li>Descripcion de la categoria:{{categoria.descripcion}}</li>
-                            <li>Existencias:{{categoria.exitencias}}</li>
-                            <li>Destacada: {{categoria.destacada}}</li>
-                        </ul>
                     </li>
                     {% endfor %}
 

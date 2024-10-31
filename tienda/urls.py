@@ -25,15 +25,21 @@ urlpatterns = [
     #2
     path('productos/listar',views.listar_productos,name='lista_productos'),
     #3
-    path('productos/<int:id_producto>/', views.muestra_producto,name="muestra_producto"),
+    path('producto/<int:id_producto>/', views.muestra_producto,name="muestra_producto"),
     #4
     path('productos/<int:anyo>/<int:mes>/', views.listar_productos_fecha, name="lista_productos_fecha"),
     #5
     path('productos/categoria/<str:nombre_categoria>/', views.listar_productos_categoria,name="lista_productos_categoria"),
     #6
-    path('producto/<int:anyo>/<int:mes>/', views.ultimo_producto_fecha, name="ultimo_producto_fecha"),
+    path('producto/ultimo/<int:anyo>/<int:mes>/', views.ultimo_producto_fecha, name="ultimo_producto_fecha"),
     #7
-    path('productos/<str:nombre_categoria>/<int:precio_max>/', views.productos_categoria_precio,name="productos_categoria_precio"),
+    path('productos/<str:nombre_categoria>/<int:precio_min>/', views.productos_categoria_precio,name="productos_categoria_precio"),
     #8
     path('usuario/sinproductos', views.usuario_sin_productos, name="usuario_sin_productos"),
+    #9
+    path('usuarios/listar',views.usuarios_listar,name="usuarios_listar"),
+    #10
+    path('consolas/', views.lista_consolas, name='lista_consolas'),
+    #11
+    path('muebles/', views.lista_muebles, name='lista_muebles'),
 ]

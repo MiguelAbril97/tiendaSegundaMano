@@ -74,7 +74,7 @@ class Chat(models.Model):
     fecha_fin= models.DateTimeField(blank=True)
 
 class Compra(models.Model):
-    comprador = models.ForeignKey(Usuario, related_name='compras_comprador', on_delete=models.CASCADE)
+    comprador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     fecha_compra = models.DateTimeField(default=timezone.now)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     GARANTIA=[
@@ -88,11 +88,6 @@ class Compra(models.Model):
 class CompraProducto(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-    cantidad = models.IntegerField()
-    precio_unitario = models.DecimalField(max_digits=7, decimal_places=2)
-    subtotal = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
-    descuento = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
-
 
 class Envio(models.Model):
     compra = models.OneToOneField(Compra, on_delete=models.CASCADE)

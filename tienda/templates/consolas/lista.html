@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Consolas</title>
+</head>
+<body>
+    <h1>Lista de Consolas</h1>
+    <ul>
+        {% for consola in consolas %}
+            <li>
+                <h2>Consola: {{ consola.producto.nombre }}</h2>
+                <p><strong>Descripción:</strong> {{ consola.producto.descripcion }}</p>
+                <p><strong>Precio:</strong> ${{ consola.producto.precio }}</p>
+                <p><strong>Estado:</strong> {{ consola.producto.get_estado_display }}</p>
+                <p><strong>Modelo:</strong> {{ consola.modelo }}</p>
+                <p><strong>Color:</strong> {{ consola.color }}</p>
+                <p><strong>Memoria:</strong> {{ consola.memoria }}</p>
+                <p><strong>Vendedor:</strong> {{ consola.producto.vendedor.nombre }}</p>
+            </li>
+            <br>
+        {% empty %}
+            <p>No hay consolas disponibles en este momento.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
