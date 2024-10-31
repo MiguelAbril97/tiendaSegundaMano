@@ -1,4 +1,7 @@
 # tiendaSegundaMano
+El proyecto representa una tienda de segunda mano en la que los usuarios son compradores y vendedores. Pueden no tener un producto en venta, uno o mas de un producto. Los usuarios pueden interactuar entre ellos mediante chats. Las compras pueden ser de mas de un producto. 
+
+
 modelo Usuario:
 Almacenara todos los usuarios que usen nuestra aplicacion. En el campo correo_electronico uso EmailField para que valide automaticamente el formato de los correos.  unique=True hace que no se puedan repetir 2 correos iguales
 
