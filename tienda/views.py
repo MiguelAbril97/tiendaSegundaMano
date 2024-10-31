@@ -79,15 +79,18 @@ def usuarios_listar(request):
     usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
-#10
+#10 Muestra todos los usuarios que en su correo contenga .org
 def usuarios_correo(request):
-    usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).all()
+    usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).filter(correo_electronico__contains=".org").all()
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
 
-#11
+#11 Lista todas las consolas. Hago Prefetch categorias del modelo Producto 
+# y producto__vendedor para reducir consultas adicionales. Sin ello hacia 16 querys
+
 def lista_consolas(request):
-    consolas = Consolas.objects.select_related('producto').all()
+    consolas = Consolas.objects.select_related('producto','producto__vendedor').prefetch_related(
+        Prefetch('producto__categorias') )
     return render(request, 'consolas/lista.html', {'consolas': consolas})
 
 

@@ -37,4 +37,5 @@ registra la informacion necesaria para cada envio. Esta el campo direccion porqu
 modelo Valoracion
 Los usuarios pueden dejar valoraciones sobre las compras hechas. Dejo comentario siendo opcional con blank True
 
-
+URLS
+1 Muestra un indice para probar las demas url
