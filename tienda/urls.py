@@ -41,5 +41,5 @@ urlpatterns = [
     #10
     path('consolas/', views.lista_consolas, name='lista_consolas'),
     #11
-    path('muebles/', views.lista_muebles, name='lista_muebles'),
+    re_path(r'^\w+[@]\w+.org/', views.usuarios_correo, name='usuarios_correo'),
 ]

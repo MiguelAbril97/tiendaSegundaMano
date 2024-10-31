@@ -80,15 +80,15 @@ def usuarios_listar(request):
     return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
 #10
+def usuarios_correo(request):
+    usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).all()
+    return render(request, 'usuarios/lista.html',{'usuarios':usuarios})
 
+
+#11
 def lista_consolas(request):
     consolas = Consolas.objects.select_related('producto').all()
     return render(request, 'consolas/lista.html', {'consolas': consolas})
-
-#11
-def lista_muebles(request):
-    muebles = Muebles.objects.select_related('producto').all()
-    return render(request, 'muebles/lista.html', {'muebles': muebles})
 
 
 
