@@ -39,3 +39,23 @@ Los usuarios pueden dejar valoraciones sobre las compras hechas. Dejo comentario
 
 URLS
 1 Muestra un indice para probar las demas url
+
+2 Muestra una lista de todos los productos
+
+3 Muestra el producto con el id que le pases en la url
+
+4 Muestra todos los productos del mes y año que se le indique
+
+5 Muestra una lista de todoos los productos de la categoria con el nombre que se le pase
+
+6 Muestra el ultimo producto publicado en el año y mes indicado
+
+7 Muestra todos los productos de la categoria con el nombre que se le indique O que sean inferior al precio indicado
+
+8 Muestra todos los usuarios que no tengan nigun producto en venta
+
+9 Muestra una lista de todos los usuarios
+
+10 Muestra una lista con todos los usuarios cuyos correos terminen en .org
+
+11 Muestra una lista de todas las consolas
