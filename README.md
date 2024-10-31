@@ -42,20 +42,20 @@ URLS
 
 2 Muestra una lista de todos los productos
 
-3 Muestra el producto con el id que le pases en la url
+3 Muestra el producto con el id que le pases en la url. Requisito de 1 parametro int
 
-4 Muestra todos los productos del mes y año que se le indique
+4 Muestra todos los productos del mes y año que se le indique. Requisito de los 2 parametros
 
-5 Muestra una lista de todoos los productos de la categoria con el nombre que se le pase
+5 Muestra una lista de todos los productos de la categoria con el nombre que se le pase. Requisito del parametro str
 
-6 Muestra el ultimo producto publicado en el año y mes indicado
+6 Muestra el ultimo producto publicado en el año y mes indicado. Esta view usa limit y order by
 
-7 Muestra todos los productos de la categoria con el nombre que se le indique O que sean inferior al precio indicado
+7 Muestra todos los productos de la categoria con el nombre que se le indique O que sean inferior al precio indicado. Usa str e int
 
-8 Muestra todos los usuarios que no tengan nigun producto en venta
+8 Muestra todos los usuarios que no tengan nigun producto en venta. Esta view usa None
 
 9 Muestra una lista de todos los usuarios
 
-10 Muestra una lista con todos los usuarios cuyos correos terminen en .org. La expresion regular verifica si el correo electrónico comienza (^) con un conjunto de caracteres alfanuméricos (\w+), seguido de un @, seguido de más caracteres alfanuméricos y finalmente terminando con .org
+10 Muestra una lista con todos los usuarios cuyos correos terminen en .org. Usa una expresion expresion regular que: verifica si el correo electrónico comienza (^) con un conjunto de caracteres alfanuméricos (\w+), seguido de un @, seguido de más caracteres alfanuméricos y finalmente terminando con .org
 
-11 Muestra una lista de todas las consolas
+11 Muestra una lista de todas las consolas. Cumple el requisito de la relacion OneToOne
