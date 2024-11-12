@@ -1,0 +1,10 @@
+h1{
+    color: navy;
+}
+footer{
+    background-color: darkgreen;
+}
+nav{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -5,22 +5,6 @@ from django.db.models import Count
 from .models import *
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
 
-
-### filtro con None CHECK en vista 8
-### order by, CHECK en vistas 6 y 7
-### limit, CHECK en vistas 6
-### aggregate, CHECK desde vista 2 cumplido
-### filtros con AND CHECK desde 4
-### OR CHECK vidta 7
-### relacion reversa CHECK desde la 2
-
-#Relacion 1:1 check
-#Relacion 1:N check
-#Relacion M:N check
-
-#Uso aggregate Count en muchas views porque lo añadi en la lista.html 
-# y tampoco me parece mal mostrarlo.
-
 #1 Create your views here.
 def index(request):
     return render(request, "index.html")

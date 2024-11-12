@@ -1,0 +1,22 @@
+<html>
+    {%load static%}
+    <head>
+        <title>Tienda de segunda mano</title>
+        {%block link_css%}
+        {%endblock%}
+        <link rel="stylesheet" href="{% static 'estilo.css' %}">
+
+    </head>
+    <body>
+        <img src='{%static "imagen.jpg"%}' alt="Viendo los requisitos del proyecto">
+        <h1>Tienda</h1>
+            {%include 'estructura/menu.html'%}
+
+            {%block contenido%}
+            {% endblock %}
+
+            {% include 'estructura/pie.html' %}
+      
+    </body>
+
+</html> 

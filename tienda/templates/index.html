@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-        <body>
+{% extends "principal.html" %}
+
+{%block contenido%}
             <h1>Enlaces</h1>
 
             <ul>
@@ -21,6 +20,4 @@
                 <li><a href="{% url 'lista_consolas' %}">Lista de consolas</a></li>
             </ul>
 
-
-        </body>
-</html>
+    {% endblock %}
