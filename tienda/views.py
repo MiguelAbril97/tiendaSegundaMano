@@ -19,7 +19,7 @@ def listar_productos (request):
 #3 Esta view muestra toda la informacion de un producto
 def muestra_producto(request, id_producto):
     producto = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra')).get(id=id_producto)
-    return render(request, "productos/producto.html", {"producto_mostrar":producto})
+    return render(request, "productos/producto.html", {"producto":producto})
 
 #4 Esta view muestra una lista con toda la informacion de todos 
 #los productos publicados en el anño y mes indicados
@@ -45,7 +45,7 @@ def ultimo_producto_fecha (request, anyo, mes):
     productos = productos.filter(fecha_de_publicacion__year = anyo, 
                                  fecha_de_publicacion__month = mes).order_by(
                                      "-fecha_de_publicacion")[:1].get()
-    return render(request, "productos/producto.html", {"producto_mostrar":productos}) 
+    return render(request, "productos/producto.html", {"producto":productos}) 
 
 #7 Muestra los productos que sean de una categoria 
 # O

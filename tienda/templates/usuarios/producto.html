@@ -15,6 +15,6 @@
                     </li>
                     {% endfor %}
 
-                    <h3>Fecha compra: {{producto_mostrar.producto_compra.fecha_compra}}</h3>
+                    <h3>Fecha compra: {{producto_mostrar.producto_compra.fecha_compra | default:"Sin compras"}}</h3>
                 </ol>
      
