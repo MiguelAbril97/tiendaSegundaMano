@@ -1,34 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Usuarios</title>
-</head>
-<body>
-    <h1>Lista de Usuarios y sus Productos</h1>
+{% extends "principal.html" %}
+   
+   {%block cabecera%}
 
-    {% for usuario in usuarios %}
-        <h2>Usuario: {{ usuario.nombre }}</h2>
-        <p>Correo: {{ usuario.correo_electronico }}</p>
-        <p>Teléfono: {{ usuario.telefono }}</p>
+         <h1>Lista de Usuarios y sus Productos</h1>
     
-        <h3>Productos de {{ usuario.nombre }}:</h3>
-        {% if usuario.producto_vendedor.all %}
-            <ul>
-            {% for producto in usuario.producto_vendedor.all %}
-                <li>
-                    <strong>Nombre:</strong> {{ producto.nombre }}<br>
-                    <strong>Descripción:</strong> {{ producto.descripcion }}<br>
-                    <strong>Precio:</strong> ${{ producto.precio }}<br>
-                    <strong>Estado:</strong> {{ producto.get_estado_display }}<br>
-                    <strong>Fecha de publicación:</strong> {{ producto.fecha_de_publicacion }}
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <p>Este usuario no tiene productos.</p>
-        {% endif %}
-    {% endfor %}
-    
-</body>
-</html>
+    {% endblock %}
+
+    {%block contenido%}
+
+        {% for usuario in usuarios %}
+           {%include 'usuario.html'%}
+            {% if usuario.producto_vendedor.all %}
+                <ul>
+                {% for producto in usuario.producto_vendedor.all %}
+                    {%include 'producto.html'%}
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>Este usuario no tiene productos.</p>
+            {% endif %}
+        {% endfor %}
+    {% endblock %}

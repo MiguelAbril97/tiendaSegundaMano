@@ -1,38 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-        <body>
+{% extends "principal.html" %}
+
+    {%block cabecera%}
             <h1>Lista de productos. Total de productos mostrados: {{total}}</h1>
+    {% endblock %}
+
+    {%block contenido%}
             {%for producto in producto_mostrar %}
             <div>
-
-                <h2>Nombre: {{producto.nombre}}</h2>
-                <h2>Vendedor: {{producto.vendedor.nombre}}</h2>
-                <h2>Estado: {{producto.estado}}</h2>
-                <h2>Precio: {{producto.precio}}</h2>
-                <h2>Descripcion:</h2>
-                <p>{{producto.descripcion}}</p>
-
-                <h3>Fecha de publicacion: {{producto.fecha_de_publicacion}}</h3>
-                <h2>Categorias</h2>
-                <ol>
-                    {%for categoria in producto.categorias.all%}
-                        <li>{{categoria.nombre}}</li>
-                    {% endfor %}
-                </ol>
-                <ul>
-                    {% for compra in producto.producto_compra.all %}
-                            <li>
-                          <h2>  Fecha de compra: {{ compra.fecha_compra }} </h2>
-                            </li>
-                    {% empty %}
-                        <h2>No hay compras registradas para este producto.</h2>
-                    {% endfor %}
-                </ul>
-                <br>
+                {%include 'producto.html'%}
             </div>
             {%endfor linebreaksbr%}
 
-
-        </body>
-</html>
+    {% endblock %}

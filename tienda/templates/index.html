@@ -1,7 +1,12 @@
 {% extends "principal.html" %}
 
+{%block cabecera%}
+
+<h1>Enlaces</h1>
+{% endblock %}
+
 {%block contenido%}
-            <h1>Enlaces</h1>
+            
 
             <ul>
                 <li><a href="{% url 'lista_productos'%}">Lista de productos</a></li>
