@@ -2,9 +2,19 @@
 
     {%block cabecera%}
             <h1>Lista de productos. Total de productos mostrados: {{total}}</h1>
+
     {% endblock %}
 
     {%block contenido%}
+            
+            {% if producto_mostrar|length > 10 %}
+                <p>Hay pechá de productos disponibles.</p>
+            {% elif producto_mostrar|length > 0 and producto_mostrar|length < 10 %}
+                <p>Hay pocos productos disponibles.</p>
+            {% elif producto_mostrar|length == 0 or producto_mostrar is None %}
+                <p>No hay productos para mostrar.</p>
+            {% endif %}
+
             {%for producto in producto_mostrar %}
             <div>
                 {% include 'productos/producto.html' %}

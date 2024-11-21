@@ -1,10 +1,10 @@
 
-                <h2>Nombre: {{producto_mostrar.nombre}}</h2>
+                <h2>Nombre: {{producto_mostrar.nombre|upper}}</h2>
                 <h2>Vendedor: {{producto_mostra.vendedor.nombre}}</h2>
                 <h2>Estado: {{producto_mostrar.estado}}</h2>
-                <h2>Precio: {{producto_mostrar.precio}}</h2>
+                <h2>Precio: {{producto_mostrar.precio}}, con IVA:{{producto_mostrar.precio|add:5}}</h2>
                 <h2>Descripcion:</h2>
-                <p>{{producto_mostrar.descripcion}}</p>
+                <p>{{producto_mostrar.descripcion |title}}</p>
 
                 <h3>Fecha de publicacion: {{producto_mostrar.fecha_de_publicacion}} </h3>
                 <h2>Categorias</h2>

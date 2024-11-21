@@ -11,15 +11,6 @@
         {% for usuario in usuarios %}
           
             {%include 'usuarios/usuario.html'%}
-                
-                {%if usuario.producto_vendedor.all|length > 3%}
-
-                     <p>Usuario muy activo</p>
-
-                {% elif proyecto.colaboradores.all|length == 1 %}
-                     <p>Vendedor esporádico</p>
-                
-                {%endif%}
 
             {% if usuario.producto_vendedor.all %}
                 <ul>

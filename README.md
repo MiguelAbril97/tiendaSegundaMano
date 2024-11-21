@@ -5,12 +5,13 @@ extends: en cada lista
 include: en cada lista y principal
 comment: index
 
-Operadores logicos 2
->,==: usuarios/lista
+Operadores logicos 5:
+>,==,<, and, or: en productos/lista
 
-Template filters 6
-length: usuarios/lista
-lower,truncatewords,date: productos/producto
-linebreaksbr: productos/lista
-default: usuarios/producto
-
+Template filters 10:
+length: usuarios/lista --> 1
+lower,date: productos/producto --> 2
+truncatewords: productos/categoria --> 1
+linebreaksbr: productos/lista --> 1
+default,upper, title: usuarios/producto --> 3
+capfirst, cut: muebles/lista -->2

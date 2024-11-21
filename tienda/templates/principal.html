@@ -9,10 +9,11 @@
 
     </head>
     <body>
-        <img id="logo" src='{%static "imagen.jpg"%}' alt="Viendo los requisitos del proyecto">
-        <h1>Tienda</h1>
-            {%include 'estructura/menu.html'%}
-
+        <div class="cabecera">
+            <div class="logo">
+            </div>
+            {%include 'estructura/menu.html'%}   
+        </div>
             {%block cabecera%}
             {% endblock %}
 

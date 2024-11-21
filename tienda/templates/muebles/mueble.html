@@ -1,5 +1,5 @@
-<h2>Mueble: {{ mueble.producto.nombre }}</h2>
-<p><strong>Descripción:</strong> {{ mueble.producto.descripcion }}</p>
+<h2>Mueble: {{ mueble.producto.nombre|capfirst}}</h2>
+<p><strong>Descripción:</strong> {{ mueble.producto.descripcion|cut:" " }}</p>
 <p><strong>Precio:</strong> ${{ mueble.producto.precio }}</p>
 <p><strong>Estado:</strong> {{ mueble.producto.get_estado_display }}</p>
 <p><strong>Material:</strong> {{ mueble.material }}</p>

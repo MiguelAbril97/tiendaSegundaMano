@@ -1,9 +1,25 @@
-#id{
-
-    /*background-image: url('imagen.jpg');*/
-    width: 300px;
-    height: 300px;
+.cabecera{
+    background-color: aqua;
+    display: flex;
+    align-items: center;
 }
+
+.logo{
+    background-image: url('imagen.jpg');
+    background-size:contain;
+    background-repeat: no-repeat;
+    width: 300px;
+    height: 200px;
+}
+.menu{
+    display: flex;
+    flex-grow: 1;
+}
+.menu nav{
+    width: 100%;
+    display: flex;
+}
+
 
 h1{
     color: navy;
@@ -15,9 +31,6 @@ a{
 
 footer{
     background-color: darkgreen;
-}
-.menu{
-    background-color: aqua;
 }
 
 nav{
