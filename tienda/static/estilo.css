@@ -1,3 +1,10 @@
+#id{
+
+    /*background-image: url('imagen.jpg');*/
+    width: 300px;
+    height: 300px;
+}
+
 h1{
     color: navy;
 }
