@@ -10,7 +10,7 @@
 
         {% for usuario in usuarios %}
           
-            {%include 'usuario.html'%}
+            {%include 'usuarios/usuario.html'%}
                 
                 {%if usuario.producto_vendedor.all|length > 3%}
 
@@ -24,7 +24,7 @@
             {% if usuario.producto_vendedor.all %}
                 <ul>
                 {% for producto in usuario.producto_vendedor.all %}
-                    {%include 'producto.html'%}
+                    {%include 'usuarios/producto.html'%}
                 {% endfor %}
                 </ul>
             {% else %}

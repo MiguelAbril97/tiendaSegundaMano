@@ -8,7 +8,7 @@
 <h2>Categorias</h2>
 <ol>
     {%for categoria in producto.categorias.all%}
-        {% include 'categoria.html' %}
+        {% include 'productos/categoria.html' %}
     {% endfor | linebreaksbr %}
 </ol>
      

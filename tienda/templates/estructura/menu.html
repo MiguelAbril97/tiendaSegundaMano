@@ -1,9 +1,7 @@
 
-{%load static%}
-<link rel="stylesheet" href="{% static 'estilo.css' %}">
-
 <div class="menu">
     <nav>
+        <a href="{% url 'index'%}">Inicio</a>
         <a href="{% url 'lista_productos'%}">Lista de productos</a>
         <a href="{% url 'muestra_producto' 5%}">Ver un producto</a>
         <a href="{% url 'lista_productos_fecha' 2024 10%}">Ver los productos publicados en Octubre de 2024</a>

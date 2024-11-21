@@ -7,7 +7,7 @@
     {%block contenido%}
             {%for producto in producto_mostrar %}
             <div>
-                {%include 'producto.html' %}
+                {% include 'productos/producto.html' %}
             </div>
             {%endfor | linebreaksbr %}
 
