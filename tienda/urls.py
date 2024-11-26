@@ -1,23 +1,6 @@
 from django.urls import path,re_path
 from .import views
- 
-"""path('',views.index,name='index'),
-    path("libros/listar/<str:idioma>/", views.dame_libros_idioma,name="dame_libros_idioma"),
-    path("biblioteca/<int:id_biblioteca>/libros/<str:texto_libro>", views.dame_libros_biblioteca,name="dame_libros_biblioteca"),
-    path('biblioteca/<int:id_biblioteca>/',views.dame_biblioteca,name='dame_biblioteca'),
-    path('ultimo-cliente-libro/<int:libro>',views.dame_ultimo_cliente_libro,name='ultimo_cliente_libro'),
-    path('dame-libros-titulo-descripcion',views.dame_libros_titulo_en_descripcion,name="dame_libros_titulo_en_descripcion"),
-    path('dame-agrupaciones-puntos-clientes',views.dame_agrupaciones_puntos_cliente,name="dame_agrupaciones_puntos_cliente"),
-    re_path(r"^filtro[0-9]$", views.libros_no_prestados,name="libros_no_prestados"),
-    
-    Debe existir al menos una URL con r_path
-    otra usando dos paramétros CHECK 
-    otra usando un parámetro entero CHECK
-    y otra usando un parámetro str CHECK
-    
-    """
 
-    
     
 urlpatterns = [
     #1
@@ -42,4 +25,9 @@ urlpatterns = [
     re_path(r'^\w+[@]\w+.org/', views.usuarios_correo, name='usuarios_correo'),
     #11
     path('consolas/', views.lista_consolas, name='lista_consolas'),
+    
+    #URLS DE FORMULARIO#
+    
+    path('usuario/crear',views.usuario_crear, name='usuario_crear'),
+    
 ]

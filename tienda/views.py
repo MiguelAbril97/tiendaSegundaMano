@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.db.models import Q,F,Prefetch
 from django.db.models import Avg,Max,Min
 from django.db.models import Count
 from .models import *
+from .forms import *
+from django.contrib import messages
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
 
 #1 Create your views here.
@@ -86,6 +88,35 @@ def lista_consolas(request):
     consolas = Consolas.objects.select_related('producto','producto__vendedor').prefetch_related(
         Prefetch('producto__categorias') )
     return render(request, 'consolas/lista.html', {'consolas': consolas})
+
+
+#VIEW USUARIO CREAR 
+
+def usuario_crear(request): 
+    datosFormulario = None
+    if(request.method == "POST"):
+        datosFormulario = request.POST
+    formulario = UsuarioForm(datosFormulario)
+    
+    if(request.method == 'POST'):
+        usuario_creado = crear_usuario_generico(formulario)
+        
+        if(usuario_creado):
+            messages.success()
+            return redirect('usuarios/lista.html')
+        
+    return render(request, 'usuarios/crear.html',{"formulario":formulario})
+
+def crear_usuario_generico(formulario):
+    usuario_creado = False
+    
+    if formulario.is_valid():
+        try:
+            formulario.save()
+            usuario_creado = True
+        except:
+            pass
+    return usuario_creado
 
 
 

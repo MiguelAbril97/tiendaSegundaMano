@@ -4,6 +4,8 @@
         <title>Tienda de segunda mano</title>
         {%block link_css%}
         {%endblock%}
+        {% load django_bootstrap5 %}
+        {% bootstrap_css %}
         <script type="text/javascript" src="{% static 'script.js' %}"></script>
         <link rel="stylesheet" href="{% static 'estilo.css' %}">
 
@@ -21,7 +23,7 @@
             {% endblock %}
 
             {% include 'estructura/pie.html' %}
-      
+            {% bootstrap_javascript %}
     </body>
 
 </html> 

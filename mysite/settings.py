@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'tienda',
     'debug_toolbar',
     'django_seed',
+    'django_bootstrap5',
+    'django_bootstrap_icons',
     
 ]
 
