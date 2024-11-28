@@ -99,25 +99,85 @@ def usuario_crear(request):
     formulario = UsuarioForm(datosFormulario)
     
     if(request.method == 'POST'):
-        usuario_creado = crear_usuario_generico(formulario)
+        usuario_creado = crear_usuario_modelo(formulario)
         
         if(usuario_creado):
-            messages.success()
-            return redirect('usuarios/lista.html')
+            messages.success(request,"Usuario creado")
+            return redirect('usuarios_listar')
         
     return render(request, 'usuarios/crear.html',{"formulario":formulario})
 
-def crear_usuario_generico(formulario):
+def crear_usuario_modelo(formulario):
     usuario_creado = False
     
     if formulario.is_valid():
         try:
             formulario.save()
             usuario_creado = True
-        except:
-            pass
+        except Exception as error:
+            print(error)
     return usuario_creado
 
+
+
+#View CATEGORIA CREAR
+
+def categoria_crear (request):
+    datosFormulario = None
+    if(request.method == "POST"):
+        datosFormulario = request.POST
+    formulario = CategoriaForm(datosFormulario)
+    
+    if(request.method == 'POST'):
+        categoria_creada = crear_categoria_modelo(formulario)
+        if(categoria_creada):
+            messages.success(request, 'Se ha creado la categoria')
+            return redirect('lista_categoria')
+    
+    return render(request, 'categoria/crear.html',{"formulario":formulario})
+
+def crear_categoria_modelo(formulario):
+    categoria_creada = False
+    
+    if formulario.is_valid():
+        try:
+            formulario.save()
+            categoria_creada = True
+        except Exception as error:
+            print(error)
+        return categoria_creada
+
+
+#View Producto CREAR
+
+
+def producto_crear(request):
+    datosFormulario = None
+    
+    if(request.method == 'POST'):
+        datosFormulario = request.POST
+    formulario = ProductoForm(datosFormulario)
+    
+    if(request.method == 'POST'):
+        producto_creado = producto_creado_modelo(formulario)
+        if(producto_creado):
+            messages.success(request, 'Producto añadido')
+            return redirect('lista_productos')
+
+    return render(request, 'productos/crear.html',{'formulario':formulario})
+
+def producto_creado_modelo(formulario):
+    producto_creado = False
+    
+    if(formulario.is_valid()):
+        try:
+            formulario.save()
+            producto_creado = True
+        
+        except Exception as error:    
+            print(error)
+        
+        return producto_creado
 
 
 ##Crear una página de Error personalizada para cada uno de los 4 

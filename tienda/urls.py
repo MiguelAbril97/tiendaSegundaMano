@@ -29,5 +29,7 @@ urlpatterns = [
     #URLS DE FORMULARIO#
     
     path('usuario/crear',views.usuario_crear, name='usuario_crear'),
+    path('categoria/crear',views.categoria_crear,name='categoria_crear'),
+    path('producto/crear', views.producto_crear, name='producto_crear'),
     
 ]
