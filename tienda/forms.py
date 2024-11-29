@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from datetime import date
 
 #CRUD de Usuario
 class UsuarioForm(ModelForm):
@@ -90,3 +91,32 @@ class ProductoForm(ModelForm):
             'descripcion':forms.Textarea(attrs={"maxlength":"100"}),
             'precio':forms.NumberInput(attrs={'step': '0.01', 'min': '0',' max_digits':'10'}),
         }   
+        
+    def clean(self):
+        super().clean()
+        nombre = self.cleaned_data.get('nombre')
+        descripcion = self.cleaned_data.get('descripcion')
+        precio = self.cleaned_data.get('precio')
+        estado = self.cleaned_data.get('estado')
+        vendedor = self.cleaned_data.get('vendedor')
+        fecha_de_publicacion = self.cleaned_data.get('fecha_de_publicacion')
+        categorias = self.cleaned_data.get('categorias')
+        
+        
+        
+        hoy = date.today()
+        if(hoy > fecha_de_publicacion):
+            self.add_error('fecha_de_publicacion','La fecha de publicacion debe ser mayor a la de hoy')   
+        
+        if(vendedor == None):
+            self.add_error('vendedor', 'Indique un vendedor')
+        
+        if(estado == None):
+            self.add_error('estado', 'Indique un estado')
+        
+        if(precio < 0):
+            self.add_error('precio','El precio minimo es 0')
+           
+        
+        return self.cleaned_data
+        
