@@ -179,6 +179,37 @@ def producto_creado_modelo(formulario):
         
         return producto_creado
 
+#VIEW DE CALZADO CREAR
+
+def calzado_crear(request):
+    datosFormulario = None
+
+    if request.method == 'POST':
+        datosFormulario = request.POST
+    formulario = CalzadoForm(datosFormulario)
+
+    if request.method == 'POST':
+        calzado_creado = calzado_creado_modelo(formulario)
+        if calzado_creado:
+            messages.success(request, 'Calzado añadido con éxito')
+            return redirect('lista_calzados')
+
+    return render(request, 'calzados/crear.html', {'formulario': formulario})
+
+def calzado_creado_modelo(formulario):
+    calzado_creado = False
+
+    if formulario.is_valid():
+        try:
+            formulario.save()
+            calzado_creado = True
+        except Exception as error:
+            print(error)
+
+    return calzado_creado
+
+#MUEBLE CREAR
+
 
 ##Crear una página de Error personalizada para cada uno de los 4 
 # tipos de errores que pueden ocurrir en nuestra Web.

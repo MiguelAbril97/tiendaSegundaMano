@@ -31,5 +31,7 @@ urlpatterns = [
     path('usuario/crear',views.usuario_crear, name='usuario_crear'),
     path('categoria/crear',views.categoria_crear,name='categoria_crear'),
     path('producto/crear', views.producto_crear, name='producto_crear'),
+    path('calzado/crear', views.calzado_crear, name='calzado_crear'),
+    path('muebles/crear', views.muebles_crear, name='muebles_crear'),
     
 ]

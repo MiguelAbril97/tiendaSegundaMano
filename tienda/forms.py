@@ -119,4 +119,81 @@ class ProductoForm(ModelForm):
            
         
         return self.cleaned_data
-        
+
+#CRUD CALZADO 
+###PREGUNTAR COMO HACER/VALIDAR EL FOREIGN KEY ONE TO ONE CON PRODUCTO
+class CalzadoForm(ModelForm):
+    class Meta:
+        model = Calzado
+        fields = '__all__'  
+
+        labels = {
+            'talla': ('Talla del calzado'),
+            'marca': ('Marca del calzado'),
+            'color': ('Color del calzado'),
+            'material': ('Material del calzado'),
+        }
+
+        widgets = {
+            'talla': forms.TextInput(attrs={"maxlength": "2"}),
+            'marca': forms.Select(attrs={"class": "form-control"}),
+            'color': forms.TextInput(attrs={"maxlength": "20"}),
+            'material': forms.TextInput(attrs={"maxlength": "30"}),
+        }
+
+    def clean(self):
+        super().clean()
+        talla = self.cleaned_data.get('talla')
+        marca = self.cleaned_data.get('marca')
+        color = self.cleaned_data.get('color')
+        material = self.cleaned_data.get('material')
+
+        if talla and (not talla.isdigit() or int(talla) < 1 or int(talla) > 50):
+            self.add_error('talla', 'La talla debe ser un número entre 1 y 50.')
+
+        if not material:
+            self.add_error('material', 'El material es obligatorio.')
+
+        return self.cleaned_data
+    
+#CRUD MUEBLE
+
+
+class MueblesForm(ModelForm):
+    class Meta:
+        model = Muebles
+        fields = '__all__'
+
+        labels = {
+            'material': ('Material del mueble'),
+            'ancho': ('Ancho (cm)'),
+            'alto': ('Alto (cm)'),
+            'profundidad': ('Profundidad (cm)'),
+            'peso': ('Peso (kg)'),
+        }
+
+        widgets = {
+            'material': forms.TextInput(attrs={"maxlength": "30"}),
+            'ancho': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
+            'alto': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
+            'profundidad': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
+            'peso': forms.NumberInput(attrs={'step': '1', 'min': '0'}),
+        }
+
+    def clean(self):
+        super().clean()
+        ancho = self.cleaned_data.get('ancho')
+        alto = self.cleaned_data.get('alto')
+        profundidad = self.cleaned_data.get('profundidad')
+        peso = self.cleaned_data.get('peso')
+
+        if ancho <= 0:
+            self.add_error('ancho', 'El ancho debe ser mayor a 0.')
+        if alto <= 0:
+            self.add_error('alto', 'El alto debe ser mayor a 0.')
+        if profundidad <= 0:
+            self.add_error('profundidad', 'La profundidad debe ser mayor a 0.')
+        if peso <= 0:
+            self.add_error('peso', 'El peso debe ser mayor a 0.')
+
+        return self.cleaned_data 
