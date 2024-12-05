@@ -28,10 +28,23 @@ urlpatterns = [
     
     #URLS DE FORMULARIO#
     
+    #CRUD usuario
     path('usuario/crear',views.usuario_crear, name='usuario_crear'),
-    path('categoria/crear',views.categoria_crear,name='categoria_crear'),
-    path('producto/crear', views.producto_crear, name='producto_crear'),
-    path('calzado/crear', views.calzado_crear, name='calzado_crear'),
-    path('muebles/crear', views.muebles_crear, name='muebles_crear'),
+    path('usuario/buscar',views.usuario_buscar,name="usuario_buscar"),
     
+    #CRUD categoria
+    path('categoria/crear',views.categoria_crear,name='categoria_crear'),
+    path('categoria7buscar', views.categoria_buscar, name='categoria_buscar'),
+    
+    #CRUD producto
+    path('producto/crear', views.producto_crear, name='producto_crear'),
+    
+    #CRUD calzado
+    path('calzado/crear', views.calzado_crear, name='calzado_crear'),
+    
+    #CRUD mueble
+    path('mueble/crear', views.mueble_crear, name='mueble_crear'),
+    
+    #CRUD consola
+    path('consola/crear', views.consola_crear,name='consola_crear'),
 ]

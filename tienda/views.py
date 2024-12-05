@@ -94,6 +94,7 @@ def lista_consolas(request):
 
 def usuario_crear(request): 
     datosFormulario = None
+   
     if(request.method == "POST"):
         datosFormulario = request.POST
     formulario = UsuarioForm(datosFormulario)
@@ -118,8 +119,44 @@ def crear_usuario_modelo(formulario):
             print(error)
     return usuario_creado
 
+#view Usuario buscar 
 
-
+def usuario_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarUsuario(request.GET)
+        if formulario.is_valid():
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+            
+            QSusuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor'))
+            
+            nombre = formulario.cleaned_data.get('buscarNombre')
+            email = formulario.cleaned_data.get('buscarEmail')
+            tlf = formulario.cleaned_data.get('buscarTlf')
+            direccion = formulario.cleaned_data.get('buscarDireccion')
+            
+            if(nombre != ""):
+                QSusuarios = QSusuarios.filter(nombre__contains = nombre)
+                mensaje_busqueda += "Nombre que contiene:"+nombre+"\n"
+                
+            if(email != ""):
+                QSusuarios = QSusuarios.filter(email__contains = email)
+                mensaje_busqueda += "Email que contiene:"+email+"\n"
+            
+            if(tlf != ""):
+                QSusuarios = QSusuarios.filter(telefono__contains = tlf)
+                mensaje_busqueda += "Telefono que contiene:"+tlf+"\n"
+                
+            if(direccion != ""):
+                QSusuarios = QSusuarios.filter(direccion__contains = direccion)
+                mensaje_busqueda += "Direccion que contiene:"+direccion+"\n"
+            
+            usuarios = QSusuarios.all()
+            
+            return render(request,'usuarios/lista_busqueda.html',{'usuarios_mostrar':usuarios,'mensaje':mensaje_busqueda})
+    else:
+        formulario = BuscarUsuario(None) 
+    return render(request, 'usuarios/buscar.html',{'formulario':formulario})     
+                
 #View CATEGORIA CREAR
 
 def categoria_crear (request):
@@ -147,9 +184,58 @@ def crear_categoria_modelo(formulario):
             print(error)
         return categoria_creada
 
+#Categoria buscar
+
+def categoria_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarCategoria(request.GET)
+    
+        if formulario.is_valid():
+            
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+
+            QScategorias = Categoria.objects.prefetch_related(Prefetch('categorias'))
+            
+            nombre = formulario.cleaned_data('buscarNombre')
+            descripcion = formulario.cleaned_data('buscarDescripcion')
+            existencias = formulario.cleaned_data('sinExistencias')
+            destacada = formulario.cleaned_data('destacada')
+
+            if(nombre != ""):
+                QScategorias = QScategorias.filter(nombre__contains = nombre)
+                mensaje_busqueda += "Nombre contiene"+nombre+"\n"
+                
+            if(descripcion != ""):
+                QScategorias = QScategorias.filter(descripcion__contains = descripcion)
+                mensaje_busqueda += "Descripcion contiene"+nombre+"\n"
+                
+            if(existencias):
+                QScategorias = QScategorias.filter(existencias__gte = 0)
+                mensaje_busqueda += "Incluir categorias sin existencias"+"\n"
+
+            else:
+                QScategorias = QScategorias.filter(existencias__gt = 0)
+                mensaje_busqueda += "Excluir categorias sin existencias"+"\n"
+
+            if(destacada):
+                QScategorias = QScategorias.filter(destacada = True)
+                mensaje_busqueda += "Solo categorias destacadas"+"\n"
+
+            else:
+                QScategorias = QScategorias.filter(Q (destacada = False) | Q (destacada = False))
+                mensaje_busqueda += "Categorias destacadas y no destacadas"+"\n"
+                
+            return render(request, 'categorias/lista_busqueda.html',
+                          {'formulario':formulario, 'mensaje':mensaje_busqueda})
+        else:
+            formulario = BuscarCategoria(None)
+            
+            return render(request, 'categorias/buscar.html',
+                          {'formulario':formulario})
+        
+
 
 #View Producto CREAR
-
 
 def producto_crear(request):
     datosFormulario = None
@@ -178,6 +264,8 @@ def producto_creado_modelo(formulario):
             print(error)
         
         return producto_creado
+    
+
 
 #VIEW DE CALZADO CREAR
 
@@ -210,6 +298,60 @@ def calzado_creado_modelo(formulario):
 
 #MUEBLE CREAR
 
+def mueble_crear(request):
+    datosFormulario = None
+
+    if request.method == 'POST':
+        datosFormulario = request.POST
+    formulario = MuebleForm(datosFormulario)
+
+    if request.method == 'POST':
+        mueble_creado = mueble_creado_modelo(formulario)
+        if mueble_creado:
+            messages.success(request, 'Mueble añadido con éxito')
+            return redirect('lista_muebles')
+
+    return render(request, 'muebles/crear.html', {'formulario': formulario})
+
+def mueble_creado_modelo(formulario):
+    mueble_creado = False
+
+    if formulario.is_valid():
+        try:
+            formulario.save()
+            mueble_creado = True
+        except Exception as error:
+            print(error)
+
+    return mueble_creado
+
+#Consola_crear
+def consola_crear(request):
+    datosFormulario = None
+
+    if request.method == 'POST':
+        datosFormulario = request.POST
+    formulario = ConsolasForm(datosFormulario)
+
+    if request.method == 'POST':
+        consola_creada = consola_creada_modelo(formulario)
+        if consola_creada:
+            messages.success(request, 'Consola añadida con éxito')
+            return redirect('lista_consolas')
+
+    return render(request, 'consolas/crear.html', {'formulario': formulario})
+
+def consola_creada_modelo(formulario):
+    consola_creada = False
+
+    if formulario.is_valid():
+        try:
+            formulario.save()
+            consola_creada = True
+        except Exception as error:
+            print(error)
+
+    return consola_creada
 
 ##Crear una página de Error personalizada para cada uno de los 4 
 # tipos de errores que pueden ocurrir en nuestra Web.

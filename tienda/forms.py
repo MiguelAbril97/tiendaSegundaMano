@@ -43,6 +43,32 @@ class UsuarioForm(ModelForm):
         return self.cleaned_data
 
 
+class BuscarUsuario (forms.Form):
+    
+    buscarNombre = forms.CharField(required=False)
+    buscarEmail = forms.CharField(required=False)
+    buscarTlf = forms.CharField(required=False)
+    buscarDireccion = forms.CharField(required=False)
+    
+    def clean(self):
+        super().clean()
+        
+        nombre = self.cleaned_data.get('buscarNombre')
+        email = self.cleaned_data.get('buscarEmail')
+        tlf = self.cleaned_data.get('buscarTlf')
+        direccion = self.cleaned_data.get('buscarDireccion')
+        
+        if(nombre == "" and email == "" and tlf == "" and direccion == ""):
+            self.add_error('nombre','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('email','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('tlf','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('direccion','Debe introducir al menos un valor en un campo del formulario')
+        else: 
+            if(tlf != "" and len(tlf) < 3):
+                self.add_error('tlf','Debe introducir al menos 3 carácteres')
+        
+        return self.cleaned_data
+
 #CRUD de Categoria
 class CategoriaForm(ModelForm):
     class Meta:
@@ -75,7 +101,42 @@ class CategoriaForm(ModelForm):
           
         
         return self.cleaned_data
+    
+class BuscarCategoria(forms.Form):
+    
+    buscarNombre = forms.CharField(required=False)
+    buscarDescripcion = forms.CharField(required=False)
+    sinExistencias = forms.BooleanField(
+        label='Buscar categorias sin productos',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    destacada = forms.BooleanField(
+        label='Solo categorias destacadas',
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    
+    def clean(self):
+        
+        super().clean()
+        
+        nombre = self.cleaned_data.get("buscarNombre")
+        descripcion = self.cleaned_data.get('buscarDescripcion')
+        existencias = self.cleaned_data.get("sinExistencias")
+        destacada = self.cleaned_data.get('destacada')
+        
+        if (nombre == "" and descripcion =="" and existencias and not destacada):
+            self.add_error('nombre','Busqueda inválida')
+            self.add_error('descripcion','Busqueda inválida')
+            self.add_error('existencias','Busqueda inválida')
+            self.add_error('destacada','Busqueda inválida')
+        
+        else:
+            if (nombre != "" and len(nombre) > 100):
+                self.add_error('nombre','Nombre demasiado largo')
+                
+        return self.cleaned_data
 
+    
 #CRUD de Producto  
 class ProductoForm(ModelForm):
     class Meta:
@@ -121,7 +182,6 @@ class ProductoForm(ModelForm):
         return self.cleaned_data
 
 #CRUD CALZADO 
-###PREGUNTAR COMO HACER/VALIDAR EL FOREIGN KEY ONE TO ONE CON PRODUCTO
 class CalzadoForm(ModelForm):
     class Meta:
         model = Calzado
@@ -141,12 +201,23 @@ class CalzadoForm(ModelForm):
             'material': forms.TextInput(attrs={"maxlength": "30"}),
         }
 
+
     def clean(self):
         super().clean()
         talla = self.cleaned_data.get('talla')
         marca = self.cleaned_data.get('marca')
         color = self.cleaned_data.get('color')
         material = self.cleaned_data.get('material')
+        producto = self.cleaned_data.get('producto')
+        
+        idProducto = Calzado.objects.filter(producto = producto)
+        
+        if ( not idProducto is None) :
+             if(not self.instance is None and idProducto.id == self.instance.id):
+                 pass
+             else:
+                self.add_error('producto','Ya existe un calzado con ese id asignado')
+
 
         if talla and (not talla.isdigit() or int(talla) < 1 or int(talla) > 50):
             self.add_error('talla', 'La talla debe ser un número entre 1 y 50.')
@@ -156,10 +227,10 @@ class CalzadoForm(ModelForm):
 
         return self.cleaned_data
     
+
 #CRUD MUEBLE
 
-
-class MueblesForm(ModelForm):
+class MuebleForm(ModelForm):
     class Meta:
         model = Muebles
         fields = '__all__'
@@ -186,14 +257,71 @@ class MueblesForm(ModelForm):
         alto = self.cleaned_data.get('alto')
         profundidad = self.cleaned_data.get('profundidad')
         peso = self.cleaned_data.get('peso')
+        producto = self.cleaned_data.get('producto')
+        
+        idProducto = Muebles.objects.filter(producto = producto)
+        
+        if ( not idProducto is None):
+             if(not self.instance is None and idProducto.id == self.instance.id):
+                 pass
+             else:
+                self.add_error('producto','Ya existe un mueble con ese id asignado')
 
-        if ancho <= 0:
+
+        if (ancho <= 0):
             self.add_error('ancho', 'El ancho debe ser mayor a 0.')
-        if alto <= 0:
+        if (alto <= 0):
             self.add_error('alto', 'El alto debe ser mayor a 0.')
-        if profundidad <= 0:
+        if (profundidad <= 0):
             self.add_error('profundidad', 'La profundidad debe ser mayor a 0.')
-        if peso <= 0:
+        if (peso <= 0):
             self.add_error('peso', 'El peso debe ser mayor a 0.')
 
         return self.cleaned_data 
+    
+
+#CRUD CONSOLA
+class ConsolasForm(ModelForm):
+    class Meta:
+        model = Consolas
+        fields = '__all__'
+
+        labels = {
+            'producto': 'Producto asociado',
+            'modelo': 'Modelo de la consola',
+            'color': 'Color de la consola',
+            'memoria': 'Memoria de la consola',
+        }
+
+        widgets = {
+            'producto': forms.Select(attrs={"class": "form-control"}),
+            'modelo': forms.TextInput(attrs={"maxlength": "50", "class": "form-control"}),
+            'color': forms.TextInput(attrs={"maxlength": "20", "class": "form-control"}),
+            'memoria': forms.TextInput(attrs={"maxlength": "20", "class": "form-control"}),
+        }
+
+    def clean(self):
+        super().clean()
+        modelo = self.cleaned_data.get('modelo')
+        color = self.cleaned_data.get('color')
+        memoria = self.cleaned_data.get('memoria')
+        producto = self.cleaned_data.get('producto')
+        
+        idProducto = Consolas.objects.filter(producto = producto)
+        
+        if ( not idProducto is None) :
+             if(not self.instance is None and idProducto.id == self.instance.id):
+                 pass
+             else:
+                self.add_error('producto','Ya existe un calzado con ese id asignado')
+
+        if modelo and len(modelo) < 3:
+            self.add_error('modelo', 'El modelo debe tener al menos 3 caracteres.')
+
+        if color and not color.isalpha():
+            self.add_error('color', 'El color debe contener solo letras.')
+
+        if memoria and not memoria.replace('GB', '').isdigit():
+            self.add_error('memoria', 'La memoria debe ser un número seguido de "GB" (por ejemplo, "16GB").')
+
+        return self.cleaned_data
