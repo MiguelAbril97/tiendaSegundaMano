@@ -38,6 +38,7 @@ urlpatterns = [
     
     #CRUD producto
     path('producto/crear', views.producto_crear, name='producto_crear'),
+    path('producto/buscar', views.producto_buscar, name='producto_buscar'),
     
     #CRUD calzado
     path('calzado/crear', views.calzado_crear, name='calzado_crear'),

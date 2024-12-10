@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from django.db.models import Q,Prefetch
 from .models import *
 from datetime import date
 
@@ -180,6 +181,74 @@ class ProductoForm(ModelForm):
            
         
         return self.cleaned_data
+    
+class BuscarProducto(forms.Form):
+    buscarNombre = forms.CharField(required=False, label="Nombre")
+    buscarDescripcion = forms.CharField(required=False,label="Descripción")
+    buscarPrecioMax = forms.DecimalField(
+        required=False,
+        label="Precio Máximo",
+        min_value=0,
+        widget=forms.NumberInput(attrs={'placeholder': '1000.00'})
+    )
+    buscarEstado = forms.ChoiceField(choices=Producto.ESTADOS,
+                                       required=False,
+                                       widget=forms.CheckboxSelectMultiple()
+                                       )
+    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.prefetch_related(
+        Prefetch('producto_vendedor').filter(producto_vendedor__isnull=False).distinct())
+                                                    , required=False)
+    buscarFecha = forms.DateField(label="Fecha de Publicación",
+                                  required=False,
+                                  widget= forms.DateInput(format="%Y-%m-%d", 
+                                                          attrs={"type": "date"},
+                                                          )
+                                  )
+    buscarCategorias = forms.ModelMultipleChoiceField(queryset= Categoria.objects.prefetch_related(
+        Prefetch('categorias').filter(categorias__isnull=False).distinct()), 
+                                         required=False,
+                                         widget=forms.CheckboxSelectMultiple()
+                                         )
+    def clean(self):
+ 
+        #Validamos con el modelo actual
+        super().clean()
+        nombre = self.cleaned_data.get('buscarNombre')
+        descripcion = self.cleaned_data.get('buscarDescripcion')
+        precio = self.cleaned_data.get('buscarPrecioMax')
+        estado = self.cleaned_data.get('buscarEstado')
+        vendedor = self.cleaned_data.get('buscarVendedor')
+        fecha = self.cleaned_data.get('buscarFecha')
+        categoria = self.cleaned_data.get('buscarCategorias')
+        
+        if(nombre =="" 
+           and descripcion==""
+           and precio=="" 
+           and len(estado) == 0 
+           and len(vendedor)==0 
+           and fecha is None 
+           and len(categoria)==0
+           ):
+            error_msg = "Debe introducir al menos un valor en un campo del formulario"
+            self.add_error('buscarNombre', error_msg)
+            self.add_error('buscarDescripcion', error_msg)
+            self.add_error('buscarPrecioMax', error_msg)
+            self.add_error('buscarEstado', error_msg)
+            self.add_error('buscarVendedor', error_msg)
+            self.add_error('buscarFecha', error_msg)
+            self.add_error('buscarCategorias', error_msg)
+        
+        else:
+            fechaHoy = date.today()
+            if(fechaHoy < fecha):
+                self.add_error('buscarFecha', 'No puede buscar productos que no se han publicado todavía')
+            if(len(precio) > 10):
+                self.add_error('buscarPrecioMax', 'Introduzca un precio maximo más bajo')
+            if(len(nombre) > 100):
+                self.add_error('buscarNombre', 'Introduzca un nombre más corto')
+
+        
+    
 
 #CRUD CALZADO 
 class CalzadoForm(ModelForm):

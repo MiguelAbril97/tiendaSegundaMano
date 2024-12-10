@@ -6,6 +6,8 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
+from datetime import datetime
+
 
 #1 Create your views here.
 def index(request):
@@ -265,7 +267,58 @@ def producto_creado_modelo(formulario):
         
         return producto_creado
     
+#Producto buscar
 
+def producto_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarProducto(request.GET)
+        
+        if formulario.is_valid():            
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+            
+            QSproductos = Producto.objects.select_related('vendedor').prefetch_related('categorias')
+            
+            nombre = formulario.cleaned_data.get('buscarNombre')
+            descripcion = formulario.cleaned_data.get('buscarDescripcion')
+            precio = formulario.cleaned_data.get('buscarPrecioMax')
+            estado = formulario.cleaned_data.get('buscarEstado')
+            vendedor = formulario.cleaned_data.get('buscarVendedor')
+            fecha = formulario.cleaned_data.get('buscarFecha')
+            categoria = formulario.cleaned_data.get('buscarCategorias')
+            
+            if(nombre != ""):
+                QSproductos = QSproductos.filter(nombre__contains = nombre)
+                mensaje_busqueda +=" Nombre que contenga "+nombre+"\n"
+            
+            if(descripcion != ""):
+                QSproductos = QSproductos.filter(descripcion__contains = descripcion)
+                mensaje_busqueda +=" Descripcion que contenga "+descripcion+"\n"
+            
+            if (precio != ""):
+                QSproductos = QSproductos.filter(precio__lte = precio)
+                mensaje_busqueda += "Precio menor o igual a "+precio+"\n"    
+          
+            if(len(estado) > 0):
+                mensaje_busqueda +=" El estado sea "+estado[0]
+                filtroOR = Q(i=estado[0])
+                for i in estado[1:]:
+                    mensaje_busqueda += " o "+i[1]
+                    filtroOR |= Q(i=i)
+                mensaje_busqueda += "\n"
+                QSproductos =  QSproductos.filter(filtroOR)
+            
+            if(len(vendedor) > 0 ):
+                mensaje_busqueda +=" Vendedores "+"\n"
+
+            
+            
+            if(not fecha is None):
+                mensaje_busqueda +=" La fecha sea mayor a "+datetime.strftime(fecha,'%d-%m-%Y')+"\n"
+                QSproductos = QSproductos.filter(fecha_de_publicacion__gte=fecha)
+
+                
+
+    
 
 #VIEW DE CALZADO CREAR
 
