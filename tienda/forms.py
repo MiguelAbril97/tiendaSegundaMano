@@ -195,8 +195,8 @@ class BuscarProducto(forms.Form):
                                        required=False,
                                        widget=forms.CheckboxSelectMultiple()
                                        )
-    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.prefetch_related(
-        Prefetch('producto_vendedor').filter(producto_vendedor__isnull=False).distinct())
+    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.select_related(
+        'producto_vendedor').filter(producto_vendedor__isnull=False).distinct()
                                                     , required=False)
     buscarFecha = forms.DateField(label="Fecha de Publicación",
                                   required=False,
@@ -295,6 +295,48 @@ class CalzadoForm(ModelForm):
             self.add_error('material', 'El material es obligatorio.')
 
         return self.cleaned_data
+
+class BuscarCalzado(forms.Form):
+    
+    buscarTalla = forms.CharField(required=False, label="Talla")
+    buscarMarca = forms.ChoiceField(
+        choices=Calzado.MARCAS,
+        required=False,
+        widget=forms.RadioSelect()
+    )
+    buscarColor = forms.CharField(required=False, label="Color")
+    buscarMaterial = forms.CharField(required=False, label="Material")
+    buscarPrecioMax = forms.DecimalField(
+        required=False,
+        label="Precio Máximo",
+        min_value=0,
+        widget=forms.NumberInput()
+    )
+
+    def clean(self):
+        
+        super().clean()
+
+        talla = self.cleaned_data.get('buscarTalla')
+        marca = self.cleaned_data.get('buscarMarca')
+        color = self.cleaned_data.get('buscarColor')
+        material = self.cleaned_data.get('buscarMaterial')
+        precio = self.cleaned_data.get('buscarPrecioMax')
+
+        if (talla == "" 
+            and marca is None 
+            and color == "" 
+            and material == "" 
+            and precio == ""):
+            error_msg = "Debe introducir al menos un valor en un campo del formulario"
+            self.add_error('buscarTalla', error_msg)
+            self.add_error('buscarMarca', error_msg)
+            self.add_error('buscarColor', error_msg)
+            self.add_error('buscarMaterial', error_msg)
+            self.add_error('buscarPrecioMax', error_msg)
+
+        return self.cleaned_data
+
     
 
 #CRUD MUEBLE
@@ -349,6 +391,95 @@ class MuebleForm(ModelForm):
         return self.cleaned_data 
     
 
+class BuscarMueble(forms.Form):
+    buscarMaterial = forms.CharField(required=False, label="Material")
+    buscarAnchoMin = forms.FloatField(
+        required=False,
+        label="Ancho mínimo",
+        widget=forms.NumberInput()
+    )
+    buscarAnchoMax = forms.FloatField(
+        required=False,
+        label="Ancho máximo",
+        widget=forms.NumberInput()
+    )
+    buscarAltoMin = forms.FloatField(
+        required=False,
+        label="Alto mínimo",
+        widget=forms.NumberInput()
+    )
+    buscarAltoMax = forms.FloatField(
+        required=False,
+        label="Alto máximo",
+        widget=forms.NumberInput()
+    )
+    buscarProfundidadMin = forms.FloatField(
+        required=False,
+        label="Profundidad mínima",
+        widget=forms.NumberInput()
+    )
+    buscarProfundidadMax = forms.FloatField(
+        required=False,
+        label="Profundidad máxima",
+        widget=forms.NumberInput()
+    )
+    buscarPesoMax = forms.IntegerField(
+        required=False,
+        label="Peso máximo",
+        widget=forms.NumberInput()
+    )
+    
+    def clean(self):
+       
+        super().clean()
+
+        material = self.cleaned_data.get('buscarMaterial')
+        ancho_min = self.cleaned_data.get('buscarAnchoMin')
+        ancho_max = self.cleaned_data.get('buscarAnchoMax')
+        alto_min = self.cleaned_data.get('buscarAltoMin')
+        alto_max = self.cleaned_data.get('buscarAltoMax')
+        profundidad_min = self.cleaned_data.get('buscarProfundidadMin')
+        profundidad_max = self.cleaned_data.get('buscarProfundidadMax')
+        peso_max = self.cleaned_data.get('buscarPesoMax')
+
+        if(material == "" 
+             and ancho_min is None and ancho_max is None 
+             and alto_min is None and alto_max is None
+             and profundidad_min is None and profundidad_max is None
+             and peso_max is None
+             ):
+
+             error_msg = "Debe introducir al menos un valor en un campo del formulario"
+
+
+             self.add_error('buscarMaterial', error_msg)
+             self.add_error('buscarAnchoMin', error_msg)
+             self.add_error('buscarAnchoMax', error_msg)
+             self.add_error('buscarAltoMin', error_msg)
+             self.add_error('buscarAltoMax', error_msg)
+             self.add_error('buscarProfundidadMin', error_msg)
+             self.add_error('buscarProfundidadMax', error_msg)
+             self.add_error('buscarPesoMax', error_msg)
+
+        if(ancho_min > ancho_max):
+            self.add_error('buscarAnchoMin','El ancho mínimo no puede ser mayor al maximo')
+            self.add_error('buscarAnchoMax','El ancho mínimo no puede ser mayor al maximo')
+        
+        if(alto_min > alto_max):
+            self.add_error('buscarAltoMin', 'El alto mínimo no puede ser mayor al máximo')
+            self.add_error('buscarAltoMax', 'El alto mínimo no puede ser mayor al máximo')
+
+        if(profundidad_min > profundidad_max):
+            self.add_error('buscarProfundidadMin', 'La profundidad mínima no puede ser mayor a la máxima')
+            self.add_error('buscarProfundidadMax', 'La profundidad mínima no puede ser mayor a la máxima')
+        
+        if(peso_max <= 0):
+            self.add_error('buscarPesoMax', 'El peso debe ser mayor a 0')
+
+        
+        return self.cleaned_data
+
+
 #CRUD CONSOLA
 class ConsolasForm(ModelForm):
     class Meta:
@@ -392,5 +523,36 @@ class ConsolasForm(ModelForm):
 
         if memoria and not memoria.replace('GB', '').isdigit():
             self.add_error('memoria', 'La memoria debe ser un número seguido de "GB" (por ejemplo, "16GB").')
+
+        return self.cleaned_data
+
+class BuscarConsola(forms.Form):
+    buscarModelo = forms.CharField(required=False, label="Modelo")
+    buscarColor = forms.CharField(required=False, label="Color")
+    buscarMemoria = forms.CharField(required=False, label="Memoria")
+    buscarPrecioMax = forms.DecimalField(
+        required=False,
+        label="Precio Máximo",
+        min_value=0,
+        widget=forms.NumberInput(attrs={'placeholder': '1000.00'})
+    )
+
+    def clean(self):
+        super().clean()
+
+        modelo = self.cleaned_data.get('buscarModelo')
+        color = self.cleaned_data.get('buscarColor')
+        memoria = self.cleaned_data.get('buscarMemoria')
+        precio = self.cleaned_data.get('buscarPrecioMax')
+
+        if (modelo == "" 
+            and color == "" 
+            and memoria == "" 
+            and precio == ""):
+            error_msg = "Debe introducir al menos un valor en un campo del formulario"
+            self.add_error('buscarModelo', error_msg)
+            self.add_error('buscarColor', error_msg)
+            self.add_error('buscarMemoria', error_msg)
+            self.add_error('buscarPrecioMax', error_msg)
 
         return self.cleaned_data

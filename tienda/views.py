@@ -229,10 +229,10 @@ def categoria_buscar(request):
                 
             return render(request, 'categorias/lista_busqueda.html',
                           {'formulario':formulario, 'mensaje':mensaje_busqueda})
-        else:
-            formulario = BuscarCategoria(None)
+    else:
+        formulario = BuscarCategoria(None)
             
-            return render(request, 'categorias/buscar.html',
+    return render(request, 'categorias/buscar.html',
                           {'formulario':formulario})
         
 
@@ -270,6 +270,7 @@ def producto_creado_modelo(formulario):
 #Producto buscar
 
 def producto_buscar(request):
+    
     if(len(request.GET) > 0):
         formulario = BuscarProducto(request.GET)
         
@@ -299,23 +300,43 @@ def producto_buscar(request):
                 mensaje_busqueda += "Precio menor o igual a "+precio+"\n"    
           
             if(len(estado) > 0):
-                mensaje_busqueda +=" El estado sea "+estado[0]
+                mensaje_busqueda +="El estado sea "+estado[0]
                 filtroOR = Q(i=estado[0])
                 for i in estado[1:]:
-                    mensaje_busqueda += " o "+i[1]
+                    mensaje_busqueda += " o "+i
                     filtroOR |= Q(i=i)
                 mensaje_busqueda += "\n"
                 QSproductos =  QSproductos.filter(filtroOR)
             
             if(len(vendedor) > 0 ):
-                mensaje_busqueda +=" Vendedores "+"\n"
-
-            
-            
+                mensaje_busqueda +="Vendedores: "+vendedor[0]
+                filtroOR = Q(vendedor=vendedor[0])
+                for i in vendedor[1:]:
+                    mensaje_busqueda += " o "+i
+                    filtroOR |= Q(vendedor=i)
+                mensaje_busqueda += "\n"
+                QSproductos = QSproductos.filter(filtroOR)
+                        
             if(not fecha is None):
                 mensaje_busqueda +=" La fecha sea mayor a "+datetime.strftime(fecha,'%d-%m-%Y')+"\n"
                 QSproductos = QSproductos.filter(fecha_de_publicacion__gte=fecha)
-
+            
+            if(len(categoria) > 0):
+                mensaje_busqueda +="Categorias: "+categoria[0]
+                filtroOR = Q(categorias = categoria)
+                for i in vendedor[1:]:
+                    mensaje_busqueda += " o "+i
+                    filtroOR |= Q(categorias = i)
+                mensaje_busqueda += "\n"
+                QSproductos = QSproductos.filter(filtroOR)
+        
+            return render(request, 'productos/lista_buscar.html',
+                          {'formulario':formulario, 'mensaje':mensaje_busqueda})
+    else:
+        formulario = BuscarProducto(None)
+            
+    return render(request, 'productos/buscar.html',
+                        {'formulario':formulario})
                 
 
     
