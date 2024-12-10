@@ -1,0 +1,55 @@
+{% extends "principal.html" %}
+{% block contenido %}
+{% load django_bootstrap5 %}
+
+<form action="{% url 'calzado_buscar' %}" method="GET">
+    {% csrf_token %}
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarTalla show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarTalla.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarMarca show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarMarca.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarColor show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarColor.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarMaterial show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarMaterial.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarPrecioMax show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarPrecioMax.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock %}

@@ -42,10 +42,14 @@ urlpatterns = [
     
     #CRUD calzado
     path('calzado/crear', views.calzado_crear, name='calzado_crear'),
-    
+    path('calzado/buscar', views.calzado_buscar, name='calzado_buscar'),
+
+
     #CRUD mueble
     path('mueble/crear', views.mueble_crear, name='mueble_crear'),
+     path('mueble/buscar', views.mueble_buscar, name='mueble_buscar'),
     
     #CRUD consola
     path('consola/crear', views.consola_crear,name='consola_crear'),
+    path('consola/buscar', views.consola_buscar,name='consola_buscar'),
 ]

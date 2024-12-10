@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.db.models import Q,Prefetch
 from .models import *
 from datetime import date
+import datetime
 
 #CRUD de Usuario
 class UsuarioForm(ModelForm):
@@ -166,9 +167,14 @@ class ProductoForm(ModelForm):
         
         
         
-        hoy = date.today()
-        if(hoy > fecha_de_publicacion):
-            self.add_error('fecha_de_publicacion','La fecha de publicacion debe ser mayor a la de hoy')   
+        if fecha_de_publicacion:
+            if isinstance(fecha_de_publicacion, datetime.datetime):
+                fecha_de_publicacion = fecha_de_publicacion.date()
+            
+            hoy = date.today()
+            if hoy > fecha_de_publicacion:
+                self.add_error('fecha_de_publicacion', 
+                               'La fecha de publicación debe ser mayor o igual a la de hoy')
         
         if(vendedor == None):
             self.add_error('vendedor', 'Indique un vendedor')
@@ -195,8 +201,7 @@ class BuscarProducto(forms.Form):
                                        required=False,
                                        widget=forms.CheckboxSelectMultiple()
                                        )
-    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.select_related(
-        'producto_vendedor').filter(producto_vendedor__isnull=False).distinct()
+    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.filter(producto_vendedor__isnull=False).distinct()
                                                     , required=False)
     buscarFecha = forms.DateField(label="Fecha de Publicación",
                                   required=False,
@@ -205,7 +210,7 @@ class BuscarProducto(forms.Form):
                                                           )
                                   )
     buscarCategorias = forms.ModelMultipleChoiceField(queryset= Categoria.objects.prefetch_related(
-        Prefetch('categorias').filter(categorias__isnull=False).distinct()), 
+        Prefetch('categorias')).filter(categorias__isnull=False).distinct(), 
                                          required=False,
                                          widget=forms.CheckboxSelectMultiple()
                                          )
@@ -239,12 +244,10 @@ class BuscarProducto(forms.Form):
             self.add_error('buscarCategorias', error_msg)
         
         else:
-            fechaHoy = date.today()
-            if(fechaHoy < fecha):
-                self.add_error('buscarFecha', 'No puede buscar productos que no se han publicado todavía')
-            if(len(precio) > 10):
+            
+            if(precio is not None and len(precio) > 10):
                 self.add_error('buscarPrecioMax', 'Introduzca un precio maximo más bajo')
-            if(len(nombre) > 100):
+            if(nombre != "" and len(nombre) > 100):
                 self.add_error('buscarNombre', 'Introduzca un nombre más corto')
 
         
@@ -334,6 +337,12 @@ class BuscarCalzado(forms.Form):
             self.add_error('buscarColor', error_msg)
             self.add_error('buscarMaterial', error_msg)
             self.add_error('buscarPrecioMax', error_msg)
+        
+        if(not material is None and len(material) < 3):
+            self.add_error('buscarMaterial', 
+                           'Material debe contener al menos 3 caracteres ')
+        if(not precio is None and precio > 999):
+            self.add_error('buscarPrecioMax', 'El precio maximo es 999')
 
         return self.cleaned_data
 
@@ -507,22 +516,20 @@ class ConsolasForm(ModelForm):
         memoria = self.cleaned_data.get('memoria')
         producto = self.cleaned_data.get('producto')
         
-        idProducto = Consolas.objects.filter(producto = producto)
+        idProducto = Consolas.objects.filter(producto = producto).first()
         
-        if ( not idProducto is None) :
+        if (not idProducto is None) :
              if(not self.instance is None and idProducto.id == self.instance.id):
                  pass
              else:
-                self.add_error('producto','Ya existe un calzado con ese id asignado')
+                self.add_error('producto','Ya existe una consola con ese id asignado')
 
-        if modelo and len(modelo) < 3:
+        if (modelo and len(modelo) < 3):
             self.add_error('modelo', 'El modelo debe tener al menos 3 caracteres.')
 
-        if color and not color.isalpha():
+        if (color and not color.isalpha()):
             self.add_error('color', 'El color debe contener solo letras.')
 
-        if memoria and not memoria.replace('GB', '').isdigit():
-            self.add_error('memoria', 'La memoria debe ser un número seguido de "GB" (por ejemplo, "16GB").')
 
         return self.cleaned_data
 
@@ -554,5 +561,10 @@ class BuscarConsola(forms.Form):
             self.add_error('buscarColor', error_msg)
             self.add_error('buscarMemoria', error_msg)
             self.add_error('buscarPrecioMax', error_msg)
+
+        if (not color is None and len(color) < 4):
+            self.add_error('buscarColor', 'Color invalido')
+
+
 
         return self.cleaned_data

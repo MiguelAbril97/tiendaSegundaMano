@@ -154,7 +154,7 @@ def usuario_buscar(request):
             
             usuarios = QSusuarios.all()
             
-            return render(request,'usuarios/lista_busqueda.html',{'usuarios_mostrar':usuarios,'mensaje':mensaje_busqueda})
+            return render(request,'usuarios/lista.html',{'usuarios_mostrar':usuarios,'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarUsuario(None) 
     return render(request, 'usuarios/buscar.html',{'formulario':formulario})     
@@ -295,7 +295,7 @@ def producto_buscar(request):
                 QSproductos = QSproductos.filter(descripcion__contains = descripcion)
                 mensaje_busqueda +=" Descripcion que contenga "+descripcion+"\n"
             
-            if (precio != ""):
+            if (precio is not None):
                 QSproductos = QSproductos.filter(precio__lte = precio)
                 mensaje_busqueda += "Precio menor o igual a "+precio+"\n"    
           
@@ -309,10 +309,10 @@ def producto_buscar(request):
                 QSproductos =  QSproductos.filter(filtroOR)
             
             if(len(vendedor) > 0 ):
-                mensaje_busqueda +="Vendedores: "+vendedor[0]
+                mensaje_busqueda +="Vendedores: {vendedor[0].email}"
                 filtroOR = Q(vendedor=vendedor[0])
                 for i in vendedor[1:]:
-                    mensaje_busqueda += " o "+i
+                    mensaje_busqueda += " o {i[0].email}"
                     filtroOR |= Q(vendedor=i)
                 mensaje_busqueda += "\n"
                 QSproductos = QSproductos.filter(filtroOR)
@@ -322,15 +322,15 @@ def producto_buscar(request):
                 QSproductos = QSproductos.filter(fecha_de_publicacion__gte=fecha)
             
             if(len(categoria) > 0):
-                mensaje_busqueda +="Categorias: "+categoria[0]
+                mensaje_busqueda +="Categorias: {categoria[0].nombre}"
                 filtroOR = Q(categorias = categoria)
                 for i in vendedor[1:]:
-                    mensaje_busqueda += " o "+i
+                    mensaje_busqueda += " o {i[0].nombre}"
                     filtroOR |= Q(categorias = i)
                 mensaje_busqueda += "\n"
                 QSproductos = QSproductos.filter(filtroOR)
         
-            return render(request, 'productos/lista_buscar.html',
+            return render(request, 'productos/lista.html',
                           {'formulario':formulario, 'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarProducto(None)
@@ -370,6 +370,50 @@ def calzado_creado_modelo(formulario):
 
     return calzado_creado
 
+def calzado_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarCalzado(request.GET)
+        if formulario.is_valid():
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+            
+            QSCalzado = Calzado.objects.all()
+            
+            talla = formulario.cleaned_data.get('buscarTalla')
+            marca = formulario.cleaned_data.get('buscarMarca')
+            color = formulario.cleaned_data.get('buscarColor')
+            material = formulario.cleaned_data.get('buscarMaterial')
+            precio_max = formulario.cleaned_data.get('buscarPrecioMax')
+            
+            if(talla != ""):
+                QSCalzado = QSCalzado.filter(talla__contains=talla)
+                mensaje_busqueda += "Talla que contiene:" + talla + "\n"
+                
+            if(marca != ""):
+                QSCalzado = QSCalzado.filter(marca=marca)
+                mensaje_busqueda += "Marca seleccionada:" + marca + "\n"
+            
+            if(color != ""):
+                QSCalzado = QSCalzado.filter(color__contains=color)
+                mensaje_busqueda += "Color que contiene:" + color + "\n"
+            
+            if(material != ""):
+                QSCalzado = QSCalzado.filter(material__contains=material)
+                mensaje_busqueda += "Material que contiene:" + material + "\n"
+            
+            if(precio_max != None):
+                QSCalzado = QSCalzado.filter(precio__lte=precio_max)
+                mensaje_busqueda += "Precio máximo:" + str(precio_max) + "\n"
+            
+            calzados = QSCalzado.all()
+            
+            return render(request, 'calzados/lista_busqueda.html', {'calzados_mostrar': calzados, 'mensaje': mensaje_busqueda})
+    else:
+        formulario = BuscarCalzado(None) 
+    
+    return render(request, 'calzados/buscar.html', {'formulario': formulario})
+
+
+
 #MUEBLE CREAR
 
 def mueble_crear(request):
@@ -399,6 +443,66 @@ def mueble_creado_modelo(formulario):
 
     return mueble_creado
 
+#Buscar mueble
+
+def mueble_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarMueble(request.GET)
+        if formulario.is_valid():
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+            
+            QSMueble = Muebles.objects.all()
+            
+            material = formulario.cleaned_data.get('buscarMaterial')
+            ancho_min = formulario.cleaned_data.get('buscarAnchoMin')
+            ancho_max = formulario.cleaned_data.get('buscarAnchoMax')
+            alto_min = formulario.cleaned_data.get('buscarAltoMin')
+            alto_max = formulario.cleaned_data.get('buscarAltoMax')
+            profundidad_min = formulario.cleaned_data.get('buscarProfundidadMin')
+            profundidad_max = formulario.cleaned_data.get('buscarProfundidadMax')
+            peso_max = formulario.cleaned_data.get('buscarPesoMax')
+            
+            if(material != ""):
+                QSMueble = QSMueble.filter(material__contains=material)
+                mensaje_busqueda += "Material que contiene:" + material + "\n"
+            
+            if(ancho_min is not None):
+                QSMueble = QSMueble.filter(ancho__gte=ancho_min)
+                mensaje_busqueda += "Ancho mínimo:" + str(ancho_min) + "\n"
+                
+            if(ancho_max is not None):
+                QSMueble = QSMueble.filter(ancho__lte=ancho_max)
+                mensaje_busqueda += "Ancho máximo:" + str(ancho_max) + "\n"
+            
+            if(alto_min is not None):
+                QSMueble = QSMueble.filter(alto__gte=alto_min)
+                mensaje_busqueda += "Alto mínimo:" + str(alto_min) + "\n"
+                
+            if(alto_max is not None):
+                QSMueble = QSMueble.filter(alto__lte=alto_max)
+                mensaje_busqueda += "Alto máximo:" + str(alto_max) + "\n"
+            
+            if(profundidad_min is not None):
+                QSMueble = QSMueble.filter(profundidad__gte=profundidad_min)
+                mensaje_busqueda += "Profundidad mínima:" + str(profundidad_min) + "\n"
+                
+            if(profundidad_max is not None):
+                QSMueble = QSMueble.filter(profundidad__lte=profundidad_max)
+                mensaje_busqueda += "Profundidad máxima:" + str(profundidad_max) + "\n"
+            
+            if(peso_max is not None):
+                QSMueble = QSMueble.filter(peso__lte=peso_max)
+                mensaje_busqueda += "Peso máximo:" + str(peso_max) + "\n"
+            
+            muebles = QSMueble.all()
+            
+            return render(request, 'muebles/lista_busqueda.html', {'muebles_mostrar': muebles, 'mensaje': mensaje_busqueda})
+    else:
+        formulario = BuscarMueble(None)
+    
+    return render(request, 'muebles/buscar.html', {'formulario': formulario})
+
+
 #Consola_crear
 def consola_crear(request):
     datosFormulario = None
@@ -426,6 +530,46 @@ def consola_creada_modelo(formulario):
             print(error)
 
     return consola_creada
+
+#Buscar consola
+
+def consola_buscar(request):
+    if(len(request.GET) > 0):
+        formulario = BuscarConsola(request.GET)
+        if formulario.is_valid():
+            mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
+            
+            QSConsola = Consolas.objects.all()
+            
+            modelo = formulario.cleaned_data.get('buscarModelo')
+            color = formulario.cleaned_data.get('buscarColor')
+            memoria = formulario.cleaned_data.get('buscarMemoria')
+            precio_max = formulario.cleaned_data.get('buscarPrecioMax')
+            
+            if(modelo != ""):
+                QSConsola = QSConsola.filter(modelo__contains=modelo)
+                mensaje_busqueda += "Modelo que contiene:" + modelo + "\n"
+                
+            if(color != ""):
+                QSConsola = QSConsola.filter(color__contains=color)
+                mensaje_busqueda += "Color que contiene:" + color + "\n"
+            
+            if(memoria != ""):
+                QSConsola = QSConsola.filter(memoria__contains=memoria)
+                mensaje_busqueda += "Memoria que contiene:" + memoria + "\n"
+                
+            if(precio_max is not None):
+                QSConsola = QSConsola.filter(precio__lte=precio_max)
+                mensaje_busqueda += "Precio máximo:" + str(precio_max) + "\n"
+            
+            consolas = QSConsola.all()
+            
+            return render(request, 'consolas/lista_busqueda.html', {'consolas_mostrar': consolas, 'mensaje': mensaje_busqueda})
+    else:
+        formulario = BuscarConsola(None)
+    
+    return render(request, 'consolas/buscar.html', {'formulario': formulario})
+
 
 ##Crear una página de Error personalizada para cada uno de los 4 
 # tipos de errores que pueden ocurrir en nuestra Web.
