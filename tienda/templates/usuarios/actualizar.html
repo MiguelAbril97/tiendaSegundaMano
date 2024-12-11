@@ -1,0 +1,124 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+
+<form action="{% url 'usuario_editar' usuario.id %}" method="post"> 
+    
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="{{ formulario.nombre.id_for_label }}" class="form-label">{{ formulario.nombre.label }}: </label>
+        <input name="{{ formulario.nombre.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.nombre.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.nombre.id_for_label }}"
+               maxlength="{{ formulario.nombre.field.max_length }}"
+               {% if formulario.nombre.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.nombre.value }}
+                      {% elif usuario %}
+                          {{ formulario.nombre.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        {% if formulario.nombre.help_text %}
+        <div class="form-text">
+            {{ formulario.nombre.help_text }}
+        </div>
+        {% endif %}
+        <div class="invalid-feedback">
+            {% for error in formulario.nombre.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.correo_electronico.id_for_label }}" class="form-label">{{ formulario.correo_electronico.label }}: </label>
+        <input name="{{ formulario.correo_electronico.html_name }}" 
+               type="email" 
+               class="form-control {% if formulario.correo_electronico.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.correo_electronico.id_for_label }}"
+               {% if formulario.correo_electronico.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.correo_electronico.value }}
+                      {% elif usuario %}
+                          {{ formulario.correo_electronico.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        {% if formulario.correo_electronico.help_text %}
+        <div class="form-text">
+            {{ formulario.correo_electronico.help_text }}
+        </div>
+        {% endif %}
+        <div class="invalid-feedback">
+            {% for error in formulario.correo_electronico.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.telefono.id_for_label }}" class="form-label">{{ formulario.telefono.label }}: </label>
+        <input name="{{ formulario.telefono.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.telefono.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.telefono.id_for_label }}"
+               maxlength="{{ formulario.telefono.field.max_length }}"
+               {% if formulario.telefono.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.telefono.value }}
+                      {% elif usuario %}
+                          {{ formulario.telefono.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.telefono.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.direccion.id_for_label }}" class="form-label">{{ formulario.direccion.label }}: </label>
+        <input name="{{ formulario.direccion.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.direccion.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.direccion.id_for_label }}"
+               maxlength="{{ formulario.direccion.field.max_length }}"
+               {% if formulario.direccion.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.direccion.value }}
+                      {% elif usuario %}
+                          {{ formulario.direccion.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.direccion.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
+
+</form>
+
+{% endblock %}

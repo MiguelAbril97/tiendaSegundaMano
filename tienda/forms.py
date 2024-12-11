@@ -40,7 +40,7 @@ class UsuarioForm(ModelForm):
         
          #Comprobamos que el campo telefono tenga 11 caracteres        
         if len(telefono) != 9:
-            self.add_error('telefono','Debe tener 11 caracteres')
+            self.add_error('telefono','Debe tener 9 caracteres')
         
         return self.cleaned_data
 

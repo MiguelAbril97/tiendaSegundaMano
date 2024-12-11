@@ -91,6 +91,10 @@ def lista_consolas(request):
         Prefetch('producto__categorias') )
     return render(request, 'consolas/lista.html', {'consolas': consolas})
 
+#####################################################################
+#####################################################################
+##VIEWS DE CRUD
+
 
 #VIEW USUARIO CREAR 
 
@@ -157,7 +161,32 @@ def usuario_buscar(request):
             return render(request,'usuarios/lista.html',{'usuarios_mostrar':usuarios,'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarUsuario(None) 
-    return render(request, 'usuarios/buscar.html',{'formulario':formulario})     
+    return render(request, 'usuarios/buscar.html',{'formulario':formulario})    
+
+
+###Usuario editar
+
+def usuario_editar(request,usuario_id):
+    usuario = Usuario.objects.get(id=usuario_id)
+    
+    datosFormulario = None
+    
+    if request.method == "POST":
+        datosFormulario = request.POST
+    
+    
+    formulario = UsuarioForm(datosFormulario,instance = usuario)
+    
+    if (request.method == "POST"):
+       
+        if formulario.is_valid():
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado el usuario'+formulario.cleaned_data.get('correo_electronico')+" correctamente")
+                return redirect('usuarios_listar')  
+            except Exception as error:
+                print(error)
+    return render(request, 'usuarios/actualizar.html',{"formulario":formulario,"usuario":usuario}) 
                 
 #View CATEGORIA CREAR
 
@@ -227,15 +256,35 @@ def categoria_buscar(request):
                 QScategorias = QScategorias.filter(Q (destacada = False) | Q (destacada = False))
                 mensaje_busqueda += "Categorias destacadas y no destacadas"+"\n"
                 
-            return render(request, 'categorias/lista.html',
+            return render(request, 'categoria/lista.html',
                           {'formulario':formulario, 'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarCategoria(None)
             
-    return render(request, 'categorias/buscar.html',
+    return render(request, 'categoria/buscar.html',
                           {'formulario':formulario})
         
-
+def categoria_editar (request, categoria_id):
+    categoria = Categoria.objects.get(id=categoria_id)
+    
+    datosFormulario = None
+    
+    if request.method == "POST":
+        datosFormulario = request.POST
+    
+    
+    formulario = CategoriaForm(datosFormulario,instance = categoria)
+    
+    if (request.method == "POST"):
+       
+        if formulario.is_valid():
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado la categoría'+formulario.cleaned_data.get('nombre')+" correctamente")
+                return redirect('categoria_listar')  
+            except Exception as error:
+                print(error)
+    return render(request, 'categoria/actualizar.html',{"formulario":formulario,"categoria":categoria}) 
 
 #View Producto CREAR
 
@@ -339,7 +388,28 @@ def producto_buscar(request):
                         {'formulario':formulario})
                 
 
+def producto_editar (request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
     
+    datosFormulario = None
+    
+    if request.method == "POST":
+        datosFormulario = request.POST
+    
+    
+    formulario = ProductoForm(datosFormulario,instance = producto)
+    
+    if (request.method == "POST"):
+       
+        if formulario.is_valid():
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado el producto'+formulario.cleaned_data.get('nombre')+" correctamente")
+                return redirect('productos_listar')  
+            except Exception as error:
+                print(error)
+    return render(request, 'productos/actualizar.html',{"formulario":formulario,"producto":producto}) 
+
 
 #VIEW DE CALZADO CREAR
 

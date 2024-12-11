@@ -31,10 +31,13 @@ urlpatterns = [
     #CRUD usuario
     path('usuario/crear',views.usuario_crear, name='usuario_crear'),
     path('usuario/buscar',views.usuario_buscar,name="usuario_buscar"),
+    path('usuarios/actualizar/<int:usuario_id>/', views.usuario_editar, name='usuario_editar'),
+
     
     #CRUD categoria
     path('categoria/crear',views.categoria_crear,name='categoria_crear'),
-    path('categoria7buscar', views.categoria_buscar, name='categoria_buscar'),
+    path('categoria/buscar', views.categoria_buscar, name='categoria_buscar'),
+    path('categorias/actualizar/<int:categoria_id>/', views.categoria_editar, name='categoria_editar'),
     
     #CRUD producto
     path('producto/crear', views.producto_crear, name='producto_crear'),
