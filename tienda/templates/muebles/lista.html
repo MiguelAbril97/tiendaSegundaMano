@@ -1,3 +1,6 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
 <h1>Lista de Muebles</h1>
     <ul>
         {% for mueble in muebles %}
@@ -6,3 +9,4 @@
             <p>No hay muebles disponibles en este momento.</p>
         {% endfor %}
     </ul>
+{% endblock %}
