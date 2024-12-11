@@ -1,0 +1,21 @@
+{% extends "principal.html" %}
+   
+   {%block cabecera%}
+
+   <h1>Lista de Calzados</h1>
+
+    
+    {% endblock %}
+
+    
+{%block contenido%}
+    <ul>
+        {% for calzado in calzados %}
+            <li>
+                {%include 'calzados/calzado.html'%}
+            </li>
+        {% empty %}
+            <p>No hay consolas disponibles en este momento.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -338,10 +338,10 @@ class BuscarCalzado(forms.Form):
             self.add_error('buscarMaterial', error_msg)
             self.add_error('buscarPrecioMax', error_msg)
         
-        if(not material is None and len(material) < 3):
+        if(material != "" and len(material) < 3):
             self.add_error('buscarMaterial', 
                            'Material debe contener al menos 3 caracteres ')
-        if(not precio is None and precio > 999):
+        if(not precio !="" and precio > 999):
             self.add_error('buscarPrecioMax', 'El precio maximo es 999')
 
         return self.cleaned_data
@@ -562,7 +562,7 @@ class BuscarConsola(forms.Form):
             self.add_error('buscarMemoria', error_msg)
             self.add_error('buscarPrecioMax', error_msg)
 
-        if (not color is None and len(color) < 4):
+        if (not color !="" and len(color) < 4):
             self.add_error('buscarColor', 'Color invalido')
 
 

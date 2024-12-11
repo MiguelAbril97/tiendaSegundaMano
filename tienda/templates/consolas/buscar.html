@@ -2,66 +2,48 @@
 {% block contenido %}
 {% load django_bootstrap5 %}
 
-<form action="{% url 'mueble_buscar' %}" method="GET">
+<form action="{% url 'consola_buscar' %}" method="GET">
     {% csrf_token %}
     
     <div class="mb-4">
-        {% bootstrap_field formulario.buscarMaterial show_label=True %}
+        {% bootstrap_field formulario.buscarModelo show_label=True %}
         <div class="invalid-feedback">
-            {% for error in formulario.buscarMaterial.errors %}
-                {{ error }}
+            {% for error in formulario.buscarModelo.errors %}
+                <p>{{ error }}</p>
             {% endfor %}
         </div>
     </div>
 
     <div class="mb-4">
-        {% bootstrap_field formulario.buscarAnchoMin show_label=True %}
-        {% bootstrap_field formulario.buscarAnchoMax show_label=True %}
+        {% bootstrap_field formulario.buscarColor show_label=True %}
         <div class="invalid-feedback">
-            {% for error in formulario.buscarAnchoMin.errors %}
-                {{ error }}
-            {% endfor %}
-            {% for error in formulario.buscarAnchoMax.errors %}
-                {{ error }}
+            {% for error in formulario.buscarColor.errors %}
+                <p>{{ error }}</p>
             {% endfor %}
         </div>
     </div>
 
     <div class="mb-4">
-        {% bootstrap_field formulario.buscarAltoMin show_label=True %}
-        {% bootstrap_field formulario.buscarAltoMax show_label=True %}
+        {% bootstrap_field formulario.buscarMemoria show_label=True %}
         <div class="invalid-feedback">
-            {% for error in formulario.buscarAltoMin.errors %}
-                {{ error }}
-            {% endfor %}
-            {% for error in formulario.buscarAltoMax.errors %}
-                {{ error }}
+            {% for error in formulario.buscarMemoria.errors %}
+                <p>{{ error }}</p>
             {% endfor %}
         </div>
     </div>
 
     <div class="mb-4">
-        {% bootstrap_field formulario.buscarProfundidadMin show_label=True %}
-        {% bootstrap_field formulario.buscarProfundidadMax show_label=True %}
+        {% bootstrap_field formulario.buscarPrecioMax show_label=True %}
         <div class="invalid-feedback">
-            {% for error in formulario.buscarProfundidadMin.errors %}
-                {{ error }}
-            {% endfor %}
-            {% for error in formulario.buscarProfundidadMax.errors %}
-                {{ error }}
+            {% for error in formulario.buscarPrecioMax.errors %}
+                <p>{{ error }}</p>
             {% endfor %}
         </div>
     </div>
 
     <div class="mb-4">
-        {% bootstrap_field formulario.buscarPesoMax show_label=True %}
-        <div class="invalid-feedback">
-            {% for error in formulario.buscarPesoMax.errors %}
-                {{ error }}
-            {% endfor %}
-        </div>
+        {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
     </div>
-    
-    {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
 </form>
+
 {% endblock %}

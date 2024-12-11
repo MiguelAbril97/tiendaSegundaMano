@@ -1,0 +1,21 @@
+{% extends "principal.html" %}
+   
+   {%block cabecera%}
+
+   <h1>Lista de Consolas</h1>
+
+    
+    {% endblock %}
+
+    
+{%block contenido%}
+    <ul>
+        {% for categoria in categorias %}
+            <li>
+                {%include 'categorias/categoria.html'%}
+            </li>
+        {% empty %}
+            <p>No hay consolas disponibles en este momento.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

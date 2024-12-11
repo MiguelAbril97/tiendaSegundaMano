@@ -227,7 +227,7 @@ def categoria_buscar(request):
                 QScategorias = QScategorias.filter(Q (destacada = False) | Q (destacada = False))
                 mensaje_busqueda += "Categorias destacadas y no destacadas"+"\n"
                 
-            return render(request, 'categorias/lista_busqueda.html',
+            return render(request, 'categorias/lista.html',
                           {'formulario':formulario, 'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarCategoria(None)
@@ -406,7 +406,7 @@ def calzado_buscar(request):
             
             calzados = QSCalzado.all()
             
-            return render(request, 'calzados/lista_busqueda.html', {'calzados_mostrar': calzados, 'mensaje': mensaje_busqueda})
+            return render(request, 'calzados/lista.html', {'calzados': calzados, 'mensaje': mensaje_busqueda})
     else:
         formulario = BuscarCalzado(None) 
     
@@ -496,7 +496,7 @@ def mueble_buscar(request):
             
             muebles = QSMueble.all()
             
-            return render(request, 'muebles/lista_busqueda.html', {'muebles_mostrar': muebles, 'mensaje': mensaje_busqueda})
+            return render(request, 'muebles/lista.html', {'muebles': muebles, 'mensaje': mensaje_busqueda})
     else:
         formulario = BuscarMueble(None)
     
@@ -564,7 +564,7 @@ def consola_buscar(request):
             
             consolas = QSConsola.all()
             
-            return render(request, 'consolas/lista_busqueda.html', {'consolas_mostrar': consolas, 'mensaje': mensaje_busqueda})
+            return render(request, 'consolas/lista.html', {'consolas': consolas, 'mensaje': mensaje_busqueda})
     else:
         formulario = BuscarConsola(None)
     
