@@ -42,17 +42,23 @@ urlpatterns = [
     #CRUD producto
     path('producto/crear', views.producto_crear, name='producto_crear'),
     path('producto/buscar', views.producto_buscar, name='producto_buscar'),
+     path('producto/actualizar/<int:producto_id>/', views.producto_editar, name='producto_editar'),
     
     #CRUD calzado
     path('calzado/crear', views.calzado_crear, name='calzado_crear'),
     path('calzado/buscar', views.calzado_buscar, name='calzado_buscar'),
+    path('calzado/actualizar/<int:calzado_id>/', views.calzado_editar, name='calzado_editar'),
 
 
     #CRUD mueble
     path('mueble/crear', views.mueble_crear, name='mueble_crear'),
-     path('mueble/buscar', views.mueble_buscar, name='mueble_buscar'),
+    path('mueble/buscar', views.mueble_buscar, name='mueble_buscar'),
+    path('mueble/actualizar/<int:mueble_id>/', views.mueble_editar, name='mueble_editar'),
+
     
     #CRUD consola
     path('consola/crear', views.consola_crear,name='consola_crear'),
     path('consola/buscar', views.consola_buscar,name='consola_buscar'),
+    path('consola/actualizar/<int:consola_id>/', views.consola_editar, name='consola_editar'),
+
 ]

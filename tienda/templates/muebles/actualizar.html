@@ -1,0 +1,144 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+
+<form action="{% url 'mueble_editar' mueble.id %}" method="post"> 
+    
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="{{ formulario.material.id_for_label }}" class="form-label">{{ formulario.material.label }}: </label>
+        <input name="{{ formulario.material.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.material.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.material.id_for_label }}"
+               maxlength="{{ formulario.material.field.max_length }}"
+               {% if formulario.material.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.material.value }}
+                      {% elif mueble %}
+                          {{ formulario.material.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.material.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.ancho.id_for_label }}" class="form-label">{{ formulario.ancho.label }}: </label>
+        <input name="{{ formulario.ancho.html_name }}" 
+               type="number" 
+               class="form-control {% if formulario.ancho.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.ancho.id_for_label }}"
+               step="{{ formulario.ancho.field.widget.attrs.step }}"
+               min="{{ formulario.ancho.field.widget.attrs.min }}"
+               {% if formulario.ancho.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.ancho.value }}
+                      {% elif mueble %}
+                          {{ formulario.ancho.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.ancho.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.alto.id_for_label }}" class="form-label">{{ formulario.alto.label }}: </label>
+        <input name="{{ formulario.alto.html_name }}" 
+               type="number" 
+               class="form-control {% if formulario.alto.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.alto.id_for_label }}"
+               step="{{ formulario.alto.field.widget.attrs.step }}"
+               min="{{ formulario.alto.field.widget.attrs.min }}"
+               {% if formulario.alto.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.alto.value }}
+                      {% elif mueble %}
+                          {{ formulario.alto.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.alto.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.profundidad.id_for_label }}" class="form-label">{{ formulario.profundidad.label }}: </label>
+        <input name="{{ formulario.profundidad.html_name }}" 
+               type="number" 
+               class="form-control {% if formulario.profundidad.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.profundidad.id_for_label }}"
+               step="{{ formulario.profundidad.field.widget.attrs.step }}"
+               min="{{ formulario.profundidad.field.widget.attrs.min }}"
+               {% if formulario.profundidad.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.profundidad.value }}
+                      {% elif mueble %}
+                          {{ formulario.profundidad.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.profundidad.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.peso.id_for_label }}" class="form-label">{{ formulario.peso.label }}: </label>
+        <input name="{{ formulario.peso.html_name }}" 
+               type="number" 
+               class="form-control {% if formulario.peso.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.peso.id_for_label }}"
+               step="{{ formulario.peso.field.widget.attrs.step }}"
+               min="{{ formulario.peso.field.widget.attrs.min }}"
+               {% if formulario.peso.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.peso.value }}
+                      {% elif mueble %}
+                          {{ formulario.peso.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.peso.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Mueble</button>
+
+</form>
+
+{% endblock %}

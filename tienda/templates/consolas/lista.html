@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Consolas</title>
-</head>
-<body>
-    <h1>Lista de Consolas</h1>
+{% extends "principal.html" %}
+   
+{%block cabecera%}
+
+<h1>Lista de Consolas</h1>
+
+{% endblock %}
+
+{% block contenido %}
     <ul>
         {% for consola in consolas %}
             <li>
@@ -15,5 +16,4 @@
             <p>No hay consolas disponibles en este momento.</p>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}

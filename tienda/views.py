@@ -387,7 +387,7 @@ def producto_buscar(request):
     return render(request, 'productos/buscar.html',
                         {'formulario':formulario})
                 
-
+#Producto editar
 def producto_editar (request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     
@@ -482,6 +482,27 @@ def calzado_buscar(request):
     
     return render(request, 'calzados/buscar.html', {'formulario': formulario})
 
+#Editar calzado
+def calzado_editar(request, calzado_id):
+    calzado = Calzado.objects.get(id=calzado_id)
+    
+    datosFormulario = None
+    
+    if (request.method == "POST"):
+        datosFormulario = request.POST
+    
+    formulario = CalzadoForm(datosFormulario, instance=calzado)
+    
+    if (request.method == "POST"):
+        if (formulario.is_valid()):
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado el calzado correctamente')
+                return redirect('calzados_listar')
+            except Exception as error:
+                print(error)
+    
+    return render(request, 'calzados/actualizar.html', {"formulario": formulario, "calzado": calzado})
 
 
 #MUEBLE CREAR
@@ -512,6 +533,7 @@ def mueble_creado_modelo(formulario):
             print(error)
 
     return mueble_creado
+
 
 #Buscar mueble
 
@@ -571,6 +593,29 @@ def mueble_buscar(request):
         formulario = BuscarMueble(None)
     
     return render(request, 'muebles/buscar.html', {'formulario': formulario})
+
+#Editar mueble_buscar
+
+def mueble_editar(request, mueble_id):
+    mueble = Muebles.objects.get(id=mueble_id)
+    
+    datosFormulario = None
+    
+    if (request.method == "POST"):
+        datosFormulario = request.POST
+    
+    formulario = MuebleForm(datosFormulario, instance=mueble)
+    
+    if (request.method == "POST"):
+        if (formulario.is_valid()):
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado el mueble')
+                return redirect('muebles_listar')  # Cambiar por la URL correspondiente para listar muebles.
+            except Exception as error:
+                print(error)
+    
+    return render(request, 'muebles/actualizar.html', {"formulario": formulario, "mueble": mueble})
 
 
 #Consola_crear
@@ -639,6 +684,29 @@ def consola_buscar(request):
         formulario = BuscarConsola(None)
     
     return render(request, 'consolas/buscar.html', {'formulario': formulario})
+
+
+def consola_editar(request, consola_id):
+    consola = Consolas.objects.get(id=consola_id)
+    
+    datosFormulario = None
+    
+    if (request.method == "POST"):
+        datosFormulario = request.POST
+    
+    formulario = ConsolasForm(datosFormulario, instance=consola)
+    
+    if (request.method == "POST"):
+        if (formulario.is_valid()):
+            try:  
+                formulario.save()
+                messages.success(request, 'Se ha editado la consola correctamente.')
+                return redirect('consolas_listar')  # Cambiar por la URL correspondiente para listar consolas.
+            except Exception as error:
+                print(error)
+    
+    return render(request, 'consolas/actualizar.html', {"formulario": formulario, "consola": consola})
+
 
 
 ##Crear una página de Error personalizada para cada uno de los 4 

@@ -282,7 +282,7 @@ class CalzadoForm(ModelForm):
         material = self.cleaned_data.get('material')
         producto = self.cleaned_data.get('producto')
         
-        idProducto = Calzado.objects.filter(producto = producto)
+        idProducto = Calzado.objects.filter(producto = producto).first()
         
         if ( not idProducto is None) :
              if(not self.instance is None and idProducto.id == self.instance.id):
@@ -379,7 +379,7 @@ class MuebleForm(ModelForm):
         peso = self.cleaned_data.get('peso')
         producto = self.cleaned_data.get('producto')
         
-        idProducto = Muebles.objects.filter(producto = producto)
+        idProducto = Muebles.objects.filter(producto = producto).first()
         
         if ( not idProducto is None):
              if(not self.instance is None and idProducto.id == self.instance.id):
