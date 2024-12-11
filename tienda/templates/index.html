@@ -9,20 +9,13 @@
             
 
             <ul>
-                <li><a href="{% url 'lista_productos'%}">Lista de productos</a></li>
-                <li><a href="{% url 'muestra_producto' 5%}">Ver un producto</a></li>
-                <li><a href="{% url 'lista_productos_fecha' 2024 10%}">Ver los productos publicados en Octubre de 2024</a></li>
-                <li><a href="{% url 'lista_productos_categoria' "Catch avoid its television this nation along. Drug subject trade recently drive."%}">
-                    Productos de una categoria</a></li>
-                <li><a href="{% url 'ultimo_producto_fecha'  2024 10     %}">Último libro publicado en Octubre de 2024</a></li>
-                <li><a href="{% url 'usuario_sin_productos' %}">Ver usuarios sin productos en venta</a></li>
-                <li>
-                    <a href="{% url 'productos_categoria_precio' "Catch avoid its television this nation along. Drug subject trade recently drive." 1 %}"> 
-                    Ver productos de una categoria o superiores a 1</a>
-                </li> 
-                <li><a href="{% url 'usuarios_listar' %}">Lista de usuarios</a></li>
-                <li><a href="{% url 'usuarios_correo' %}">Lista de usuarios con <strong>.org</strong> en correo</a></li>
-              {% comment " Comentario de ejemplo" %}<li><a href="{% url 'lista_consolas' %}">Lista de consolas</a></li>{% endcomment %}
+                <li><a href="{% url 'categoria_editar' 7%}">Actualizar una categoria</a></li>
+                <li><a href="{% url 'usuario_editar' 7 %}">Actualizar un usuario</a></li>
+                <li><a href="{% url 'producto_editar' 7 %}">Actualizar un producto</a></li>
+                <li><a href="{% url 'calzado_editar' 7 %}">Actualizar un calzado</a></li>
+                <li><a href="{% url 'mueble_editar' 7 %}">Actualizar un mueble</a></li>
+                <li><a href="{% url 'consola_editar' 7 %}">Actualizar una consola</a></li>
+                            
             </ul>
 
-    {% endblock %}
+{% endblock %}

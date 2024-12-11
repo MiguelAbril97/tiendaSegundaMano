@@ -724,6 +724,15 @@ def usuario_eliminar (request,usuario_id):
         pass
     return redirect('usuarios_lista')
 
+def categoria_eliminar(request, categoria_id):
+    categoria = Categoria.objects.get(id=categoria_id)
+    try:
+        categoria.delete()
+    except:
+        pass
+    return redirect('categorias_lista')  # Cambiar por la URL correspondiente para listar categorías
+
+
 def producto_eliminar(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     try:
