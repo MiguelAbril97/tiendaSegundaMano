@@ -9,6 +9,11 @@ from django.views.defaults import page_not_found, permission_denied, bad_request
 from datetime import datetime
 
 
+
+#
+#       VIEWS DE CRUD LINEA 100
+#
+
 #1 Create your views here.
 def index(request):
     return render(request, "index.html")
@@ -90,6 +95,7 @@ def lista_consolas(request):
     consolas = Consolas.objects.select_related('producto','producto__vendedor').prefetch_related(
         Prefetch('producto__categorias') )
     return render(request, 'consolas/lista.html', {'consolas': consolas})
+
 
 #####################################################################
 #####################################################################
@@ -200,7 +206,7 @@ def categoria_crear (request):
         categoria_creada = crear_categoria_modelo(formulario)
         if(categoria_creada):
             messages.success(request, 'Se ha creado la categoria')
-            return redirect('lista_categoria')
+            return redirect('index')
     
     return render(request, 'categoria/crear.html',{"formulario":formulario})
 
@@ -281,7 +287,7 @@ def categoria_editar (request, categoria_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado la categoría'+formulario.cleaned_data.get('nombre')+" correctamente")
-                return redirect('categoria_listar')  
+                return redirect('index')  
             except Exception as error:
                 print(error)
     return render(request, 'categoria/actualizar.html',{"formulario":formulario,"categoria":categoria}) 
@@ -424,7 +430,7 @@ def calzado_crear(request):
         calzado_creado = calzado_creado_modelo(formulario)
         if calzado_creado:
             messages.success(request, 'Calzado añadido con éxito')
-            return redirect('lista_calzados')
+            return redirect('index')
 
     return render(request, 'calzados/crear.html', {'formulario': formulario})
 
@@ -498,7 +504,7 @@ def calzado_editar(request, calzado_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado el calzado correctamente')
-                return redirect('calzados_listar')
+                return redirect('index')
             except Exception as error:
                 print(error)
     
@@ -518,7 +524,7 @@ def mueble_crear(request):
         mueble_creado = mueble_creado_modelo(formulario)
         if mueble_creado:
             messages.success(request, 'Mueble añadido con éxito')
-            return redirect('lista_muebles')
+            return redirect('index')
 
     return render(request, 'muebles/crear.html', {'formulario': formulario})
 
@@ -611,7 +617,7 @@ def mueble_editar(request, mueble_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado el mueble')
-                return redirect('muebles_listar')  # Cambiar por la URL correspondiente para listar muebles.
+                return redirect('index') 
             except Exception as error:
                 print(error)
     
@@ -701,11 +707,58 @@ def consola_editar(request, consola_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado la consola correctamente.')
-                return redirect('consolas_listar')  # Cambiar por la URL correspondiente para listar consolas.
+                return redirect('lista_consolas')
             except Exception as error:
                 print(error)
     
     return render(request, 'consolas/actualizar.html', {"formulario": formulario, "consola": consola})
+
+
+##Todos los delete
+
+def usuario_eliminar (request,usuario_id):
+    usuario = Usuario.objects.get(usuario_id)
+    try:
+        usuario.delete()
+    except:
+        pass
+    return redirect('usuarios_lista')
+
+def producto_eliminar(request, producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    try:
+        producto.delete()
+    except:
+        pass
+    return redirect('productos_lista')
+
+def calzado_eliminar(request, calzado_id):
+    calzado = Calzado.objects.get(id=calzado_id)
+    try:
+        calzado.delete()
+    except:
+        pass
+    return redirect('index')
+
+def mueble_eliminar(request, mueble_id):
+    mueble = Muebles.objects.get(id=mueble_id)
+    try:
+        mueble.delete()
+    except:
+        pass
+    return redirect('index')
+
+def consola_eliminar(request, consola_id):
+    consola = Consolas.objects.get(id=consola_id)
+    try:
+        consola.delete()
+    except:
+        pass
+    return redirect('lista_consolas')
+
+
+
+
 
 
 
