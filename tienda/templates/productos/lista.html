@@ -1,17 +1,20 @@
 {% extends "principal.html" %}
 
-    {%block cabecera%}
-            <h1>Lista de productos. Total de productos mostrados: {{total}}</h1>
+{% block cabecera %}
+    <div class="text-center my-4">
+        <h1>Lista de productos</h1>
+    </div>
+{% endblock %}
 
-    {% endblock %}
-
-    {%block contenido%}
-             {{mensaje}}
-             <br>
-            {%for producto in producto_mostrar %}
-            <div>
-                {% include 'productos/producto.html' %}
-            </div>
-            {%endfor | linebreaksbr %}
-
-    {% endblock %}
+{% block contenido %}
+    <div class="container">
+        {{ mensaje }}
+        <div class="row">
+            {% for producto in producto_mostrar %}
+                <div class="col-md-4 mb-4">
+                    {% include 'productos/producto.html' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

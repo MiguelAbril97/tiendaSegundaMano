@@ -7,14 +7,13 @@
 {% endblock %}
 
 {% block contenido %}
-    <ul>
         {{mensaje}}
+        <div class="row">
         {% for consola in consolas %}
-            <li>
                 {%include 'consolas/consola.html'%}
-            </li>
+            
         {% empty %}
             <p>No hay consolas disponibles en este momento.</p>
         {% endfor %}
-    </ul>
+        </div>
 {% endblock %}

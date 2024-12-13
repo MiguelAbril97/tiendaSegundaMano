@@ -9,15 +9,14 @@
 
     
 {%block contenido%}
-    <ul>
         {{mensaje}}
-        <br>
+       <div class="row">
         {% for categoria in categorias %}
-            <li>
+           
                 {%include 'categorias/categoria.html'%}
-            </li>
+           
         {% empty %}
             <p>No hay consolas disponibles en este momento.</p>
         {% endfor %}
-    </ul>
+       </div>
 {% endblock %}
