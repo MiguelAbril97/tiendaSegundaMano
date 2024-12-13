@@ -8,6 +8,7 @@
 
 {% block contenido %}
     <ul>
+        {{mensaje}}
         {% for consola in consolas %}
             <li>
                 {%include 'consolas/consola.html'%}

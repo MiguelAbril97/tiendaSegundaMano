@@ -10,6 +10,8 @@
     
 {%block contenido%}
     <ul>
+        {{mensaje}}
+        <br>
         {% for categoria in categorias %}
             <li>
                 {%include 'categorias/categoria.html'%}

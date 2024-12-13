@@ -10,6 +10,8 @@
     
 {%block contenido%}
     <ul>
+        {{mensaje}}
+        <br>
         {% for calzado in calzados %}
             <li>
                 {%include 'calzados/calzado.html'%}

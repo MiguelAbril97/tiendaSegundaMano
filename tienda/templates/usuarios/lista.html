@@ -7,7 +7,9 @@
     {% endblock %}
 
     {%block contenido%}
-
+            {{mensaje}}
+            <br>
+        
         {% for usuario in usuarios %}
           
             {%include 'usuarios/usuario.html'%}

@@ -1,19 +1,24 @@
-
 <div class="menu">
-    <nav>
-        <a href="{% url 'index'%}">Inicio</a>
-        <a href="{% url 'usuario_crear' %}">Crear usuario</a>
-        <a href="{% url 'usuario_buscar' %}">Buscar usuario</a>
-        <a href="{% url 'categoria_crear'%}">Crear categoria</a>
-        <a href="{% url 'categoria_buscar'%}">Buscar categoria</a>
-        <a href="{% url 'producto_crear'%}">Crear producto</a>
-        <a href="{% url 'producto_buscar'%}">Buscar producto</a>
-        <a href="{% url 'calzado_crear'%}">Crear calzado</a>
-        <a href="{% url 'calzado_buscar'%}">Buscar calzado</a>
-        <a href="{% url 'mueble_crear'%}">Crear mueble</a>
-        <a href="{% url 'mueble_buscar'%}">Buscar mueble</a>
-        <a href="{% url 'consola_crear'%}">Crear consola</a>
-        <a href="{% url 'consola_buscar'%}">Buscar consola</a>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">Tienda</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="{% url 'usuario_crear' %}">Crear usuario</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'usuario_buscar' %}">Buscar usuario</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categoria_crear' %}">Crear categoría</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'categoria_buscar' %}">Buscar categoría</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'producto_crear' %}">Crear producto</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'producto_buscar' %}">Buscar producto</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'calzado_crear' %}">Crear calzado</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'calzado_buscar' %}">Buscar calzado</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'mueble_crear' %}">Crear mueble</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'mueble_buscar' %}">Buscar mueble</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'consola_crear' %}">Crear consola</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'consola_buscar' %}">Buscar consola</a></li>
+            </ul>
+        </div>
     </nav>
 </div>

@@ -164,7 +164,7 @@ def usuario_buscar(request):
             
             usuarios = QSusuarios.all()
             
-            return render(request,'usuarios/lista.html',{'usuarios_mostrar':usuarios,'mensaje':mensaje_busqueda})
+            return render(request,'usuarios/lista.html',{'usuarios':usuarios,'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarUsuario(None) 
     return render(request, 'usuarios/buscar.html',{'formulario':formulario})    
@@ -233,10 +233,10 @@ def categoria_buscar(request):
 
             QScategorias = Categoria.objects.prefetch_related(Prefetch('categorias'))
             
-            nombre = formulario.cleaned_data('buscarNombre')
-            descripcion = formulario.cleaned_data('buscarDescripcion')
-            existencias = formulario.cleaned_data('sinExistencias')
-            destacada = formulario.cleaned_data('destacada')
+            nombre = formulario.cleaned_data.get('buscarNombre')
+            descripcion = formulario.cleaned_data.get('buscarDescripcion')
+            existencias = formulario.cleaned_data.get('sinExistencias')
+            destacada = formulario.cleaned_data.get('destacada')
 
             if(nombre != ""):
                 QScategorias = QScategorias.filter(nombre__contains = nombre)
@@ -247,11 +247,11 @@ def categoria_buscar(request):
                 mensaje_busqueda += "Descripcion contiene"+nombre+"\n"
                 
             if(existencias):
-                QScategorias = QScategorias.filter(existencias__gte = 0)
+                QScategorias = QScategorias.filter(existecias__gte = 0)
                 mensaje_busqueda += "Incluir categorias sin existencias"+"\n"
 
             else:
-                QScategorias = QScategorias.filter(existencias__gt = 0)
+                QScategorias = QScategorias.filter(existecias__gt = 0)
                 mensaje_busqueda += "Excluir categorias sin existencias"+"\n"
 
             if(destacada):
@@ -460,7 +460,7 @@ def calzado_buscar(request):
             material = formulario.cleaned_data.get('buscarMaterial')
             precio_max = formulario.cleaned_data.get('buscarPrecioMax')
             
-            if(talla != ""):
+            if(not talla is None):
                 QSCalzado = QSCalzado.filter(talla__contains=talla)
                 mensaje_busqueda += "Talla que contiene:" + talla + "\n"
                 

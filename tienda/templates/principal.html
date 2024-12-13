@@ -1,29 +1,37 @@
 <html>
-    {%load static%}
+    {% load static %}
     <head>
         <title>Tienda de segunda mano</title>
-        {%block link_css%}
-        {%endblock%}
         {% load django_bootstrap5 %}
         {% bootstrap_css %}
-        <script type="text/javascript" src="{% static 'script.js' %}"></script>
-        <link rel="stylesheet" href="{% static 'estilo.css' %}">
-
     </head>
     <body>
-        <div class="cabecera">
-            <div class="logo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="menu">
+                        {% include 'estructura/menu.html' %}   
+                    </div>
+                </div>
             </div>
-            {%include 'estructura/menu.html'%}   
+            <div class="row">
+                <div class="col-12">
+                    {% block cabecera %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% block contenido %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {% include 'estructura/pie.html' %}
+                </div>
+            </div>
         </div>
-            {%block cabecera%}
-            {% endblock %}
-
-            {%block contenido%}
-            {% endblock %}
-
-            {% include 'estructura/pie.html' %}
-            {% bootstrap_javascript %}
+        {% bootstrap_javascript %}
     </body>
-
-</html> 
+</html>

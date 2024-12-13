@@ -47,10 +47,30 @@ class UsuarioForm(ModelForm):
 
 class BuscarUsuario (forms.Form):
     
-    buscarNombre = forms.CharField(required=False)
-    buscarEmail = forms.CharField(required=False)
-    buscarTlf = forms.CharField(required=False)
-    buscarDireccion = forms.CharField(required=False)
+    buscarNombre = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Introduce el nombre'
+        })
+    )
+    buscarEmail = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Introduce el correo electrónico'
+        })
+    )
+    buscarTlf = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Introduce el teléfono'
+        })
+    )
+    buscarDireccion = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Introduce la dirección'
+        })
+    )
     
     def clean(self):
         super().clean()
@@ -61,10 +81,11 @@ class BuscarUsuario (forms.Form):
         direccion = self.cleaned_data.get('buscarDireccion')
         
         if(nombre == "" and email == "" and tlf == "" and direccion == ""):
-            self.add_error('nombre','Debe introducir al menos un valor en un campo del formulario')
-            self.add_error('email','Debe introducir al menos un valor en un campo del formulario')
-            self.add_error('tlf','Debe introducir al menos un valor en un campo del formulario')
-            self.add_error('direccion','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('buscarNombre','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('buscarEmail','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('buscarTlf','Debe introducir al menos un valor en un campo del formulario')
+            self.add_error('buscarDireccion','Debe introducir al menos un valor en un campo del formulario')
+        
         else: 
             if(tlf != "" and len(tlf) < 3):
                 self.add_error('tlf','Debe introducir al menos 3 carácteres')
@@ -109,10 +130,12 @@ class BuscarCategoria(forms.Form):
     buscarNombre = forms.CharField(required=False)
     buscarDescripcion = forms.CharField(required=False)
     sinExistencias = forms.BooleanField(
+        required=False,
         label='Buscar categorias sin productos',
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     destacada = forms.BooleanField(
+        required=False, 
         label='Solo categorias destacadas',
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
@@ -127,14 +150,14 @@ class BuscarCategoria(forms.Form):
         destacada = self.cleaned_data.get('destacada')
         
         if (nombre == "" and descripcion =="" and existencias and not destacada):
-            self.add_error('nombre','Busqueda inválida')
-            self.add_error('descripcion','Busqueda inválida')
-            self.add_error('existencias','Busqueda inválida')
+            self.add_error('buscarNombre','Busqueda inválida')
+            self.add_error('buscarDescripcion','Busqueda inválida')
+            self.add_error('sinExistencias','Busqueda inválida')
             self.add_error('destacada','Busqueda inválida')
         
         else:
             if (nombre != "" and len(nombre) > 100):
-                self.add_error('nombre','Nombre demasiado largo')
+                self.add_error('buscarNombres','Nombre demasiado largo')
                 
         return self.cleaned_data
 
@@ -164,8 +187,7 @@ class ProductoForm(ModelForm):
         vendedor = self.cleaned_data.get('vendedor')
         fecha_de_publicacion = self.cleaned_data.get('fecha_de_publicacion')
         categorias = self.cleaned_data.get('categorias')
-        
-        
+             
         
         if fecha_de_publicacion:
             if isinstance(fecha_de_publicacion, datetime.datetime):
@@ -228,7 +250,7 @@ class BuscarProducto(forms.Form):
         
         if(nombre =="" 
            and descripcion==""
-           and precio=="" 
+           and precio is None
            and len(estado) == 0 
            and len(vendedor)==0 
            and fecha is None 
@@ -267,7 +289,7 @@ class CalzadoForm(ModelForm):
         }
 
         widgets = {
-            'talla': forms.TextInput(attrs={"maxlength": "2"}),
+            'talla': forms.NumberInput(attrs={"min":'1',"max": "50"}),
             'marca': forms.Select(attrs={"class": "form-control"}),
             'color': forms.TextInput(attrs={"maxlength": "20"}),
             'material': forms.TextInput(attrs={"maxlength": "30"}),
@@ -290,10 +312,6 @@ class CalzadoForm(ModelForm):
              else:
                 self.add_error('producto','Ya existe un calzado con ese id asignado')
 
-
-        if talla and (not talla.isdigit() or int(talla) < 1 or int(talla) > 50):
-            self.add_error('talla', 'La talla debe ser un número entre 1 y 50.')
-
         if not material:
             self.add_error('material', 'El material es obligatorio.')
 
@@ -301,7 +319,13 @@ class CalzadoForm(ModelForm):
 
 class BuscarCalzado(forms.Form):
     
-    buscarTalla = forms.CharField(required=False, label="Talla")
+    buscarTalla = forms.DecimalField(
+        required=False,
+        label="Talla",
+        min_value=0,
+        widget=forms.NumberInput()
+    )
+    
     buscarMarca = forms.ChoiceField(
         choices=Calzado.MARCAS,
         required=False,
@@ -326,7 +350,7 @@ class BuscarCalzado(forms.Form):
         material = self.cleaned_data.get('buscarMaterial')
         precio = self.cleaned_data.get('buscarPrecioMax')
 
-        if (talla == "" 
+        if (not talla is None 
             and marca is None 
             and color == "" 
             and material == "" 
@@ -341,6 +365,9 @@ class BuscarCalzado(forms.Form):
         if(material != "" and len(material) < 3):
             self.add_error('buscarMaterial', 
                            'Material debe contener al menos 3 caracteres ')
+        if(not talla is None and talla > 50):
+            self.add_error('buscarTalla', 
+                           'La talla debe ser entre 1 y 50')
         if(not precio !="" and precio > 999):
             self.add_error('buscarPrecioMax', 'El precio maximo es 999')
 
@@ -470,19 +497,19 @@ class BuscarMueble(forms.Form):
              self.add_error('buscarProfundidadMax', error_msg)
              self.add_error('buscarPesoMax', error_msg)
 
-        if(ancho_min > ancho_max):
+        if(not ancho_min is None and not ancho_max is None and ancho_min > ancho_max):
             self.add_error('buscarAnchoMin','El ancho mínimo no puede ser mayor al maximo')
             self.add_error('buscarAnchoMax','El ancho mínimo no puede ser mayor al maximo')
         
-        if(alto_min > alto_max):
+        if(not alto_min is None and not alto_max is None and  alto_min > alto_max):
             self.add_error('buscarAltoMin', 'El alto mínimo no puede ser mayor al máximo')
             self.add_error('buscarAltoMax', 'El alto mínimo no puede ser mayor al máximo')
 
-        if(profundidad_min > profundidad_max):
+        if(not profundidad_max is None and not profundidad_min is None and  profundidad_min > profundidad_max):
             self.add_error('buscarProfundidadMin', 'La profundidad mínima no puede ser mayor a la máxima')
             self.add_error('buscarProfundidadMax', 'La profundidad mínima no puede ser mayor a la máxima')
         
-        if(peso_max <= 0):
+        if(not peso_max is None and peso_max <= 0):
             self.add_error('buscarPesoMax', 'El peso debe ser mayor a 0')
 
         
@@ -536,7 +563,11 @@ class ConsolasForm(ModelForm):
 class BuscarConsola(forms.Form):
     buscarModelo = forms.CharField(required=False, label="Modelo")
     buscarColor = forms.CharField(required=False, label="Color")
-    buscarMemoria = forms.CharField(required=False, label="Memoria")
+    buscarMemoria = forms.IntegerField(
+        required=False,
+        label="Memoria",
+        widget=forms.NumberInput()
+    )
     buscarPrecioMax = forms.DecimalField(
         required=False,
         label="Precio Máximo",
@@ -554,8 +585,8 @@ class BuscarConsola(forms.Form):
 
         if (modelo == "" 
             and color == "" 
-            and memoria == "" 
-            and precio == ""):
+            and memoria is None  
+            and precio is None):
             error_msg = "Debe introducir al menos un valor en un campo del formulario"
             self.add_error('buscarModelo', error_msg)
             self.add_error('buscarColor', error_msg)
