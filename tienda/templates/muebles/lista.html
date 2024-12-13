@@ -7,9 +7,9 @@
     <div class="row">
 
         {% for mueble in muebles %}
-            <div class="card col-6">
+            
                 {%include 'muebles/mueble.html'%}
-            </div>
+            
         {% empty %}
             <p>No hay muebles disponibles en este momento.</p>
         {% endfor %}
