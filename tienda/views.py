@@ -45,11 +45,11 @@ def lista_consolas(request):
     return render(request, 'consolas/lista.html', {'consolas': consolas})
 
 def muebles_listar(request):
-    muebles = Muebles.objects.select_related('producto').all()
+    muebles = Muebles.objects.select_related('producto','producto__vendedor').all()
     return render(request, 'muebles/lista.html', {'muebles': muebles})
 
 def calzados_listar(request):
-    calzados = Calzado.objects.select_related('producto').all()
+    calzados = Calzado.objects.select_related('producto','producto__vendedor').all()
     return render(request, 'calzados/lista.html', {'calzados': calzados})
 
 
@@ -405,7 +405,7 @@ def calzado_buscar(request):
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
             
-            QSCalzado = Calzado.objects.all()
+            QSCalzado = Calzado.objects.select_related('producto','producto__vendedor')
             
             talla = formulario.cleaned_data.get('buscarTalla')
             marca = formulario.cleaned_data.get('buscarMarca')
@@ -502,7 +502,7 @@ def mueble_buscar(request):
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
             
-            QSMueble = Muebles.objects.all()
+            QSMueble = Muebles.objects.select_related('producto','producto__vendedor')
             
             material = formulario.cleaned_data.get('buscarMaterial')
             ancho_min = formulario.cleaned_data.get('buscarAnchoMin')
@@ -613,7 +613,7 @@ def consola_buscar(request):
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
             
-            QSConsola = Consolas.objects.all()
+            QSConsola = Consolas.objects.select_related('producto','producto__vendedor')
             
             modelo = formulario.cleaned_data.get('buscarModelo')
             color = formulario.cleaned_data.get('buscarColor')
