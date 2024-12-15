@@ -10,7 +10,8 @@ from datetime import datetime
 
 
 #
-#       VIEWS DE CRUD LINEA 63
+#       VIEWS DE CRUD A PARTIR DE LALINEA 63, LAS DE ELIMINAR
+#       ESTAN ABAJO DEL TODO ANTES DE LAS DE ERROR
 #
 
 #1 Create your views here.

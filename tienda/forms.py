@@ -18,6 +18,7 @@ class UsuarioForm(ModelForm):
             'correo_electronico':('Introduce una direccion valida')    
         }
         
+        #Al usar el widget de email obligo al usuario a introducir un email con el formato correcto
         widgets = {
             'correo_electronico': forms.EmailInput()
         }    
@@ -82,6 +83,8 @@ class BuscarUsuario (forms.Form):
         tlf = self.cleaned_data.get('buscarTlf')
         direccion = self.cleaned_data.get('buscarDireccion')
         
+        #Compruebo que no deje todos los campos vacios y que introduzca al menos 3 y 5
+        # caracteres en campos email y telefono
         if(nombre == "" and email == "" and tlf == "" and direccion == ""):
             self.add_error('buscarNombre','Debe introducir al menos un valor en un campo del formulario')
             self.add_error('buscarEmail','Debe introducir al menos un valor en un campo del formulario')
@@ -91,6 +94,9 @@ class BuscarUsuario (forms.Form):
         else: 
             if(tlf != "" and len(tlf) < 3):
                 self.add_error('tlf','Debe introducir al menos 3 carácteres')
+           
+            if(email != "" and len(email) < 5):
+                self.add_error('email','Debe introducir al menos 3 carácteres')
         
         return self.cleaned_data
 
@@ -100,9 +106,11 @@ class CategoriaForm(ModelForm):
         model = Categoria
         fields = ['nombre','descripcion','existecias','destacada']
        
+       #Usando el widget con number input me aseguro que introduzca
+       # solo numeros y que sea un numero mayor a 0
         widgets = {
             'descripcion': forms.Textarea(attrs={"maxlength":"100"}),
-            'existecias': forms.NumberInput(),
+            'existecias': forms.NumberInput(attrs={'min':'1'}),
         }
     
     def clean(self):
@@ -115,15 +123,15 @@ class CategoriaForm(ModelForm):
 
         categoriaNombre = Categoria.objects.filter(nombre = nombre).first()
 
+        # Me aseguro de que no haya otras categorias con ese nombre 
+        
         if(not categoriaNombre is None):
             if(not self.instance is None and categoriaNombre.id == self.instance.id):
                 pass
             else:
                 self.add_error('nombre','Ya existe una categoria con este nombre')
         
-        if(existencias == 0):
-            self.add_error('existencias','No se puede crear una categoria sin existencias')
-          
+       
         
         return self.cleaned_data
     
@@ -151,6 +159,8 @@ class BuscarCategoria(forms.Form):
         existencias = self.cleaned_data.get("sinExistencias")
         destacada = self.cleaned_data.get('destacada')
         
+        #Me aseguro que al menos relle un campo y que la busqueda 
+        # por nombre no sea demasiado larga
         if (nombre == "" and descripcion =="" and existencias and not destacada):
             self.add_error('buscarNombre','Busqueda inválida')
             self.add_error('buscarDescripcion','Busqueda inválida')
@@ -177,7 +187,7 @@ class ProductoForm(ModelForm):
         widgets = {
             'fecha_de_publicacion':forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
             'descripcion':forms.Textarea(attrs={"maxlength":"100"}),
-            'precio':forms.NumberInput(attrs={'step': '0.01', 'min': '0',' max_digits':'10'}),
+            'precio':forms.NumberInput(attrs={'min': '0',' max_digits':'10'}),
         }   
         
     def clean(self):
@@ -191,6 +201,16 @@ class ProductoForm(ModelForm):
         categorias = self.cleaned_data.get('categorias')
              
         
+        
+        #Tuve que hacer esto con las fechas porque ,no se si por el widget
+        #,porque el modelo es datetime, o por que lo que sea no me dejaba comparar 
+        # la fecha introducida con el objeto hoy. Ponia que uno era tipo date y
+        # y otro date.datetime (o algo asi). Estuve intentando arreglarlo por mi cuenta y buscando 
+        # por stack overflow y no conseguia dar con el por que
+        # Al final tire de chatgpt y me hizo el apaño
+        
+        #En este caso, al no haber problema con que haya nombres o cualquier otro
+        #campo repetido puedo reutilizar el formulario para editar sin problema
         if fecha_de_publicacion:
             if isinstance(fecha_de_publicacion, datetime.datetime):
                 fecha_de_publicacion = fecha_de_publicacion.date()
@@ -199,6 +219,8 @@ class ProductoForm(ModelForm):
             if hoy > fecha_de_publicacion:
                 self.add_error('fecha_de_publicacion', 
                                'La fecha de publicación debe ser mayor o igual a la de hoy')
+        
+        #Me aseguro de que rellene todos los campos que sean esenciales
         
         if(vendedor == None):
             self.add_error('vendedor', 'Indique un vendedor')
@@ -219,7 +241,7 @@ class BuscarProducto(forms.Form):
         required=False,
         label="Precio Máximo",
         min_value=0,
-        widget=forms.NumberInput(attrs={'placeholder': '1000.00'})
+        widget=forms.NumberInput(attrs={'min': '0'})
     )
     buscarEstado = forms.MultipleChoiceField(choices=Producto.ESTADOS,
                                        required=False,
@@ -250,6 +272,7 @@ class BuscarProducto(forms.Form):
         fecha = self.cleaned_data.get('buscarFecha')
         categoria = self.cleaned_data.get('buscarCategorias')
         
+        #Compruebo que no deja todo vacio y la longitud de los campos precio y nombre
         if(nombre =="" 
            and descripcion==""
            and precio is None
@@ -308,14 +331,15 @@ class CalzadoForm(ModelForm):
         
         idProducto = Calzado.objects.filter(producto = producto).first()
         
+        #Compruebo que no haya otro calzado con el mismo id de producto 
         if ( not idProducto is None) :
              if(not self.instance is None and idProducto.id == self.instance.id):
                  pass
              else:
                 self.add_error('producto','Ya existe un calzado con ese id asignado')
 
-        if not material:
-            self.add_error('material', 'El material es obligatorio.')
+        if (len(material)<6):
+            self.add_error('material', 'Minimo 6 caracteres')
 
         return self.cleaned_data
 
@@ -351,7 +375,9 @@ class BuscarCalzado(forms.Form):
         color = self.cleaned_data.get('buscarColor')
         material = self.cleaned_data.get('buscarMaterial')
         precio = self.cleaned_data.get('buscarPrecioMax')
-
+        
+        #Verifico que no lo deje en blanco, que la talla y el precio esten en un
+        #rango concreto y la longitude del campo material 
         if (not talla is None 
             and marca is None 
             and color == "" 
@@ -394,10 +420,10 @@ class MuebleForm(ModelForm):
 
         widgets = {
             'material': forms.TextInput(attrs={"maxlength": "30"}),
-            'ancho': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
-            'alto': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
-            'profundidad': forms.NumberInput(attrs={'step': '0.1', 'min': '0'}),
-            'peso': forms.NumberInput(attrs={'step': '1', 'min': '0'}),
+            'ancho': forms.NumberInput(attrs={'min': '0'}),
+            'alto': forms.NumberInput(attrs={'min': '0'}),
+            'profundidad': forms.NumberInput(attrs={'min': '0'}),
+            'peso': forms.NumberInput(attrs={'min': '0'}),
         }
 
     def clean(self):
@@ -416,6 +442,8 @@ class MuebleForm(ModelForm):
              else:
                 self.add_error('producto','Ya existe un mueble con ese id asignado')
 
+        #Aunque con los widgets me aseguro de que el numero sea
+        #mayor a 0 personalizo el mensaje
 
         if (ancho <= 0):
             self.add_error('ancho', 'El ancho debe ser mayor a 0.')
@@ -499,6 +527,7 @@ class BuscarMueble(forms.Form):
              self.add_error('buscarProfundidadMax', error_msg)
              self.add_error('buscarPesoMax', error_msg)
 
+        #Me aseguro de que ninguno de los màximos sean menores que los mínimos
         if(not ancho_min is None and not ancho_max is None and ancho_min > ancho_max):
             self.add_error('buscarAnchoMin','El ancho mínimo no puede ser mayor al maximo')
             self.add_error('buscarAnchoMax','El ancho mínimo no puede ser mayor al maximo')
@@ -511,6 +540,7 @@ class BuscarMueble(forms.Form):
             self.add_error('buscarProfundidadMin', 'La profundidad mínima no puede ser mayor a la máxima')
             self.add_error('buscarProfundidadMax', 'La profundidad mínima no puede ser mayor a la máxima')
         
+        #tambien de que el peso maximo no sea menor o igual a 0
         if(not peso_max is None and peso_max <= 0):
             self.add_error('buscarPesoMax', 'El peso debe ser mayor a 0')
 
@@ -547,6 +577,7 @@ class ConsolasForm(ModelForm):
         
         idProducto = Consolas.objects.filter(producto = producto).first()
         
+        #Hago lo de siempre con el id producto
         if (not idProducto is None) :
              if(not self.instance is None and idProducto.id == self.instance.id):
                  pass
@@ -556,8 +587,17 @@ class ConsolasForm(ModelForm):
         if (modelo and len(modelo) < 3):
             self.add_error('modelo', 'El modelo debe tener al menos 3 caracteres.')
 
+        #Me aseguro de que no haya numero en el color
+        #is alpha devuelve true si todos los caracteres de la cadena son de a-z
+        #no lo he probado con la ñ
         if (color and not color.isalpha()):
             self.add_error('color', 'El color debe contener solo letras.')
+        
+        #Con memoria uso isdigit que es lo mismo pero a la inversa
+        #no uso un input de numero porque el modelo es charfield y
+        # y no se si podria dar error al usar un input que no devuelva string
+        if (memoria != "" and not memoria.isdigit()):
+            raise forms.ValidationError("El campo memoria debe contener solo números.")
 
 
         return self.cleaned_data
@@ -595,8 +635,15 @@ class BuscarConsola(forms.Form):
             self.add_error('buscarMemoria', error_msg)
             self.add_error('buscarPrecioMax', error_msg)
 
+        #Compruebo la longitud del color y vulvo a usar la validacion de antes
         if (not color !="" and len(color) < 4):
             self.add_error('buscarColor', 'Color invalido')
+        elif(color and not color.isalpha()):
+            self.add_error('color', 'El color debe contener solo letras.')
+        if (memoria != "" and not memoria.isdigit()):
+            raise forms.ValidationError("El campo memoria debe contener solo números.")
+
+        
 
 
 
