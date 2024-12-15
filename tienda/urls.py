@@ -14,6 +14,12 @@ urlpatterns = [
 
     path('consolas/', views.lista_consolas, name='lista_consolas'),
     
+    path('categorias/',views.categoria_listar, name="'categoria_listar"),
+    
+    path('muebles/listar', views.muebles_listar, name="muebles_listar"),
+     
+    path('calzados/listar', views.calzados_listar, name="calzados_listar"),
+    
     #URLS DE FORMULARIO#
     
     #CRUD usuario

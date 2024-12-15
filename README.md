@@ -1,17 +1,10 @@
-Template tag 5:
-for empty: muebles/lista
-if-else: usuarios/lista
-extends: en cada lista
-include: en cada lista y principal
-comment: index
+Aquí te indico los 6 widgets que debian usarse como minimo 
+Las validaciones te las indico en comentarios en el codigo
 
-Operadores logicos 5:
->,==,<, and, or: en productos/lista
 
-Template filters 10:
-length: usuarios/lista --> 1
-lower,date: productos/producto --> 2
-truncatewords: productos/categoria --> 1
-linebreaksbr: productos/lista --> 1
-default,upper, title: usuarios/producto --> 3
-capfirst, cut: muebles/lista -->2
+widgets 6:
+usuarioform: email input
+buscarusurio: textinput
+categoriaform : NumberInput y textarea
+BuscarCategoria checkboxinput
+ProductoForm DateInput

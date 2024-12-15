@@ -2,7 +2,7 @@
    
    {%block cabecera%}
 
-   <h1>Lista de Consolas</h1>
+   <h1>Lista de Categorias</h1>
 
     
     {% endblock %}
@@ -13,10 +13,10 @@
        <div class="row">
         {% for categoria in categorias %}
            
-                {%include 'categorias/categoria.html'%}
+                {%include 'categoria/categoria.html'%}
            
         {% empty %}
-            <p>No hay consolas disponibles en este momento.</p>
+            <p>Sin resultados</p>
         {% endfor %}
        </div>
 {% endblock %}

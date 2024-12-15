@@ -2,26 +2,20 @@
    
    {%block cabecera%}
 
-         <h1>Lista de Usuarios y sus Productos</h1>
+         <h1>Lista de Usuarios</h1>
     
     {% endblock %}
 
     {%block contenido%}
-            {{mensaje}}
-            <br>
-        
+            <div class="container">
+                {{ mensaje }}
+                <div class="row">
         {% for usuario in usuarios %}
-          
-            {%include 'usuarios/usuario.html'%}
+                    <div class="col-md-4 mb-4">
 
-            {% if usuario.producto_vendedor.all %}
-                <ul>
-                {% for producto in usuario.producto_vendedor.all %}
-                    {%include 'usuarios/producto.html'%}
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Este usuario no tiene productos.</p>
-            {% endif %}
+                      {%include 'usuarios/usuario.html'%}
+                  </div>
         {% endfor %}
+                </div>
+            </div>
     {% endblock %}

@@ -30,6 +30,8 @@ class UsuarioForm(ModelForm):
         telefono = self.cleaned_data.get('telefono')
         direccion = self.cleaned_data.get('direccion')
         
+        #Compruebo que el correo electronico no se repita, asi puedo usar el formulario para editar 
+        # si el id es del propio objeto segura, si no os envia un mensaje de error 
         usuarioCorreo = Usuario.objects.filter(correo_electronico = correo_electronico).first()
         
         if(not usuarioCorreo is None):
@@ -38,7 +40,7 @@ class UsuarioForm(ModelForm):
             else:
                 self.add_error('correo_electronico', 'Ya existe un usuario con ese correo')
         
-         #Comprobamos que el campo telefono tenga 11 caracteres        
+         #Comprobamos que el campo telefono tenga 9 caracteres        
         if len(telefono) != 9:
             self.add_error('telefono','Debe tener 9 caracteres')
         
@@ -219,7 +221,7 @@ class BuscarProducto(forms.Form):
         min_value=0,
         widget=forms.NumberInput(attrs={'placeholder': '1000.00'})
     )
-    buscarEstado = forms.ChoiceField(choices=Producto.ESTADOS,
+    buscarEstado = forms.MultipleChoiceField(choices=Producto.ESTADOS,
                                        required=False,
                                        widget=forms.CheckboxSelectMultiple()
                                        )

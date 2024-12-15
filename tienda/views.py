@@ -8,32 +8,31 @@ from django.contrib import messages
 from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
 from datetime import datetime
 
-#producto, usuario y consola hechos
-#faltan categoria, mueble, calzado
+
 #
-#       VIEWS DE CRUD LINEA
+#       VIEWS DE CRUD LINEA 63
 #
 
 #1 Create your views here.
 def index(request):
     return render(request, "index.html")
 
-def categoria_listar(request):
-    categorias = Categoria.objects.prefetch_related(Prefetch("categorias")).all()
-    return render(request, 'categoria/lista.html',{'categorias':categorias})
 
-#2 Esta view muestra una lista con toda la informacion de todos los productos que hay
-def listar_productos (request):
-    productos = Producto.objects.select_related("vendedor").prefetch_related(
-        "categorias", Prefetch('producto_compra')).all()
-    total = productos.aggregate(Count('id'))
-    return render(request, "productos/lista.html", {"producto_mostrar":productos, 'total':total})
 
 #3 Esta view muestra toda la informacion de un producto
 def muestra_producto(request, id_producto):
     producto = Producto.objects.select_related("vendedor").prefetch_related("categorias", Prefetch('producto_compra')).get(id=id_producto)
     return render(request, "productos/producto.html", {"producto":producto})
 
+def categoria_listar(request):
+    categorias = Categoria.objects.prefetch_related(Prefetch("categorias")).all()
+    return render(request, 'categoria/lista.html',{'categorias':categorias})
+
+def listar_productos (request):
+    productos = Producto.objects.select_related("vendedor").prefetch_related(
+        "categorias", Prefetch('producto_compra')).all()
+    total = productos.aggregate(Count('id'))
+    return render(request, "productos/lista.html", {"productos":productos, 'total':total})
 
 def usuarios_listar(request):
     usuarios = Usuario.objects.prefetch_related(Prefetch('producto_vendedor')).all()
@@ -43,6 +42,15 @@ def lista_consolas(request):
     consolas = Consolas.objects.select_related('producto','producto__vendedor').prefetch_related(
         Prefetch('producto__categorias') )
     return render(request, 'consolas/lista.html', {'consolas': consolas})
+
+def muebles_listar(request):
+    muebles = Muebles.objects.select_related('producto').all()
+    return render(request, 'muebles/lista.html', {'muebles': muebles})
+
+def calzados_listar(request):
+    calzados = Calzado.objects.select_related('producto').all()
+    return render(request, 'calzados/lista.html', {'calzados': calzados})
+
 
 
 #####################################################################
@@ -154,7 +162,7 @@ def categoria_crear (request):
         categoria_creada = crear_categoria_modelo(formulario)
         if(categoria_creada):
             messages.success(request, 'Se ha creado la categoria')
-            return redirect('index')
+            return redirect('categoria_listar')
     
     return render(request, 'categoria/crear.html',{"formulario":formulario})
 
@@ -210,8 +218,10 @@ def categoria_buscar(request):
                 QScategorias = QScategorias.filter(Q (destacada = False) | Q (destacada = False))
                 mensaje_busqueda += "Categorias destacadas y no destacadas"+"\n"
                 
+            
+            categorias = QScategorias.all()
             return render(request, 'categoria/lista.html',
-                          {'formulario':formulario, 'mensaje':mensaje_busqueda})
+                          {'categorias':categorias, 'mensaje':mensaje_busqueda})
     else:
         formulario = BuscarCategoria(None)
             
@@ -235,7 +245,7 @@ def categoria_editar (request, categoria_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado la categoría'+formulario.cleaned_data.get('nombre')+" correctamente")
-                return redirect('index')  
+                return redirect('categoria_listar')  
             except Exception as error:
                 print(error)
     return render(request, 'categoria/actualizar.html',{"formulario":formulario,"categoria":categoria}) 
@@ -273,15 +283,13 @@ def producto_creado_modelo(formulario):
 #Producto buscar
 
 def producto_buscar(request):
-    
     if(len(request.GET) > 0):
         formulario = BuscarProducto(request.GET)
-        
-        if formulario.is_valid():            
+
+        if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            
             QSproductos = Producto.objects.select_related('vendedor').prefetch_related('categorias')
-            
+
             nombre = formulario.cleaned_data.get('buscarNombre')
             descripcion = formulario.cleaned_data.get('buscarDescripcion')
             precio = formulario.cleaned_data.get('buscarPrecioMax')
@@ -289,57 +297,53 @@ def producto_buscar(request):
             vendedor = formulario.cleaned_data.get('buscarVendedor')
             fecha = formulario.cleaned_data.get('buscarFecha')
             categoria = formulario.cleaned_data.get('buscarCategorias')
-            
+
             if(nombre != ""):
-                QSproductos = QSproductos.filter(nombre__contains = nombre)
+                QSproductos = QSproductos.filter(nombre__icontains=nombre)
                 mensaje_busqueda +=" Nombre que contenga "+nombre+"\n"
-            
+
             if(descripcion != ""):
-                QSproductos = QSproductos.filter(descripcion__contains = descripcion)
+                QSproductos = QSproductos.filter(descripcion__icontains=descripcion)
                 mensaje_busqueda +=" Descripcion que contenga "+descripcion+"\n"
-            
-            if (precio is not None):
-                QSproductos = QSproductos.filter(precio__lte = precio)
-                mensaje_busqueda += "Precio menor o igual a "+precio+"\n"    
-          
+
+            if(precio is not None):
+                QSproductos = QSproductos.filter(precio__lte=precio)
+                mensaje_busqueda += "Precio menor o igual a "+str(precio)+"\n"
+
             if(len(estado) > 0):
-                mensaje_busqueda +="El estado sea "+estado[0]
-                filtroOR = Q(i=estado[0])
+                QSproductos = QSproductos.filter(estado__in=estado)
+                mensaje_busqueda +=" El estado sea "+estado[0]
                 for i in estado[1:]:
                     mensaje_busqueda += " o "+i
-                    filtroOR |= Q(i=i)
                 mensaje_busqueda += "\n"
-                QSproductos =  QSproductos.filter(filtroOR)
-            
-            if(len(vendedor) > 0 ):
-                mensaje_busqueda +="Vendedores: {vendedor[0].email}"
-                filtroOR = Q(vendedor=vendedor[0])
-                for i in vendedor[1:]:
-                    mensaje_busqueda += " o {i[0].email}"
-                    filtroOR |= Q(vendedor=i)
+
+            if(len(vendedor) > 0):
+                QSproductos = QSproductos.filter(vendedor__in=vendedor)
+                mensaje_busqueda +=" Vendedores: "+vendedor[0].email
+                for v in vendedor[1:]:
+                    mensaje_busqueda += " o "+v.email
                 mensaje_busqueda += "\n"
-                QSproductos = QSproductos.filter(filtroOR)
-                        
+
             if(not fecha is None):
-                mensaje_busqueda +=" La fecha sea mayor a "+datetime.strftime(fecha,'%d-%m-%Y')+"\n"
                 QSproductos = QSproductos.filter(fecha_de_publicacion__gte=fecha)
-            
+                mensaje_busqueda +=" La fecha sea mayor a "+datetime.strftime(fecha, '%d-%m-%Y')+"\n"
+
             if(len(categoria) > 0):
-                mensaje_busqueda +="Categorias: {categoria[0].nombre}"
-                filtroOR = Q(categorias = categoria)
-                for i in vendedor[1:]:
-                    mensaje_busqueda += " o {i[0].nombre}"
-                    filtroOR |= Q(categorias = i)
+                QSproductos = QSproductos.filter(categorias__in=categoria)
+                mensaje_busqueda +=" Categorias: "+categoria[0].nombre
+                for c in categoria[1:]:
+                    mensaje_busqueda += " o "+c.nombre
                 mensaje_busqueda += "\n"
-                QSproductos = QSproductos.filter(filtroOR)
         
+            productos = QSproductos.all()
             return render(request, 'productos/lista.html',
-                          {'formulario':formulario, 'mensaje':mensaje_busqueda})
+                          { 'mensaje': mensaje_busqueda, 'productos': productos})
+
     else:
         formulario = BuscarProducto(None)
-            
-    return render(request, 'productos/buscar.html',
-                        {'formulario':formulario})
+
+    return render(request, 'productos/buscar.html', {'formulario': formulario})
+
                 
 #Producto editar
 def producto_editar (request, producto_id):
@@ -359,7 +363,7 @@ def producto_editar (request, producto_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado el producto'+formulario.cleaned_data.get('nombre')+" correctamente")
-                return redirect('productos_listar')  
+                return redirect('lista_productos')  
             except Exception as error:
                 print(error)
     return render(request, 'productos/actualizar.html',{"formulario":formulario,"producto":producto}) 
@@ -378,7 +382,7 @@ def calzado_crear(request):
         calzado_creado = calzado_creado_modelo(formulario)
         if calzado_creado:
             messages.success(request, 'Calzado añadido con éxito')
-            return redirect('index')
+            return redirect('calzados_listar')
 
     return render(request, 'calzados/crear.html', {'formulario': formulario})
 
@@ -452,7 +456,7 @@ def calzado_editar(request, calzado_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado el calzado correctamente')
-                return redirect('index')
+                return redirect('calzados_listar')
             except Exception as error:
                 print(error)
     
@@ -472,7 +476,7 @@ def mueble_crear(request):
         mueble_creado = mueble_creado_modelo(formulario)
         if mueble_creado:
             messages.success(request, 'Mueble añadido con éxito')
-            return redirect('index')
+            return redirect('muebles_listar')
 
     return render(request, 'muebles/crear.html', {'formulario': formulario})
 
@@ -565,7 +569,7 @@ def mueble_editar(request, mueble_id):
             try:  
                 formulario.save()
                 messages.success(request, 'Se ha editado el mueble')
-                return redirect('index') 
+                return redirect('muebles_listar') 
             except Exception as error:
                 print(error)
     
@@ -670,7 +674,7 @@ def usuario_eliminar (request,usuario_id):
         usuario.delete()
     except:
         pass
-    return redirect('usuarios_lista')
+    return redirect('usuarios_listar')
 
 def categoria_eliminar(request, categoria_id):
     categoria = Categoria.objects.get(id=categoria_id)
@@ -678,7 +682,7 @@ def categoria_eliminar(request, categoria_id):
         categoria.delete()
     except:
         pass
-    return redirect('categorias_lista')  # Cambiar por la URL correspondiente para listar categorías
+    return redirect('categoria_listar')  # Cambiar por la URL correspondiente para listar categorías
 
 
 def producto_eliminar(request, producto_id):
@@ -687,7 +691,7 @@ def producto_eliminar(request, producto_id):
         producto.delete()
     except:
         pass
-    return redirect('productos_lista')
+    return redirect('lista_productos')
 
 def calzado_eliminar(request, calzado_id):
     calzado = Calzado.objects.get(id=calzado_id)
@@ -695,7 +699,7 @@ def calzado_eliminar(request, calzado_id):
         calzado.delete()
     except:
         pass
-    return redirect('index')
+    return redirect('calzados_listar')
 
 def mueble_eliminar(request, mueble_id):
     mueble = Muebles.objects.get(id=mueble_id)
@@ -703,7 +707,7 @@ def mueble_eliminar(request, mueble_id):
         mueble.delete()
     except:
         pass
-    return redirect('index')
+    return redirect('muebles_listar')
 
 def consola_eliminar(request, consola_id):
     consola = Consolas.objects.get(id=consola_id)
