@@ -1,0 +1,25 @@
+<div class="card h-100">
+    <div class="card-body">
+        <h2>Usuario: {{ usuario.nombre }}</h2>
+        <p>Correo: {{ usuario.correo_electronico }}</p>
+        <p>Teléfono: {{ usuario.telefono }}</p>
+    </div>
+</div> 
+
+{% load bootstrap_icons %}
+<div class="row btn-group">
+    <div class="mb-2">
+        <button type="button" 
+                class="btn btn-outline-primary"> 
+                <a href="{% url 'usuario_editar' usuario.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+        </button>
+    </div>
+    <div class="mb-2">
+        <form action = "{% url 'usuario_eliminar' usuario.id%}" method = "post"> 
+            {% csrf_token %}
+            <button class="btn btn-danger" onclick="return eliminar()" type="submit">
+                <span>{% bs_icon 'trash' %}</span>
+            </button> 
+        </form>
+    </div>
+</div>

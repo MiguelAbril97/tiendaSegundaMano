@@ -1,0 +1,35 @@
+<div class="card h-100">
+    <div class="card-body">
+        <h2 class="card-title">Nombre: {{ producto.nombre }}</h2>
+        <h5 class="card-subtitle mb-2 text-muted">Vendedor: {{ producto.vendedor.nombre }}</h5>
+        <p class="card-text"><strong>Estado:</strong> {{ producto.estado|lower }}</p>
+        <p class="card-text"><strong>Precio:</strong> ${{ producto.precio }}</p>
+        <p class="card-text"><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+        <p class="card-text"><strong>Fecha de publicación:</strong> {{ producto.fecha_de_publicacion|date:"d/m/Y" }}</p>
+        <h4 class="mt-3">Categorías:</h4>
+        <ul class="list-group list-group-flush">
+            {% for categoria in producto.categorias.all %}
+                <li class="list-group-item">
+                    {% include 'productos/categoria.html' %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% load bootstrap_icons %}
+    <div class="row btn-group">
+        <div class="mb-2">
+            <button type="button" 
+                    class="btn btn-outline-primary"> 
+                    <a href="{% url 'producto_editar' producto.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+            </button>
+        </div>
+        <div class="mb-2">
+            <form action = "{% url 'producto_eliminar' producto.id%}" method = "post"> 
+                {% csrf_token %}
+                <button class="btn btn-danger" onclick="return eliminar()" type="submit">
+                    <span>{% bs_icon 'trash' %}</span>
+                </button> 
+            </form>
+        </div>
+    </div>
+</div>

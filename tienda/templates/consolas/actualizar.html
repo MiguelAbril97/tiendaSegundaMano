@@ -1,0 +1,97 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+
+<form action="{% url 'consola_editar' consola.id %}" method="post"> 
+
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="{{ formulario.producto.id_for_label }}" class="form-label">{{ formulario.producto.label }}:</label>
+        <select name="{{ formulario.producto.html_name }}" 
+                class="form-control {% if formulario.producto.errors %} is-invalid {% elif formulario.is_bound %} is-valid {% endif %}" 
+                id="{{ formulario.producto.id_for_label }}">
+            {% for choice in formulario.producto.field.choices %}
+                <option value="{{ choice.0 }}" {% if formulario.producto.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+            {% for error in formulario.producto.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.modelo.id_for_label }}" class="form-label">{{ formulario.modelo.label }}:</label>
+        <input name="{{ formulario.modelo.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.modelo.errors %} is-invalid {% elif formulario.is_bound %} is-valid {% endif %}" 
+               id="{{ formulario.modelo.id_for_label }}"
+               maxlength="{{ formulario.modelo.field.max_length }}"
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.modelo.value }}
+                      {% elif consola %}
+                          {{ consola.modelo }}
+                      {% endif %}
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.modelo.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.color.id_for_label }}" class="form-label">{{ formulario.color.label }}:</label>
+        <input name="{{ formulario.color.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.color.errors %} is-invalid {% elif formulario.is_bound %} is-valid {% endif %}" 
+               id="{{ formulario.color.id_for_label }}"
+               maxlength="{{ formulario.color.field.max_length }}"
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.color.value }}
+                      {% elif consola %}
+                          {{ consola.color }}
+                      {% endif %}
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.color.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.memoria.id_for_label }}" class="form-label">{{ formulario.memoria.label }}:</label>
+        <input name="{{ formulario.memoria.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.memoria.errors %} is-invalid {% elif formulario.is_bound %} is-valid {% endif %}" 
+               id="{{ formulario.memoria.id_for_label }}"
+               maxlength="{{ formulario.memoria.field.max_length }}"
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.memoria.value }}
+                      {% elif consola %}
+                          {{ consola.memoria }}
+                      {% endif %}
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.memoria.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Consola</button>
+
+</form>
+
+{% endblock %}

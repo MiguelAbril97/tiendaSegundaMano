@@ -1,0 +1,21 @@
+{% extends "principal.html" %}
+   
+   {%block cabecera%}
+
+         <h1>Lista de Usuarios</h1>
+    
+    {% endblock %}
+
+    {%block contenido%}
+            <div class="container">
+                {{ mensaje }}
+                <div class="row">
+        {% for usuario in usuarios %}
+                    <div class="col-md-4 mb-4">
+
+                      {%include 'usuarios/usuario.html'%}
+                  </div>
+        {% endfor %}
+                </div>
+            </div>
+    {% endblock %}

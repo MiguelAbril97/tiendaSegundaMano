@@ -1,0 +1,104 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+
+<form action="{% url 'categoria_editar' categoria.id %}" method="post"> 
+    
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="{{ formulario.nombre.id_for_label }}" class="form-label">{{ formulario.nombre.label }}: </label>
+        <input name="{{ formulario.nombre.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.nombre.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.nombre.id_for_label }}"
+               maxlength="{{ formulario.nombre.field.max_length }}"
+               {% if formulario.nombre.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.nombre.value }}
+                      {% elif categoria %}
+                          {{ formulario.nombre.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        {% if formulario.nombre.help_text %}
+        <div class="form-text">
+            {{ formulario.nombre.help_text }}
+        </div>
+        {% endif %}
+        <div class="invalid-feedback">
+            {% for error in formulario.nombre.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.descripcion.id_for_label }}" class="form-label">{{ formulario.descripcion.label }}: </label>
+        <textarea name="{{ formulario.descripcion.html_name }}" 
+                  class="form-control {% if formulario.descripcion.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+                  id="{{ formulario.descripcion.id_for_label }}"
+                  maxlength="100"
+                  >{% spaceless %}
+                        {% if formulario.is_bound%}
+                            {{ formulario.descripcion.value }}
+                        {% elif categoria %}
+                            {{ formulario.descripcion.value }}
+                        {% endif %} 
+                        {% endspaceless %}</textarea>
+        <div class="invalid-feedback">
+            {% for error in formulario.descripcion.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.existencias.id_for_label }}" class="form-label">{{ formulario.existencias.label }}: </label>
+        <input name="{{ formulario.existencias.html_name }}" 
+               type="number" 
+               class="form-control {% if formulario.existencias.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.existencias.id_for_label }}"
+               value="{% spaceless %}
+                        {% if formulario.is_bound %}
+                            {{ formulario.existencias.value }}
+                        {% elif categoria %}
+                            {{ formulario.existencias.value }}
+                        {% endif %} 
+                        {% endspaceless %}"
+               {% if formulario.existencias.field.required %}
+                   required
+               {% endif %}
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.existencias.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.destacada.id_for_label }}" class="form-label">{{ formulario.destacada.label }}: </label>
+        <select name="{{ formulario.destacada.html_name }}" 
+                id="{{ formulario.destacada.id_for_label }}" 
+                class="form-select {% if formulario.destacada.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" >
+            <option value="True" {% if formulario.destacada.value == 'True' %} selected {% endif %}>Sí</option>
+            <option value="False" {% if formulario.destacada.value == 'False' %} selected {% endif %}>No</option>
+        </select>
+        <div class="invalid-feedback">
+            {% for error in formulario.destacada.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Categoría</button>
+
+</form>
+
+{% endblock %}

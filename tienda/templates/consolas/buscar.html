@@ -1,0 +1,49 @@
+{% extends "principal.html" %}
+{% block contenido %}
+{% load django_bootstrap5 %}
+
+<form action="{% url 'consola_buscar' %}" method="GET">
+    {% csrf_token %}
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarModelo show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarModelo.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarColor show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarColor.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarMemoria show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarMemoria.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarPrecioMax show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarPrecioMax.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
+    </div>
+</form>
+
+{% endblock %}

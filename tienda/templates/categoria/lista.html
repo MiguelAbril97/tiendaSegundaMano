@@ -1,0 +1,22 @@
+{% extends "principal.html" %}
+   
+   {%block cabecera%}
+
+   <h1>Lista de Categorias</h1>
+
+    
+    {% endblock %}
+
+    
+{%block contenido%}
+        {{mensaje}}
+       <div class="row">
+        {% for categoria in categorias %}
+           
+                {%include 'categoria/categoria.html'%}
+           
+        {% empty %}
+            <p>Sin resultados</p>
+        {% endfor %}
+       </div>
+{% endblock %}

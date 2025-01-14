@@ -1,0 +1,19 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+<h1>Lista de Muebles</h1>
+        {{mensaje}}
+        <br>
+    <div class="row">
+
+        {% for mueble in muebles %}
+            
+                {%include 'muebles/mueble.html'%}
+            
+        {% empty %}
+            <p>No hay muebles disponibles en este momento.</p>
+        {% endfor %}
+
+    </div>
+    
+{% endblock %}

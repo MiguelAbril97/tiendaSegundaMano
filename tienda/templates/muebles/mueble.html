@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-body">
+        <h2>Mueble: {{ mueble.producto.nombre|capfirst}}</h2>
+        <p><strong>Descripción:</strong> {{ mueble.producto.descripcion|cut:" " }}</p>
+        <p><strong>Precio:</strong> ${{ mueble.producto.precio }}</p>
+        <p><strong>Estado:</strong> {{ mueble.producto.get_estado_display }}</p>
+        <p><strong>Material:</strong> {{ mueble.material }}</p>
+        <p><strong>Dimensiones (Ancho x Alto x Profundidad):</strong> {{ mueble.ancho }} x {{ mueble.alto }} x {{ mueble.profundidad }} cm</p>
+        <p><strong>Peso:</strong> {{ mueble.peso }} kg</p>
+        <p><strong>Vendedor:</strong> {{ mueble.producto.vendedor.nombre }}</p>    
+    </div>
+        {% load bootstrap_icons %}
+            <div class="row btn-group">
+                <div class="mb-2">
+                    <button type="button" 
+                            class="btn btn-outline-primary"> 
+                            <a href="{% url 'mueble_editar' mueble.id %}" ><span>{% bs_icon 'pencil' %}</span></a>
+                    </button>
+                </div>
+                <div class="mb-2">
+                    <form action = "{% url 'mueble_eliminar' mueble.id%}" method = "post"> 
+                        {% csrf_token %}
+                        <button class="btn btn-danger" onclick="return eliminar()" type="submit">
+                            <span>{% bs_icon 'trash' %}</span>
+                        </button> 
+                    </form>
+                </div>
+            </div>
+</div>

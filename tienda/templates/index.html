@@ -1,0 +1,58 @@
+{% extends "principal.html" %}
+
+{%block cabecera%}
+
+<h1>Enlaces</h1>
+{% endblock %}
+
+{%block contenido%}
+<div class="container mt-5">
+    <!-- Primera fila -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="nav-link" href="{% url 'categoria_buscar' %}">Buscar categoría</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="nav-link" href="{% url 'producto_buscar' %}">Buscar producto</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="nav-link" href="{% url 'calzado_buscar' %}">Buscar calzado</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="nav-link" href="{% url 'mueble_buscar' %}">Buscar mueble</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+         <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="nav-link" href="{% url 'consola_buscar' %}">Buscar consola</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "principal.html" %}
+   
+{%block cabecera%}
+
+<h1>Lista de Consolas</h1>
+
+{% endblock %}
+
+{% block contenido %}
+        {{mensaje}}
+        <div class="row">
+        {% for consola in consolas %}
+                {%include 'consolas/consola.html'%}
+            
+        {% empty %}
+            <p>No hay consolas disponibles en este momento.</p>
+        {% endfor %}
+        </div>
+{% endblock %}

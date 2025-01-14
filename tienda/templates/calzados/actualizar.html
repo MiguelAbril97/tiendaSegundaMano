@@ -1,0 +1,111 @@
+{% extends "principal.html" %}
+
+{% block contenido %}
+
+{% load django_bootstrap5 %}
+
+<form action="{% url 'calzado_editar' calzado.id %}" method="post"> 
+    
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label for="{{ formulario.talla.id_for_label }}" class="form-label">{{ formulario.talla.label }}: </label>
+        <input name="{{ formulario.talla.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.talla.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.talla.id_for_label }}"
+               maxlength="{{ formulario.talla.field.max_length }}"
+               {% if formulario.talla.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.talla.value }}
+                      {% elif calzado %}
+                          {{ formulario.talla.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.talla.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.marca.id_for_label }}" class="form-label">{{ formulario.marca.label }}: </label>
+        <select name="{{ formulario.marca.html_name }}" 
+                class="form-control {% if formulario.marca.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+                id="{{ formulario.marca.id_for_label }}">
+            {% for value, display in formulario.marca.field.choices %}
+                <option value="{{ value }}"
+                    {% if value == formulario.marca.value %}
+                        selected
+                    {% endif %}>
+                    {{ display }}
+                </option>
+            {% endfor %}
+        </select>
+        <div class="invalid-feedback">
+            {% for error in formulario.marca.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.color.id_for_label }}" class="form-label">{{ formulario.color.label }}: </label>
+        <input name="{{ formulario.color.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.color.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.color.id_for_label }}"
+               maxlength="{{ formulario.color.field.max_length }}"
+               {% if formulario.color.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.color.value }}
+                      {% elif calzado %}
+                          {{ formulario.color.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.color.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label for="{{ formulario.material.id_for_label }}" class="form-label">{{ formulario.material.label }}: </label>
+        <input name="{{ formulario.material.html_name }}" 
+               type="text" 
+               class="form-control {% if formulario.material.errors %} is-invalid{% elif formulario.is_bound %} is-valid{% endif %}" 
+               id="{{ formulario.material.id_for_label }}"
+               maxlength="{{ formulario.material.field.max_length }}"
+               {% if formulario.material.field.required %}
+                   required
+               {% endif %}
+               value="{% spaceless %}
+                      {% if formulario.is_bound %}
+                          {{ formulario.material.value }}
+                      {% elif calzado %}
+                          {{ formulario.material.value }}
+                      {% endif %} 
+                      {% endspaceless %}"
+        />
+        <div class="invalid-feedback">
+            {% for error in formulario.material.errors %} 
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar Calzado</button>
+
+</form>
+
+{% endblock %}

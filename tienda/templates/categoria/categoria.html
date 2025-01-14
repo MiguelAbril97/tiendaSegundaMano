@@ -1,0 +1,24 @@
+<div class="card">
+   <div class="card-body">
+    <h2>Categoría: {{ categoria.nombre }}</h2>
+    <p><strong>Descripción:</strong> {{ categoria.descripcion }}</p>
+    <p><strong>Existencias:</strong> {{ categoria.existecias }}</p>
+    <p><strong>Destacada:</strong> {% if categoria.destacada %}Sí{% else %}No{% endif %}</p>
+   </div>
+    {% load bootstrap_icons %}
+        <div class="row btn-group">
+            <div class="mb-2">
+                <button type="button" class="btn btn-outline-primary">
+                    <a href="{% url 'categoria_editar' categoria.id %}"><span>{% bs_icon 'pencil' %}</span></a>
+                </button>
+            </div>
+            <div class="mb-2">
+                <form action="{% url 'categoria_eliminar' categoria.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" onclick="return eliminar()" type="submit">
+                        <span>{% bs_icon 'trash' %}</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+</div>

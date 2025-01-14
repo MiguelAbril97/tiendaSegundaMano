@@ -1,0 +1,46 @@
+{% extends "principal.html" %}
+{% block contenido %}
+{% load django_bootstrap5 %}
+
+<form action="{% url 'usuario_buscar' %}" method="GET">
+    {% csrf_token %}
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarNombre show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarNombre.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarEmail show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarEmail.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarTlf show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarTlf.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="mb-4">
+        {% bootstrap_field formulario.buscarDireccion show_label=True %}
+        <div class="invalid-feedback">
+            {% for error in formulario.buscarDireccion.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    </div>
+    
+    {% bootstrap_button "Buscar" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock %}
