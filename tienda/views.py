@@ -125,7 +125,7 @@ def crear_usuario_modelo(formulario):
 """
 
 #view Usuario buscar 
-
+@permission_required('tienda.view_user')
 def usuario_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarUsuario(request.GET)
@@ -164,7 +164,7 @@ def usuario_buscar(request):
 
 
 ###Usuario editar
-
+@permission_required('tienda.change_user')
 def usuario_editar(request,usuario_id):
     usuario = Usuario.objects.get(id=usuario_id)
     
@@ -188,7 +188,7 @@ def usuario_editar(request,usuario_id):
     return render(request, 'usuarios/actualizar.html',{"formulario":formulario,"usuario":usuario}) 
                 
 #View CATEGORIA CREAR
-
+@permission_required('tienda.add_categoria')
 def categoria_crear (request):
     datosFormulario = None
     if(request.method == "POST"):
@@ -215,7 +215,7 @@ def crear_categoria_modelo(formulario):
         return categoria_creada
 
 #Categoria buscar
-
+@permission_required('tienda.vie_categoria')
 def categoria_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarCategoria(request.GET)
@@ -264,7 +264,8 @@ def categoria_buscar(request):
             
     return render(request, 'categoria/buscar.html',
                           {'formulario':formulario})
-        
+
+@permission_required('tienda.change_categoria') 
 def categoria_editar (request, categoria_id):
     categoria = Categoria.objects.get(id=categoria_id)
     
@@ -288,7 +289,7 @@ def categoria_editar (request, categoria_id):
     return render(request, 'categoria/actualizar.html',{"formulario":formulario,"categoria":categoria}) 
 
 #View Producto CREAR
-
+@permission_required('tienda.add_producto')
 def producto_crear(request):
     datosFormulario = None
     
@@ -319,6 +320,7 @@ def producto_creado_modelo(formulario):
     
 #Producto buscar
 
+@permission_required('tienda.view_producto')
 def producto_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarProducto(request.GET)
@@ -383,6 +385,7 @@ def producto_buscar(request):
 
                 
 #Producto editar
+@permission_required('tienda.change_producto')
 def producto_editar (request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     
@@ -407,7 +410,7 @@ def producto_editar (request, producto_id):
 
 
 #VIEW DE CALZADO CREAR
-
+@permission_required('tienda.add_calzado')
 def calzado_crear(request):
     datosFormulario = None
 
@@ -435,6 +438,7 @@ def calzado_creado_modelo(formulario):
 
     return calzado_creado
 
+@permission_required('tienda.view_calzado')
 def calzado_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarCalzado(request.GET)
@@ -478,6 +482,7 @@ def calzado_buscar(request):
     return render(request, 'calzados/buscar.html', {'formulario': formulario})
 
 #Editar calzado
+@permission_required('tienda.change_calzado')
 def calzado_editar(request, calzado_id):
     calzado = Calzado.objects.get(id=calzado_id)
     
@@ -501,7 +506,7 @@ def calzado_editar(request, calzado_id):
 
 
 #MUEBLE CREAR
-
+@permission_required('tienda.add_mueble')
 def mueble_crear(request):
     datosFormulario = None
 
@@ -531,7 +536,7 @@ def mueble_creado_modelo(formulario):
 
 
 #Buscar mueble
-
+@permission_required('tienda.view_mueble')
 def mueble_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarMueble(request.GET)
@@ -590,7 +595,7 @@ def mueble_buscar(request):
     return render(request, 'muebles/buscar.html', {'formulario': formulario})
 
 #Editar mueble_buscar
-
+@permission_required('tienda.change_mueble')
 def mueble_editar(request, mueble_id):
     mueble = Muebles.objects.get(id=mueble_id)
     
@@ -614,6 +619,7 @@ def mueble_editar(request, mueble_id):
 
 
 #Consola_crear
+@permission_required('tienda.add_consola')
 def consola_crear(request):
     datosFormulario = None
 
@@ -642,7 +648,7 @@ def consola_creada_modelo(formulario):
     return consola_creada
 
 #Buscar consola
-
+@permission_required('tienda.view_consola')
 def consola_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarConsola(request.GET)
@@ -680,7 +686,7 @@ def consola_buscar(request):
     
     return render(request, 'consolas/buscar.html', {'formulario': formulario})
 
-
+@permission_required('tienda.change_consola')
 def consola_editar(request, consola_id):
     consola = Consolas.objects.get(id=consola_id)
     
@@ -704,7 +710,7 @@ def consola_editar(request, consola_id):
 
 
 ##Todos los delete
-
+@permission_required('tienda.delete_user')
 def usuario_eliminar (request,usuario_id):
     usuario = Usuario.objects.get(usuario_id)
     try:
@@ -713,15 +719,16 @@ def usuario_eliminar (request,usuario_id):
         pass
     return redirect('usuarios_listar')
 
+@permission_required('tienda.delete_categoria')
 def categoria_eliminar(request, categoria_id):
     categoria = Categoria.objects.get(id=categoria_id)
     try:
         categoria.delete()
     except:
         pass
-    return redirect('categoria_listar')  # Cambiar por la URL correspondiente para listar categorías
+    return redirect('categoria_listar') 
 
-
+@permission_required('tienda.delete_producto')
 def producto_eliminar(request, producto_id):
     producto = Producto.objects.get(id=producto_id)
     try:
@@ -730,6 +737,7 @@ def producto_eliminar(request, producto_id):
         pass
     return redirect('lista_productos')
 
+@permission_required('tienda.delete_calzado')
 def calzado_eliminar(request, calzado_id):
     calzado = Calzado.objects.get(id=calzado_id)
     try:
@@ -738,6 +746,7 @@ def calzado_eliminar(request, calzado_id):
         pass
     return redirect('calzados_listar')
 
+@permission_required('tienda.delete_mueble')
 def mueble_eliminar(request, mueble_id):
     mueble = Muebles.objects.get(id=mueble_id)
     try:
@@ -746,6 +755,7 @@ def mueble_eliminar(request, mueble_id):
         pass
     return redirect('muebles_listar')
 
+@permission_required('tienda.delete_consola')
 def consola_eliminar(request, consola_id):
     consola = Consolas.objects.get(id=consola_id)
     try:
@@ -753,9 +763,6 @@ def consola_eliminar(request, consola_id):
     except:
         pass
     return redirect('lista_consolas')
-
-
-
 
 
 
