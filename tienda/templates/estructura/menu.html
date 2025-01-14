@@ -23,10 +23,20 @@
                     </form>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                    <p>
-                        Nombre Usuario: {{ request.user }}
-                    </p>
-                {% endif %}
+                <ul class="list-group">
+                    <li class="list-group-item">Nombre de usuario: {{ request.user.username }}</li>
+                    <li class="list-group-item">Correo electrónico: {{ request.user.email }}</li>
+                    
+                    {% if request.user.rol == 2 %}
+                        <li class="list-group-item">Nombre: {{ request.user.comprador.nombre }}</li>
+                        <li class="list-group-item">Apellidos: {{ request.user.comprador.apellidos }}</li>
+                    {% elif request.user.rol == 1 %}
+                        <li class="list-group-item">Razón Social: {{ request.user.vendedor.razonSocial }}</li>
+                        <li class="list-group-item">Dirección Fiscal: {{ request.user.vendedor.direccionFiscal }}</li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+            
             </ul>
         </div>
     </nav>
