@@ -52,9 +52,11 @@ class Producto(models.Model):
         max_length=2,
         choices=ESTADOS
     )
-    vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='producto_vendedor')
+    vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, 
+                                 related_name='producto_vendedor')
     fecha_de_publicacion = models.DateTimeField(default=timezone.now)
-    categorias = models.ManyToManyField(Categoria, through='ProductoCategoria', related_name="categorias")
+    categorias = models.ManyToManyField(Categoria, through='ProductoCategoria', 
+                                        related_name="categorias")
     
     def __str__(self):
         return self.nombre
@@ -97,8 +99,10 @@ class Muebles(models.Model):
     peso = models.IntegerField()
 
 class Chat(models.Model):
-    usuario1 = models.ForeignKey(Usuario, related_name='chat_usuario1', on_delete=models.CASCADE)
-    usuario2 = models.ForeignKey(Usuario, related_name='chat_usuario2', on_delete=models.CASCADE)
+    usuario1 = models.ForeignKey(Usuario, related_name='chat_usuario1', 
+                                 on_delete=models.CASCADE)
+    usuario2 = models.ForeignKey(Usuario, related_name='chat_usuario2', 
+                                 on_delete=models.CASCADE)
     fecha_inicio = models.DateTimeField(default=timezone.now)
     fecha_fin= models.DateTimeField(blank=True)
 
@@ -111,7 +115,8 @@ class Compra(models.Model):
         ("DOS", "Dos años"),
     ]
     garantia = models.CharField(max_length=3, choices=GARANTIA)
-    producto = models.ManyToManyField(Producto, through='CompraProducto', related_name='producto_compra')
+    producto = models.ManyToManyField(Producto, through='CompraProducto', 
+                                      related_name='producto_compra')
     
 
 class CompraProducto(models.Model):

@@ -327,7 +327,9 @@ def producto_buscar(request):
 
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            QSproductos = Producto.objects.select_related('vendedor').prefetch_related('categorias')
+            QSproductos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias'
+                                             ).exclude(vendedor=request.user)
 
             nombre = formulario.cleaned_data.get('buscarNombre')
             descripcion = formulario.cleaned_data.get('buscarDescripcion')
