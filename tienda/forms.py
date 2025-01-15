@@ -218,8 +218,8 @@ class BuscarCategoria(forms.Form):
 class ProductoForm(ModelForm):
     class Meta:
         model = Producto
-        fields = '__all__'
-        
+        fields = ['nombre','descripcion','precio','estado',
+                  'fecha_de_publicacion','categorias']
         labels = {
             'fecha_de_publicacion':('Fecha de publicación del producto')
         }

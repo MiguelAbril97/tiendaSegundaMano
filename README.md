@@ -1,3 +1,11 @@
+Preguntar a Jorge por:
+Revisar si lo que hice en la view de buscar productos esta bien
+
+Preguntar como hacer lo de incluir el usuario que publica el producto de forma automatica y pedir que me explique otra vez
+que ha hacho  el en el formulario generico (el kwargs y eso)
+
+Preguntar por que no funciona el menu desplegable
+
 1
 En nuestra aplicación debemos incluir al menos dos tipos de usuarios claramente diferenciados(No cuenta el usuario administrador) (1 puntos)
 

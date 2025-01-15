@@ -23,19 +23,23 @@
                     </form>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <ul class="list-group">
-                    <li class="list-group-item">Nombre de usuario: {{ request.user.username }}</li>
-                    <li class="list-group-item">Correo electrónico: {{ request.user.email }}</li>
-                    
-                    {% if request.user.rol == 2 %}
-                        <li class="list-group-item">Nombre: {{ request.user.comprador.nombre }}</li>
-                        <li class="list-group-item">Apellidos: {{ request.user.comprador.apellidos }}</li>
-                    {% elif request.user.rol == 1 %}
-                        <li class="list-group-item">Razón Social: {{ request.user.vendedor.razonSocial }}</li>
-                        <li class="list-group-item">Dirección Fiscal: {{ request.user.vendedor.direccionFiscal }}</li>
-                    {% endif %}
-                </ul>
-            {% endif %}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Inforación de usuario
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <p class="dropdown-item">Nombre de usuario: {{ request.user.username }}</p>
+                      <p class="dropdown-item">Correo electrónico: {{ request.user.email }}</p>
+                        {% if request.user.rol == 2 %}
+                            <p class="dropdown-item">Nombre: {{ request.user.comprador.nombre }}</p>
+                            <p class="dropdown-item">Apellidos: {{ request.user.comprador.apellidos }}</p>
+                        {% elif request.user.rol == 3 %}
+                            <p class="dropdown-item">Razón Social: {{ request.user.vendedor.razonSocial }}</p>
+                            <p class="dropdown-item">Dirección Fiscal: {{ request.user.vendedor.direccionFiscal }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
             
             </ul>
         </div>

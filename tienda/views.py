@@ -291,18 +291,26 @@ def categoria_editar (request, categoria_id):
 #View Producto CREAR
 @permission_required('tienda.add_producto')
 def producto_crear(request):
-    datosFormulario = None
-    
     if(request.method == 'POST'):
-        datosFormulario = request.POST
-    formulario = ProductoForm(datosFormulario)
+        formulario = ProductoForm(request.POST,request=request)
     
-    if(request.method == 'POST'):
-        producto_creado = producto_creado_modelo(formulario)
-        if(producto_creado):
-            messages.success(request, 'Producto añadido')
-            return redirect('lista_productos')
-
+        if formulario.is_valid():
+            try:
+                producto = Producto.objects.create(
+                    nombre=formulario.cleaned_data.get('nombre'),
+                    descripcion=formulario.cleaned_data.get('descripcion'),
+                    precio=formulario.cleaned_data.get('precio'),
+                    estado=formulario.cleaned_data.get('estado'),
+                    vendedor=request.user,
+                    fecha_de_publicacion=formulario.cleaned_data.get('fecha_de_publicacion'),
+                    categorias=formulario.cleaned_data.get('categorias')
+                )
+                producto.save()
+                return redirect('lista_productos')
+            except Exception as error:
+                    print(error)
+    else:
+        formulario = ProductoForm()
     return render(request, 'productos/crear.html',{'formulario':formulario})
 
 def producto_creado_modelo(formulario):
@@ -316,8 +324,7 @@ def producto_creado_modelo(formulario):
         except Exception as error:    
             print(error)
         
-        return producto_creado
-    
+    return producto_creado
 #Producto buscar
 
 @permission_required('tienda.view_producto')
