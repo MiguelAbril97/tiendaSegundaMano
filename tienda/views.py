@@ -334,10 +334,18 @@ def producto_buscar(request):
 
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            QSproductos = Producto.objects.select_related(
+            if(request.user.rol == 2):
+                QSproductos = Producto.objects.select_related(
                 'vendedor').prefetch_related('categorias'
-                                             ).exclude(vendedor=request.user)
-
+                                             ).exclude(producto_compra__comprador=request.user)
+            elif(request.user.rol == 3):
+                QSproductos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias'
+                                             ).filter(vendedor=request.user)
+            else:
+                QSproductos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias')
+                
             nombre = formulario.cleaned_data.get('buscarNombre')
             descripcion = formulario.cleaned_data.get('buscarDescripcion')
             precio = formulario.cleaned_data.get('buscarPrecioMax')

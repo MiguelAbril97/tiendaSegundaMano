@@ -1,8 +1,5 @@
 Preguntar a Jorge por:
-Revisar si lo que hice en la view de buscar productos esta bien
-
-Preguntar como hacer lo de incluir el usuario que publica el producto de forma automatica y pedir que me explique otra vez
-que ha hacho  el en el formulario generico (el kwargs y eso)
+Revisar si lo que hice en la view de buscar productos esta bien-> no está bien, no es lo mismo id usuario que id vendedor. -> Solucionado
 
 Preguntar por que no funciona el menu desplegable
 
@@ -24,11 +21,12 @@ Debemos hacer un registro de los distintos tipos de usuario, salvo el administra
 6   
 Debemos hacer un login y logout del usuario (1 punto)
 
-7
+7 (Hasta aqui hecho)
+Debe crearse una funcionalidad en algún formulario de búsqueda , que el contenido se filtre por el usuario que está logueado. (1 punto)
+
+8
 Debe crearse una funcionalidad en algún formulario , que el contenido de algún select ManyToMany o ManyToOne varie dependiendo del usuario que está logueado. (1 punto)
 
-8 (Hasta aqui hecho)
-Debe crearse una funcionalidad en algún formulario de búsqueda , que el contenido se filtre por el usuario que está logueado. (1 punto)
 
 9
 En los formularios de crear debe incluirse siempre el usuario que crea dicho registro por la sesión del usuario. (1 punto)
