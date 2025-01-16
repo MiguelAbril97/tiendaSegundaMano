@@ -274,7 +274,34 @@ class ProductoForm(ModelForm):
         
         return self.cleaned_data
     
-class BuscarProducto(forms.Form):
+class BuscarProducto(forms.Form): 
+    #Si la solicitud es de un comprador se mostrara el campo vendedor
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(BuscarProducto, self).__init__(*args, **kwargs)
+        if (self.request.user.rol == 2 or self.request.user.rol == 1):
+            buscarVendedor = forms.ModelMultipleChoiceField(
+                queryset=Usuario.objects.filter(producto_vendedor__isnull=False).distinct(),
+                required=False,
+                label="Vendedor"
+            )
+            buscarCategorias = forms.ModelMultipleChoiceField(
+                queryset=Categoria.objects.prefetch_related(
+                    Prefetch('categorias')).filter(categorias__isnull=False).distinct(),
+                required=False,
+                widget=forms.CheckboxSelectMultiple(),
+                label="Categorías"
+                 )
+        else:
+            buscarCategorias = forms.ModelMultipleChoiceField(
+                queryset=Categoria.objects.filter(
+                    producto__vendedor=self.request.user
+                ).distinct(),
+                required=False,
+                widget=forms.CheckboxSelectMultiple(),
+                label="Categorías"
+            )
     buscarNombre = forms.CharField(required=False, label="Nombre")
     buscarDescripcion = forms.CharField(required=False,label="Descripción")
     buscarPrecioMax = forms.DecimalField(
@@ -283,23 +310,19 @@ class BuscarProducto(forms.Form):
         min_value=0,
         widget=forms.NumberInput(attrs={'min': '0'})
     )
-    buscarEstado = forms.MultipleChoiceField(choices=Producto.ESTADOS,
-                                       required=False,
-                                       widget=forms.CheckboxSelectMultiple()
-                                       )
-    buscarVendedor = forms.ModelMultipleChoiceField(queryset= Usuario.objects.filter(producto_vendedor__isnull=False).distinct()
-                                                    , required=False)
-    buscarFecha = forms.DateField(label="Fecha de Publicación",
-                                  required=False,
-                                  widget= forms.DateInput(format="%Y-%m-%d", 
-                                                          attrs={"type": "date"},
-                                                          )
-                                  )
-    buscarCategorias = forms.ModelMultipleChoiceField(queryset= Categoria.objects.prefetch_related(
-        Prefetch('categorias')).filter(categorias__isnull=False).distinct(), 
-                                         required=False,
-                                         widget=forms.CheckboxSelectMultiple()
-                                         )
+    buscarEstado = forms.MultipleChoiceField(
+        choices=Producto.ESTADOS,
+        required=False,
+        widget=forms.CheckboxSelectMultiple(),
+        label="Estado"
+    )
+    buscarFecha = forms.DateField(
+        label="Fecha de Publicación",
+        required=False,
+        widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
+    )
+    
+    
     def clean(self):
  
         #Validamos con el modelo actual
@@ -308,31 +331,43 @@ class BuscarProducto(forms.Form):
         descripcion = self.cleaned_data.get('buscarDescripcion')
         precio = self.cleaned_data.get('buscarPrecioMax')
         estado = self.cleaned_data.get('buscarEstado')
-        vendedor = self.cleaned_data.get('buscarVendedor')
+
+        if ('buscarVendedor' in self.cleaned_data):
+            vendedor = self.cleaned_data.get('buscarVendedor')
+
         fecha = self.cleaned_data.get('buscarFecha')
         categoria = self.cleaned_data.get('buscarCategorias')
         
         #Compruebo que no deja todo vacio y la longitud de los campos precio y nombre
-        if(nombre =="" 
+        if(nombre == "" 
            and descripcion==""
            and precio is None
            and len(estado) == 0 
-           and len(vendedor)==0 
            and fecha is None 
            and len(categoria)==0
            ):
-            error_msg = "Debe introducir al menos un valor en un campo del formulario"
-            self.add_error('buscarNombre', error_msg)
-            self.add_error('buscarDescripcion', error_msg)
-            self.add_error('buscarPrecioMax', error_msg)
-            self.add_error('buscarEstado', error_msg)
-            self.add_error('buscarVendedor', error_msg)
-            self.add_error('buscarFecha', error_msg)
-            self.add_error('buscarCategorias', error_msg)
-        
+            if(vendedor and len(vendedor)==0):
+                error_msg = "Debe introducir al menos un valor en un campo del formulario"
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarNombre', error_msg)
+                self.add_error('buscarDescripcion', error_msg)
+                self.add_error('buscarPrecioMax', error_msg)
+                self.add_error('buscarEstado', error_msg)
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarFecha', error_msg)
+                self.add_error('buscarCategorias', error_msg)
+            else:
+                error_msg = "Debe introducir al menos un valor en un campo del formulario"
+                self.add_error('buscarNombre', error_msg)
+                self.add_error('buscarDescripcion', error_msg)
+                self.add_error('buscarPrecioMax', error_msg)
+                self.add_error('buscarEstado', error_msg)
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarFecha', error_msg)
+                self.add_error('buscarCategorias', error_msg)
         else:
             
-            if(precio is not None and len(precio) > 10):
+            if(precio is not None and precio > 9999999999):
                 self.add_error('buscarPrecioMax', 'Introduzca un precio maximo más bajo')
             if(nombre != "" and len(nombre) > 100):
                 self.add_error('buscarNombre', 'Introduzca un nombre más corto')

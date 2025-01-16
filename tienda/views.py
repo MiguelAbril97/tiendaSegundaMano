@@ -292,7 +292,7 @@ def categoria_editar (request, categoria_id):
 @permission_required('tienda.add_producto')
 def producto_crear(request):
     if(request.method == 'POST'):
-        formulario = ProductoForm(request.POST,request=request)
+        formulario = ProductoForm(request.POST)
     
         if formulario.is_valid():
             try:
@@ -330,7 +330,7 @@ def producto_creado_modelo(formulario):
 @permission_required('tienda.view_producto')
 def producto_buscar(request):
     if(len(request.GET) > 0):
-        formulario = BuscarProducto(request.GET)
+        formulario = BuscarProducto(request.GET,request=request)
 
         if formulario.is_valid():
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
@@ -396,7 +396,7 @@ def producto_buscar(request):
                           { 'mensaje': mensaje_busqueda, 'productos': productos})
 
     else:
-        formulario = BuscarProducto(None)
+        formulario = BuscarProducto(None,request=request)
 
     return render(request, 'productos/buscar.html', {'formulario': formulario})
 

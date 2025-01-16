@@ -1,7 +1,8 @@
 Preguntar a Jorge por:
 Revisar si lo que hice en la view de buscar productos esta bien-> no está bien, no es lo mismo id usuario que id vendedor. -> Solucionado
 
-Preguntar por que no funciona el menu desplegable
+Preguntar para arreglar que al fallar el formulario de registro 
+no desaparezcan los campos variables
 
 1
 En nuestra aplicación debemos incluir al menos dos tipos de usuarios claramente diferenciados(No cuenta el usuario administrador) (1 puntos)

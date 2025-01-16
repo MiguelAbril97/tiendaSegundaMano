@@ -21,9 +21,11 @@
         {% bootstrap_field formulario.buscarEstado show_label=True %}
     </div>
     
+    {% if request.user.id == 1 or request.user.id == 2 %}
     <div class="mb-4">
         {% bootstrap_field formulario.buscarVendedor show_label=True %}
     </div>
+    {% endif %}
     
     <div class="mb-4">
         {% bootstrap_field formulario.buscarFecha show_label=True %}
