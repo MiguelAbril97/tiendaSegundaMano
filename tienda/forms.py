@@ -236,35 +236,17 @@ class ProductoForm(ModelForm):
         descripcion = self.cleaned_data.get('descripcion')
         precio = self.cleaned_data.get('precio')
         estado = self.cleaned_data.get('estado')
-        vendedor = self.cleaned_data.get('vendedor')
+      #  vendedor = self.cleaned_data.get('vendedor')
         fecha_de_publicacion = self.cleaned_data.get('fecha_de_publicacion')
         categorias = self.cleaned_data.get('categorias')
              
         
         
-        #Tuve que hacer esto con las fechas porque ,no se si por el widget
-        #,porque el modelo es datetime, o por que lo que sea no me dejaba comparar 
-        # la fecha introducida con el objeto hoy. Ponia que uno era tipo date y
-        # y otro date.datetime (o algo asi). Estuve intentando arreglarlo por mi cuenta y buscando 
-        # por stack overflow y no conseguia dar con el por que
-        # Al final tire de chatgpt y me hizo el apaño
-        
-        #En este caso, al no haber problema con que haya nombres o cualquier otro
-        #campo repetido puedo reutilizar el formulario para editar sin problema
-        if fecha_de_publicacion:
-            if isinstance(fecha_de_publicacion, datetime.datetime):
-                fecha_de_publicacion = fecha_de_publicacion.date()
-            
-            hoy = date.today()
-            if hoy > fecha_de_publicacion:
-                self.add_error('fecha_de_publicacion', 
-                               'La fecha de publicación debe ser mayor o igual a la de hoy')
-        
-        #Me aseguro de que rellene todos los campos que sean esenciales
-        
-        if(vendedor == None):
-            self.add_error('vendedor', 'Indique un vendedor')
-        
+   
+    
+      #  if(vendedor == None):
+       #     self.add_error('vendedor', 'Indique un vendedor')
+      
         if(estado == None):
             self.add_error('estado', 'Indique un estado')
         
@@ -275,33 +257,7 @@ class ProductoForm(ModelForm):
         return self.cleaned_data
     
 class BuscarProducto(forms.Form): 
-    #Si la solicitud es de un comprador se mostrara el campo vendedor
 
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop("request")
-        super(BuscarProducto, self).__init__(*args, **kwargs)
-        if (self.request.user.rol == 2 or self.request.user.rol == 1):
-            buscarVendedor = forms.ModelMultipleChoiceField(
-                queryset=Usuario.objects.filter(producto_vendedor__isnull=False).distinct(),
-                required=False,
-                label="Vendedor"
-            )
-            buscarCategorias = forms.ModelMultipleChoiceField(
-                queryset=Categoria.objects.prefetch_related(
-                    Prefetch('categorias')).filter(categorias__isnull=False).distinct(),
-                required=False,
-                widget=forms.CheckboxSelectMultiple(),
-                label="Categorías"
-                 )
-        else:
-            buscarCategorias = forms.ModelMultipleChoiceField(
-                queryset=Categoria.objects.filter(
-                    producto__vendedor=self.request.user
-                ).distinct(),
-                required=False,
-                widget=forms.CheckboxSelectMultiple(),
-                label="Categorías"
-            )
     buscarNombre = forms.CharField(required=False, label="Nombre")
     buscarDescripcion = forms.CharField(required=False,label="Descripción")
     buscarPrecioMax = forms.DecimalField(
@@ -321,6 +277,36 @@ class BuscarProducto(forms.Form):
         required=False,
         widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
     )
+
+
+    #Si la solicitud es de un comprador se mostrara el campo vendedor
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop("request")
+        super(BuscarProducto, self).__init__(*args, **kwargs)
+        if (self.request.user.rol == 2 or self.request.user.rol == 1):
+            self.fields["buscarVendedor"] = forms.ModelMultipleChoiceField(
+                queryset=Usuario.objects.filter(producto_vendedor__isnull=False).distinct(),
+                required=False,
+                label="Vendedor"
+            )
+            self.fields["buscarCategorias"] = forms.ModelMultipleChoiceField(
+                queryset=Categoria.objects.prefetch_related(
+                    Prefetch('categorias')).filter(categorias__isnull=False).distinct(),
+                required=False,
+                widget=forms.CheckboxSelectMultiple(),
+                label="Categorías"
+                )
+        else:
+            categorias = Categoria.objects.filter(
+                    productocategoria__producto__vendedor=self.request.user
+                ).only("categorias").distinct()
+            self.fields["buscarCategorias"] = forms.ModelMultipleChoiceField(
+                queryset= categorias,
+                required=False,
+                widget=forms.CheckboxSelectMultiple(),
+                label="Categorías"
+            )
+   
     
     
     def clean(self):

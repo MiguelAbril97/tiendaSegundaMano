@@ -302,9 +302,9 @@ def producto_crear(request):
                     precio=formulario.cleaned_data.get('precio'),
                     estado=formulario.cleaned_data.get('estado'),
                     vendedor=request.user,
-                    fecha_de_publicacion=formulario.cleaned_data.get('fecha_de_publicacion'),
-                    categorias=formulario.cleaned_data.get('categorias')
+                    fecha_de_publicacion=formulario.cleaned_data.get('fecha_de_publicacion'),    
                 )
+                producto.categorias.set(formulario.cleaned_data.get('categorias'))
                 producto.save()
                 return redirect('lista_productos')
             except Exception as error:

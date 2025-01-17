@@ -1,8 +1,4 @@
 Preguntar a Jorge por:
-Revisar si lo que hice en la view de buscar productos esta bien-> no está bien, no es lo mismo id usuario que id vendedor. -> Solucionado
-
-Preguntar para arreglar que al fallar el formulario de registro 
-no desaparezcan los campos variables
 
 1
 En nuestra aplicación debemos incluir al menos dos tipos de usuarios claramente diferenciados(No cuenta el usuario administrador) (1 puntos)
@@ -22,10 +18,10 @@ Debemos hacer un registro de los distintos tipos de usuario, salvo el administra
 6   
 Debemos hacer un login y logout del usuario (1 punto)
 
-7 (Hasta aqui hecho)
+7 
 Debe crearse una funcionalidad en algún formulario de búsqueda , que el contenido se filtre por el usuario que está logueado. (1 punto)
 
-8
+8 (Hasta aqui hecho)
 Debe crearse una funcionalidad en algún formulario , que el contenido de algún select ManyToMany o ManyToOne varie dependiendo del usuario que está logueado. (1 punto)
 
 
