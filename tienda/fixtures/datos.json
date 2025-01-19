@@ -1,0 +1,1210 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2025-01-19T16:41:45.565",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "1",
+        "object_repr": "Compradores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2025-01-19T16:43:11.284",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "Vendedores",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2025-01-19T16:43:21.036",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "Vendedores",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2025-01-19T16:53:07.815",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "1",
+        "object_repr": "Categoria_1",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2025-01-19T16:53:24.842",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "2",
+        "object_repr": "Categoria_2",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2025-01-19T16:53:44.256",
+        "user": 1,
+        "content_type": 6,
+        "object_id": "3",
+        "object_repr": "Categoria_3",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2025-01-19T17:04:56.989",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "2",
+        "object_repr": "Vendedores",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add categoria",
+        "content_type": 6,
+        "codename": "add_categoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change categoria",
+        "content_type": 6,
+        "codename": "change_categoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete categoria",
+        "content_type": 6,
+        "codename": "delete_categoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view categoria",
+        "content_type": 6,
+        "codename": "view_categoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 7,
+        "codename": "add_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 7,
+        "codename": "change_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 7,
+        "codename": "delete_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 7,
+        "codename": "view_usuario"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add chat",
+        "content_type": 8,
+        "codename": "add_chat"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change chat",
+        "content_type": 8,
+        "codename": "change_chat"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete chat",
+        "content_type": 8,
+        "codename": "delete_chat"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view chat",
+        "content_type": 8,
+        "codename": "view_chat"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add compra",
+        "content_type": 9,
+        "codename": "add_compra"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change compra",
+        "content_type": 9,
+        "codename": "change_compra"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete compra",
+        "content_type": 9,
+        "codename": "delete_compra"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view compra",
+        "content_type": 9,
+        "codename": "view_compra"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add comprador",
+        "content_type": 10,
+        "codename": "add_comprador"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change comprador",
+        "content_type": 10,
+        "codename": "change_comprador"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete comprador",
+        "content_type": 10,
+        "codename": "delete_comprador"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view comprador",
+        "content_type": 10,
+        "codename": "view_comprador"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add envio",
+        "content_type": 11,
+        "codename": "add_envio"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change envio",
+        "content_type": 11,
+        "codename": "change_envio"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete envio",
+        "content_type": 11,
+        "codename": "delete_envio"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view envio",
+        "content_type": 11,
+        "codename": "view_envio"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add producto",
+        "content_type": 12,
+        "codename": "add_producto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change producto",
+        "content_type": 12,
+        "codename": "change_producto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete producto",
+        "content_type": 12,
+        "codename": "delete_producto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view producto",
+        "content_type": 12,
+        "codename": "view_producto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add muebles",
+        "content_type": 13,
+        "codename": "add_muebles"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change muebles",
+        "content_type": 13,
+        "codename": "change_muebles"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete muebles",
+        "content_type": 13,
+        "codename": "delete_muebles"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view muebles",
+        "content_type": 13,
+        "codename": "view_muebles"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add consolas",
+        "content_type": 14,
+        "codename": "add_consolas"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change consolas",
+        "content_type": 14,
+        "codename": "change_consolas"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete consolas",
+        "content_type": 14,
+        "codename": "delete_consolas"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view consolas",
+        "content_type": 14,
+        "codename": "view_consolas"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add compra producto",
+        "content_type": 15,
+        "codename": "add_compraproducto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change compra producto",
+        "content_type": 15,
+        "codename": "change_compraproducto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete compra producto",
+        "content_type": 15,
+        "codename": "delete_compraproducto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view compra producto",
+        "content_type": 15,
+        "codename": "view_compraproducto"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add calzado",
+        "content_type": 16,
+        "codename": "add_calzado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change calzado",
+        "content_type": 16,
+        "codename": "change_calzado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete calzado",
+        "content_type": 16,
+        "codename": "delete_calzado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view calzado",
+        "content_type": 16,
+        "codename": "view_calzado"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add producto categoria",
+        "content_type": 17,
+        "codename": "add_productocategoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change producto categoria",
+        "content_type": 17,
+        "codename": "change_productocategoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete producto categoria",
+        "content_type": 17,
+        "codename": "delete_productocategoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view producto categoria",
+        "content_type": 17,
+        "codename": "view_productocategoria"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add valoracion",
+        "content_type": 18,
+        "codename": "add_valoracion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change valoracion",
+        "content_type": 18,
+        "codename": "change_valoracion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete valoracion",
+        "content_type": 18,
+        "codename": "delete_valoracion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view valoracion",
+        "content_type": 18,
+        "codename": "view_valoracion"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+        "name": "Can add vendedor",
+        "content_type": 19,
+        "codename": "add_vendedor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+        "name": "Can change vendedor",
+        "content_type": 19,
+        "codename": "change_vendedor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+        "name": "Can delete vendedor",
+        "content_type": 19,
+        "codename": "delete_vendedor"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+        "name": "Can view vendedor",
+        "content_type": 19,
+        "codename": "view_vendedor"
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "Compradores",
+        "permissions": [
+            24,
+            33,
+            36,
+            40,
+            60,
+            48,
+            68,
+            28,
+            76
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+        "name": "Vendedores",
+        "permissions": [
+            24,
+            40,
+            60,
+            45,
+            48,
+            68,
+            76
+        ]
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "tienda",
+        "model": "categoria"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "tienda",
+        "model": "usuario"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "tienda",
+        "model": "chat"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "tienda",
+        "model": "compra"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "tienda",
+        "model": "comprador"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "tienda",
+        "model": "envio"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "tienda",
+        "model": "producto"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "tienda",
+        "model": "muebles"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "tienda",
+        "model": "consolas"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "tienda",
+        "model": "compraproducto"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "tienda",
+        "model": "calzado"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "tienda",
+        "model": "productocategoria"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "tienda",
+        "model": "valoracion"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+        "app_label": "tienda",
+        "model": "vendedor"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "j2jthtdzl8jgiuq6diin1dhag4gpkrof",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSEw8igu3fsNBGamUjWQlHZl_HfbpAvd3nPOfYuY1qXEtfMcJxIXYcXpd8sJn1x3QI9U701iq8s8Zbkr8qBd3hrx63q4fwcl9bLVniyjD2ZwECwTohoVgyHUWakMjoLRZ9Ahe9bKaRw2BD4xICiPI4rPF-QqN_U:1tZXwA:CU40laxVgvdyuZVNz3RAstZploA5NYHYoxDlmQYfl84",
+        "expire_date": "2025-02-02T17:14:10.246"
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$kRuemLlMqYX0wTJAfy5dYN$dnV8wVihSvcP/2ZoF173qp65GZGOqUrrpYADg5llGzM=",
+        "last_login": "2025-01-19T17:03:58.712",
+        "is_superuser": true,
+        "username": "usuario",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-01-19T16:34:28.849",
+        "rol": 1,
+        "telefono": "",
+        "direccion": "",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$axtyPb5uqDh59qDjCED89U$ZG3fDcJwIsvR8FyS+MpZZzXKymtolkL4JXmzszygpRc=",
+        "last_login": "2025-01-19T16:44:34.816",
+        "is_superuser": false,
+        "username": "Comprador",
+        "first_name": "",
+        "last_name": "",
+        "email": "comprador@gmai.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-19T16:44:33.891",
+        "rol": 2,
+        "telefono": "777777777",
+        "direccion": "ejemplo",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$5MHOOJlmyNITtHrbuQTzOA$1Hy0GOrDUVjkeoLfF0JH3PgfHocyn73TE9UzpSDlw7M=",
+        "last_login": "2025-01-19T16:50:35.316",
+        "is_superuser": false,
+        "username": "Comprador_2",
+        "first_name": "",
+        "last_name": "",
+        "email": "comprador_2@gmai.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-19T16:50:34.462",
+        "rol": 2,
+        "telefono": "999999999",
+        "direccion": "ojhpohighui",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Dx8g67kgb1UqB28n8pnrAS$RoWiObqjbMXF8ELXwFezel/cz7RJSJJoaYtOJDcm6aY=",
+        "last_login": "2025-01-19T17:13:11.632",
+        "is_superuser": false,
+        "username": "vendedor",
+        "first_name": "",
+        "last_name": "",
+        "email": "vendedor@vendedor.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-19T16:59:01.151",
+        "rol": 3,
+        "telefono": "768888888",
+        "direccion": "rgrghy",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Fo58nJtwEAT75WZiDMVJFZ$TmVBInow4E8B3PnN2KkYCuU5cRPBMqeNFfFUap43MWQ=",
+        "last_login": "2025-01-19T17:14:10.109",
+        "is_superuser": false,
+        "username": "vendedor2",
+        "first_name": "",
+        "last_name": "",
+        "email": "vendedor2@vendedor.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-19T17:14:09.250",
+        "rol": 3,
+        "telefono": "333333333",
+        "direccion": "edpnj",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.vendedor",
+    "pk": 1,
+    "fields": {
+        "usuario": 4,
+        "razonSocial": "WTT",
+        "direccionFiscal": "2t4t4"
+    }
+},
+{
+    "model": "tienda.vendedor",
+    "pk": 2,
+    "fields": {
+        "usuario": 5,
+        "razonSocial": "fqfq",
+        "direccionFiscal": "QF3"
+    }
+},
+{
+    "model": "tienda.comprador",
+    "pk": 1,
+    "fields": {
+        "usuario": 2,
+        "nombre": "comprador",
+        "apellidos": "comprador"
+    }
+},
+{
+    "model": "tienda.comprador",
+    "pk": 2,
+    "fields": {
+        "usuario": 3,
+        "nombre": "comprador",
+        "apellidos": "comprador"
+    }
+},
+{
+    "model": "tienda.categoria",
+    "pk": 1,
+    "fields": {
+        "nombre": "Categoria_1",
+        "descripcion": "Descripcion de ejemplo",
+        "existecias": 3,
+        "destacada": false
+    }
+},
+{
+    "model": "tienda.categoria",
+    "pk": 2,
+    "fields": {
+        "nombre": "Categoria_2",
+        "descripcion": "Descripcion de ejemplo 2",
+        "existecias": 10,
+        "destacada": false
+    }
+},
+{
+    "model": "tienda.categoria",
+    "pk": 3,
+    "fields": {
+        "nombre": "Categoria_3",
+        "descripcion": "Hola",
+        "existecias": 15,
+        "destacada": true
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 1,
+    "fields": {
+        "nombre": "Producto de ejemplo 1",
+        "descripcion": "iugigyguipuihoìjo`jo`",
+        "precio": "23.00",
+        "estado": "CN",
+        "vendedor": 4,
+        "fecha_de_publicacion": "2025-01-19T00:00:00"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 2,
+    "fields": {
+        "nombre": "Producto de ejemplo 2",
+        "descripcion": "ff",
+        "precio": "54.00",
+        "estado": "U",
+        "vendedor": 4,
+        "fecha_de_publicacion": "2025-01-19T00:00:00"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 3,
+    "fields": {
+        "nombre": "Producto de ejemplo 3",
+        "descripcion": "ohiuhoi",
+        "precio": "34.00",
+        "estado": "MU",
+        "vendedor": 5,
+        "fecha_de_publicacion": "2025-01-19T00:00:00"
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 1,
+    "fields": {
+        "producto": 1,
+        "categoria": 1
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 2,
+    "fields": {
+        "producto": 2,
+        "categoria": 3
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 3,
+    "fields": {
+        "producto": 3,
+        "categoria": 2
+    }
+}
+]
