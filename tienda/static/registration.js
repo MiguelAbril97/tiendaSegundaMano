@@ -1,4 +1,6 @@
 window.addEventListener('load',inicializar);
+window.addEventListener('load',mostrar);
+
 var nombre, apellidos, razon, dirFiscal;
 var rol;
 function inicializar(){

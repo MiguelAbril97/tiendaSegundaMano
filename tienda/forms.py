@@ -279,7 +279,8 @@ class BuscarProducto(forms.Form):
     )
 
 
-    #Si la solicitud es de un comprador se mostrara el campo vendedor
+    #Si la sesion es de un comprador o de admin se mostrara el campo vendedor
+    #Si es de un vendedor solo se mostraran las categorias de sus productos
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
         super(BuscarProducto, self).__init__(*args, **kwargs)
@@ -360,7 +361,7 @@ class BuscarProducto(forms.Form):
 
         
     
-
+"""
 #CRUD CALZADO 
 class CalzadoForm(ModelForm):
     class Meta:
@@ -704,8 +705,5 @@ class BuscarConsola(forms.Form):
         if (memoria != "" and not memoria.isdigit()):
             raise forms.ValidationError("El campo memoria debe contener solo números.")
 
-        
-
-
-
         return self.cleaned_data
+"""

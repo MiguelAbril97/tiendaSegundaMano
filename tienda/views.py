@@ -28,8 +28,17 @@ def categoria_listar(request):
     return render(request, 'categoria/lista.html',{'categorias':categorias})
 
 def listar_productos (request):
-    productos = Producto.objects.select_related("vendedor").prefetch_related(
-        "categorias", Prefetch('producto_compra')).all()
+    if(request.user.rol == 2):
+        productos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias'
+                                             ).exclude(producto_compra__comprador=request.user)
+    elif(request.user.rol == 3):
+        productos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias'
+                                             ).filter(vendedor=request.user)
+    else:
+        productos = Producto.objects.select_related(
+                'vendedor').prefetch_related('categorias')
     total = productos.aggregate(Count('id'))
     return render(request, "productos/lista.html", {"productos":productos, 'total':total})
 
@@ -215,7 +224,7 @@ def crear_categoria_modelo(formulario):
         return categoria_creada
 
 #Categoria buscar
-@permission_required('tienda.vie_categoria')
+@permission_required('tienda.view_categoria')
 def categoria_buscar(request):
     if(len(request.GET) > 0):
         formulario = BuscarCategoria(request.GET)
@@ -313,18 +322,6 @@ def producto_crear(request):
         formulario = ProductoForm()
     return render(request, 'productos/crear.html',{'formulario':formulario})
 
-def producto_creado_modelo(formulario):
-    producto_creado = False
-    
-    if(formulario.is_valid()):
-        try:
-            formulario.save()
-            producto_creado = True
-        
-        except Exception as error:    
-            print(error)
-        
-    return producto_creado
 #Producto buscar
 
 @permission_required('tienda.view_producto')
@@ -425,7 +422,7 @@ def producto_editar (request, producto_id):
                 print(error)
     return render(request, 'productos/actualizar.html',{"formulario":formulario,"producto":producto}) 
 
-
+"""
 #VIEW DE CALZADO CREAR
 @permission_required('tienda.add_calzado')
 def calzado_crear(request):
@@ -724,7 +721,7 @@ def consola_editar(request, consola_id):
                 print(error)
     
     return render(request, 'consolas/actualizar.html', {"formulario": formulario, "consola": consola})
-
+"""
 
 ##Todos los delete
 @permission_required('tienda.delete_user')

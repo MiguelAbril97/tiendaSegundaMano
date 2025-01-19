@@ -28,6 +28,17 @@
         </div>
         <div class="col-md-3">
             <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">
+                <a class="nav-link" href="{% url 'producto_crear' %}">Crear producto</a>
+                </h5>
+            </div>
+            </div>
+        </div>
+        {% if request.user.rol == 1 %}
+        {% comment %}
+        <div class="col-md-3">
+            <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">
                         <a class="nav-link" href="{% url 'calzado_buscar' %}">Buscar calzado</a>
@@ -53,15 +64,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">
-                <a class="nav-link" href="{% url 'producto_crear' %}">Crear producto</a>
-                </h5>
-            </div>
-            </div>
-        </div>
+        {% endcomment %}
         <div class="col-md-3">
             <div class="card text-center">
             <div class="card-body">
@@ -71,5 +74,6 @@
             </div>
             </div>
         </div>
+        {% endif %}
     </div>
 {% endblock %}
