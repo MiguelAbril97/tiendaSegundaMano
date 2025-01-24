@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [env("ALLOWED_HOSTS"),"127.0.0.1"]
 INTERNAL_IPS = ["127.0.0.1"]
 
 OAUTH2_PROVIDER = {
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Acceso a los grupos'}
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Acceso a los grupos'},
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 360000000
 }
 
 REST_FRAMEWORK = {
