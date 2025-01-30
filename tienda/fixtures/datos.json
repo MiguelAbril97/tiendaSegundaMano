@@ -1221,6 +1221,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "17h7j58iqg5qz5qdgu5joe6qs9cp0qxm",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2pCBAlNcuu8ZCDCjVA0kpV0Z765NutDtf-_9lwhxW0vYOi9hJnEWXpx-txTzg-sO6B7rrcnc6rrMSe6KPGiXUyN-Xg7376DEXr41mqRMHiyq7GCwnjQ5o01Mjnm0wFpriEob8EBXZEAHgETks0WLYxbvD7xBNt8:1tdPeb:2z2-unqHKOJB9R7Th-W8dbqD4FtkBgXh2kb5tjAHy-I",
+        "expire_date": "2025-02-13T09:12:01.133"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "4d3uhndj7ig1ssjvy9aoep9v58aautk4",
     "fields": {
         "session_data": ".eJxVjMEOwiAQRP-FsyEg20I9evcbyO6ySNXQpLQn47_bJj1oMqd5b-atIq5LiWuTOY5JXZRVp9-OkJ9Sd5AeWO-T5qku80h6V_RBm75NSV7Xw_07KNjKtu6I0Q4WiUxKnQvkEQZvBNhkH4zl3rmzbMmOQXKADGghkwk9AlBWny_zEzhO:1td7BR:G1-ucFrHreAujYBSeF7iljILMPl9kI8a5HuusWdj1b4",
@@ -1443,6 +1451,52 @@
     }
 },
 {
+    "model": "tienda.usuario",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$gmHszO4eztPOUxzXvz10Rk$dmHSBoHXNgCWXFRGefXM5wgmYVTFv5a8V2u7mSKnTyo=",
+        "last_login": "2025-01-30T09:10:42.293",
+        "is_superuser": false,
+        "username": "Jorge_comprador",
+        "first_name": "",
+        "last_name": "",
+        "email": "direccion@ejemplo.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-30T09:10:41.649",
+        "rol": 2,
+        "telefono": "123456789",
+        "direccion": "Direccion de ejemplo",
+        "groups": [
+            1
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "tienda.usuario",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$L6814vNTGev5pN4VHF0XoO$7PgKmcoagW31BsLuvFT5BMIsRGERgtwozZysPSyLvs0=",
+        "last_login": "2025-01-30T09:12:01.007",
+        "is_superuser": false,
+        "username": "Jorge_vendedor",
+        "first_name": "",
+        "last_name": "",
+        "email": "direccion@ejemplo2.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-30T09:12:00.488",
+        "rol": 3,
+        "telefono": "123456677",
+        "direccion": "Direccion de ejemplo",
+        "groups": [
+            2
+        ],
+        "user_permissions": []
+    }
+},
+{
     "model": "tienda.vendedor",
     "pk": 1,
     "fields": {
@@ -1470,6 +1524,15 @@
     }
 },
 {
+    "model": "tienda.vendedor",
+    "pk": 4,
+    "fields": {
+        "usuario": 9,
+        "razonSocial": "Direccion",
+        "direccionFiscal": ""
+    }
+},
+{
     "model": "tienda.comprador",
     "pk": 1,
     "fields": {
@@ -1494,6 +1557,15 @@
         "usuario": 6,
         "nombre": "Nombre",
         "apellidos": "Apellido"
+    }
+},
+{
+    "model": "tienda.comprador",
+    "pk": 4,
+    "fields": {
+        "usuario": 8,
+        "nombre": "Jorge",
+        "apellidos": "Profe"
     }
 },
 {
