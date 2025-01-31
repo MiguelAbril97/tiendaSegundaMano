@@ -255,6 +255,9 @@ class ProductoForm(ModelForm):
            
         
         return self.cleaned_data
+
+class BusquedaProductoSimple(forms.Form):
+    textoBusqueda = forms.CharField(required=True)
     
 class BuscarProducto(forms.Form): 
 
@@ -277,10 +280,19 @@ class BuscarProducto(forms.Form):
         required=False,
         widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
     )
-
+    buscarCategorias = forms.CharField(
+        label= 'Categorías',
+        required=False,
+    )
+    buscarVendedor = forms.ModelMultipleChoiceField(
+                queryset=Usuario.objects.filter(producto_vendedor__isnull=False).distinct(),
+                required=False,
+                label="Vendedor"
+            )
 
     #Si la sesion es de un comprador o de admin se mostrara el campo vendedor
     #Si es de un vendedor solo se mostraran las categorias de sus productos
+    """
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop("request")
         super(BuscarProducto, self).__init__(*args, **kwargs)
@@ -307,6 +319,7 @@ class BuscarProducto(forms.Form):
                 widget=forms.CheckboxSelectMultiple(),
                 label="Categorías"
             )
+    """
    
     
     
