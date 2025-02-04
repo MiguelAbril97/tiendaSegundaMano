@@ -258,6 +258,54 @@ class ProductoForm(ModelForm):
 
 class BusquedaProductoSimple(forms.Form):
     textoBusqueda = forms.CharField(required=True)
+
+class BuscarProductoAPI(forms.Form):
+    buscarNombre = forms.CharField(required=False, label="Nombre")
+    buscarDescripcion = forms.CharField(required=False, label="Descripción")
+    buscarPrecioMax = forms.DecimalField(
+        required=False,
+        label="Precio Máximo",
+        min_value=0,
+        widget=forms.NumberInput(attrs={'min': '0'})
+    )
+    ESTADOS = [
+        ("CN", "Como nuevo"),
+        ("U", "Usado"),
+        ("MU", "Muy usado"),
+    ]
+    buscarEstado = forms.MultipleChoiceField(
+        choices=ESTADOS,
+        required=False,
+        widget=forms.CheckboxSelectMultiple(),
+        label="Estado"
+    )
+    buscarFecha = forms.DateField(
+        label="Fecha de Publicación",
+        required=False,
+        widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
+    )
+    buscarCategorias = forms.CharField(
+        label='Categorías',
+        required=False,
+    )
+    buscarVendedor = forms.CharField(
+        label="Vendedor",
+        required=False,
+    )
+
+    def clean(self):
+        super().clean()
+        nombre = self.cleaned_data.get('buscarNombre')
+        descripcion = self.cleaned_data.get('buscarDescripcion')
+        precio = self.cleaned_data.get('buscarPrecioMax')
+        estado = self.cleaned_data.get('buscarEstado')
+        vendedor = self.cleaned_data.get('buscarVendedor')
+        fecha = self.cleaned_data.get('buscarFecha')
+        categoria = self.cleaned_data.get('buscarCategorias')
+
+        # Add any additional validation logic here if needed
+
+        return self.cleaned_data
     
 class BuscarProducto(forms.Form): 
 
@@ -289,6 +337,50 @@ class BuscarProducto(forms.Form):
                 required=False,
                 label="Vendedor"
             )
+    def clean(self):
+        super().clean()
+        nombre = self.cleaned_data.get('buscarNombre')
+        descripcion = self.cleaned_data.get('buscarDescripcion')
+        precio = self.cleaned_data.get('buscarPrecioMax')
+        estado = self.cleaned_data.get('buscarEstado')
+        vendedor = self.cleaned_data.get('buscarVendedor')
+        fecha = self.cleaned_data.get('buscarFecha')
+        categoria = self.cleaned_data.get('buscarCategorias')
+
+        if(nombre == "" 
+           and descripcion==""
+           and precio is None
+           and len(estado) == 0 
+           and fecha is None 
+           and len(categoria)==0
+           ):
+            if(vendedor and len(vendedor)==0):
+                error_msg = "Debe introducir al menos un valor en un campo del formulario"
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarNombre', error_msg)
+                self.add_error('buscarDescripcion', error_msg)
+                self.add_error('buscarPrecioMax', error_msg)
+                self.add_error('buscarEstado', error_msg)
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarFecha', error_msg)
+                self.add_error('buscarCategorias', error_msg)
+            else:
+                error_msg = "Debe introducir al menos un valor en un campo del formulario"
+                self.add_error('buscarNombre', error_msg)
+                self.add_error('buscarDescripcion', error_msg)
+                self.add_error('buscarPrecioMax', error_msg)
+                self.add_error('buscarEstado', error_msg)
+                self.add_error('buscarVendedor', error_msg)
+                self.add_error('buscarFecha', error_msg)
+                self.add_error('buscarCategorias', error_msg)
+        else:
+            
+            if(precio is not None and precio > 9999999999):
+                self.add_error('buscarPrecioMax', 'Introduzca un precio maximo más bajo')
+            if(nombre != "" and len(nombre) > 100):
+                self.add_error('buscarNombre', 'Introduzca un nombre más corto')
+
+        return self.cleaned_data
 
     #Si la sesion es de un comprador o de admin se mostrara el campo vendedor
     #Si es de un vendedor solo se mostraran las categorias de sus productos
@@ -417,15 +509,10 @@ class CalzadoForm(ModelForm):
             self.add_error('material', 'Minimo 6 caracteres')
 
         return self.cleaned_data
-
+"""
 class BuscarCalzado(forms.Form):
     
-    buscarTalla = forms.DecimalField(
-        required=False,
-        label="Talla",
-        min_value=0,
-        widget=forms.NumberInput()
-    )
+    buscarTalla = forms.IntegerField(min_value=1, max_value=50, required=False, label="Talla")
     
     buscarMarca = forms.ChoiceField(
         choices=Calzado.MARCAS,
@@ -476,8 +563,7 @@ class BuscarCalzado(forms.Form):
 
         return self.cleaned_data
 
-    
-
+"""
 #CRUD MUEBLE
 
 class MuebleForm(ModelForm):
@@ -531,7 +617,7 @@ class MuebleForm(ModelForm):
 
         return self.cleaned_data 
     
-
+"""
 class BuscarMueble(forms.Form):
     buscarMaterial = forms.CharField(required=False, label="Material")
     buscarAnchoMin = forms.FloatField(
@@ -622,7 +708,7 @@ class BuscarMueble(forms.Form):
         
         return self.cleaned_data
 
-
+"""
 #CRUD CONSOLA
 class ConsolasForm(ModelForm):
     class Meta:
@@ -676,7 +762,7 @@ class ConsolasForm(ModelForm):
 
 
         return self.cleaned_data
-
+"""
 class BuscarConsola(forms.Form):
     buscarModelo = forms.CharField(required=False, label="Modelo")
     buscarColor = forms.CharField(required=False, label="Color")
@@ -719,4 +805,3 @@ class BuscarConsola(forms.Form):
             raise forms.ValidationError("El campo memoria debe contener solo números.")
 
         return self.cleaned_data
-"""

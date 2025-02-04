@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+from .forms import *
+                
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,3 +50,12 @@ class ConsolasSerializer(serializers.ModelSerializer):
         fields = ['producto','modelo','color',
                   'memoria']
         model = Consolas
+        
+class MueblesSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializerMejorado()
+    class Meta:
+        fields = ['producto', 'material', 'ancho', 
+                  'alto', 'profundidad', 'peso']
+        model = Muebles
+
+       
