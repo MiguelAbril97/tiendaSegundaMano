@@ -511,11 +511,20 @@ class CalzadoForm(ModelForm):
         return self.cleaned_data
 """
 class BuscarCalzado(forms.Form):
-    
+    buscarNombre = forms.CharField(required=False, label="Nombre")
     buscarTalla = forms.IntegerField(min_value=1, max_value=50, required=False, label="Talla")
-    
+    MARCAS = [
+        ("''","Cualquiera"),
+        ("NIKE", "Nike"),
+        ("ADID", "Adidas"),
+        ("PUMA", "Puma"),
+        ("RBK", "Reebok"),
+        ("NB", "New Balance"),
+        ("CLRK", "Clarks"),
+        ("GUCCI", "Gucci"),
+    ]
     buscarMarca = forms.ChoiceField(
-        choices=Calzado.MARCAS,
+        choices=MARCAS,
         required=False,
         widget=forms.RadioSelect()
     )
@@ -531,7 +540,7 @@ class BuscarCalzado(forms.Form):
     def clean(self):
         
         super().clean()
-
+        nombre = self.cleaned_data.get('buscarNombre')
         talla = self.cleaned_data.get('buscarTalla')
         marca = self.cleaned_data.get('buscarMarca')
         color = self.cleaned_data.get('buscarColor')
@@ -540,7 +549,8 @@ class BuscarCalzado(forms.Form):
         
         #Verifico que no lo deje en blanco, que la talla y el precio esten en un
         #rango concreto y la longitude del campo material 
-        if (not talla is None 
+        if (nombre == ""
+            and not talla is None 
             and marca is None 
             and color == "" 
             and material == "" 
@@ -619,6 +629,7 @@ class MuebleForm(ModelForm):
     
 """
 class BuscarMueble(forms.Form):
+    buscarNombre = forms.CharField(required=False, label="Nombre")
     buscarMaterial = forms.CharField(required=False, label="Material")
     buscarAnchoMin = forms.FloatField(
         required=False,
@@ -659,7 +670,7 @@ class BuscarMueble(forms.Form):
     def clean(self):
        
         super().clean()
-
+        nombre = self.cleaned_data.get('buscarNombre')
         material = self.cleaned_data.get('buscarMaterial')
         ancho_min = self.cleaned_data.get('buscarAnchoMin')
         ancho_max = self.cleaned_data.get('buscarAnchoMax')
@@ -669,24 +680,25 @@ class BuscarMueble(forms.Form):
         profundidad_max = self.cleaned_data.get('buscarProfundidadMax')
         peso_max = self.cleaned_data.get('buscarPesoMax')
 
-        if(material == "" 
-             and ancho_min is None and ancho_max is None 
-             and alto_min is None and alto_max is None
-             and profundidad_min is None and profundidad_max is None
-             and peso_max is None
-             ):
+        if(nombre == "" 
+            and material == "" 
+            and ancho_min is None and ancho_max is None 
+            and alto_min is None and alto_max is None
+            and profundidad_min is None and profundidad_max is None
+            and peso_max is None
+            ):
 
-             error_msg = "Debe introducir al menos un valor en un campo del formulario"
+            error_msg = "Debe introducir al menos un valor en un campo del formulario"
 
-
-             self.add_error('buscarMaterial', error_msg)
-             self.add_error('buscarAnchoMin', error_msg)
-             self.add_error('buscarAnchoMax', error_msg)
-             self.add_error('buscarAltoMin', error_msg)
-             self.add_error('buscarAltoMax', error_msg)
-             self.add_error('buscarProfundidadMin', error_msg)
-             self.add_error('buscarProfundidadMax', error_msg)
-             self.add_error('buscarPesoMax', error_msg)
+            self.add_error('buscarNombre', error_msg)
+            self.add_error('buscarMaterial', error_msg)
+            self.add_error('buscarAnchoMin', error_msg)
+            self.add_error('buscarAnchoMax', error_msg)
+            self.add_error('buscarAltoMin', error_msg)
+            self.add_error('buscarAltoMax', error_msg)
+            self.add_error('buscarProfundidadMin', error_msg)
+            self.add_error('buscarProfundidadMax', error_msg)
+            self.add_error('buscarPesoMax', error_msg)
 
         #Me aseguro de que ninguno de los màximos sean menores que los mínimos
         if(not ancho_min is None and not ancho_max is None and ancho_min > ancho_max):
@@ -764,6 +776,7 @@ class ConsolasForm(ModelForm):
         return self.cleaned_data
 """
 class BuscarConsola(forms.Form):
+    buscarNombre = forms.CharField(required=False, label="Nombre")
     buscarModelo = forms.CharField(required=False, label="Modelo")
     buscarColor = forms.CharField(required=False, label="Color")
     buscarMemoria = forms.IntegerField(
@@ -780,13 +793,14 @@ class BuscarConsola(forms.Form):
 
     def clean(self):
         super().clean()
-
+        nombre = self.cleaned_data.get('buscarNombre')
         modelo = self.cleaned_data.get('buscarModelo')
         color = self.cleaned_data.get('buscarColor')
         memoria = self.cleaned_data.get('buscarMemoria')
         precio = self.cleaned_data.get('buscarPrecioMax')
 
-        if (modelo == "" 
+        if (nombre == ""
+            and modelo == "" 
             and color == "" 
             and memoria is None  
             and precio is None):
@@ -801,7 +815,7 @@ class BuscarConsola(forms.Form):
             self.add_error('buscarColor', 'Color invalido')
         elif(color and not color.isalpha()):
             self.add_error('color', 'El color debe contener solo letras.')
-        if (memoria != "" and not memoria.isdigit()):
+        if (memoria != None and not memoria.isdigit()):
             raise forms.ValidationError("El campo memoria debe contener solo números.")
 
         return self.cleaned_data

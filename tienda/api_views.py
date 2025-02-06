@@ -112,13 +112,18 @@ def consola_buscar(request):
         formulario = BuscarConsola(request.query_params)
         if(formulario.is_valid()):
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            QSconsolas = Consolas.objects.select_related('producto')
-
+            QSconsolas = Consolas.objects.select_related('producto').prefetch_related(Prefetch('categorias'))
+            
+            nombre = formulario.cleaned_data.get('buscarNombre')
             marca = formulario.cleaned_data.get('buscarMarca')
             modelo = formulario.cleaned_data.get('buscarModelo')
             almacenamiento = formulario.cleaned_data.get('buscarAlmacenamiento')
             precio = formulario.cleaned_data.get('buscarPrecioMax')
-        
+
+            if(nombre):
+                QSconsolas = QSconsolas.filter(producto__nombre__icontains=nombre)
+                mensaje_busqueda += " Nombre que contenga " + nombre + "\n"
+            
             if(marca):
                 QSconsolas = QSconsolas.filter(marca=marca)
                 mensaje_busqueda += " Marca: " + marca + "\n"
@@ -151,19 +156,24 @@ def calzado_buscar(request):
         formulario = BuscarCalzado(request.query_params)
         if(formulario.is_valid()):
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            QScalzados = Calzado.objects.select_related('producto')
+            QScalzados = Calzado.objects.select_related('producto').prefetch_related(Prefetch('producto__categorias'))
 
+            nombre = formulario.cleaned_data.get('buscarNombre')
             talla = formulario.cleaned_data.get('buscarTalla')
             marca = formulario.cleaned_data.get('buscarMarca')
             color = formulario.cleaned_data.get('buscarColor')
             material = formulario.cleaned_data.get('buscarMaterial')
             precio = formulario.cleaned_data.get('buscarPrecioMax')
 
+            if(nombre):
+                QScalzados = QScalzados.filter(producto__nombre__icontains=nombre)
+                mensaje_busqueda += " Nombre que contenga " + nombre + "\n"
+            
             if(talla):
                 QScalzados = QScalzados.filter(talla=talla)
                 mensaje_busqueda += " Talla: " + str(talla) + "\n"
 
-            if(marca):
+            if(marca and marca != "''"):
                 QScalzados = QScalzados.filter(marca=marca)
                 mensaje_busqueda += " Marca: " + marca + "\n"
 
@@ -196,8 +206,9 @@ def mueble_buscar(request):
             formulario = BuscarMueble(request.query_params)
             if(formulario.is_valid()):
                 mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-                QSmuebles = Muebles.objects.select_related('producto')
+                QSmuebles = Muebles.objects.select_related('producto').prefetch_related(Prefetch('categorias'))
 
+                nombre = formulario.cleaned_data.get('buscarNombre')
                 material = formulario.cleaned_data.get('buscarMaterial')
                 ancho_min = formulario.cleaned_data.get('buscarAnchoMin')
                 ancho_max = formulario.cleaned_data.get('buscarAnchoMax')
@@ -207,6 +218,10 @@ def mueble_buscar(request):
                 profundidad_max = formulario.cleaned_data.get('buscarProfundidadMax')
                 peso_max = formulario.cleaned_data.get('buscarPesoMax')
 
+                if(nombre):
+                    QSmuebles = QSmuebles.filter(producto__nombre__icontains=nombre)
+                    mensaje_busqueda += " Nombre que contenga " + nombre + "\n"
+                    
                 if(material):
                     QSmuebles = QSmuebles.filter(material__icontains=material)
                     mensaje_busqueda += " Material que contenga " + material + "\n"
