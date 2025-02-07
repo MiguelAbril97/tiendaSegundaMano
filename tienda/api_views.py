@@ -112,7 +112,7 @@ def consola_buscar(request):
         formulario = BuscarConsola(request.query_params)
         if(formulario.is_valid()):
             mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-            QSconsolas = Consolas.objects.select_related('producto').prefetch_related(Prefetch('categorias'))
+            QSconsolas = Consolas.objects.select_related('producto').prefetch_related(Prefetch('producto__categorias'))
             
             nombre = formulario.cleaned_data.get('buscarNombre')
             marca = formulario.cleaned_data.get('buscarMarca')
@@ -206,7 +206,7 @@ def mueble_buscar(request):
             formulario = BuscarMueble(request.query_params)
             if(formulario.is_valid()):
                 mensaje_busqueda = "Se ha buscado por los siguientes valores:\n"
-                QSmuebles = Muebles.objects.select_related('producto').prefetch_related(Prefetch('categorias'))
+                QSmuebles = Muebles.objects.select_related('producto').prefetch_related(Prefetch('producto__categorias'))
 
                 nombre = formulario.cleaned_data.get('buscarNombre')
                 material = formulario.cleaned_data.get('buscarMaterial')
