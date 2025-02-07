@@ -811,9 +811,9 @@ class BuscarConsola(forms.Form):
             self.add_error('buscarPrecioMax', error_msg)
 
         #Compruebo la longitud del color y vulvo a usar la validacion de antes
-        if (not color !="" and len(color) < 4):
+        if (color !="" and len(color) < 4):
             self.add_error('buscarColor', 'Color invalido')
-        elif(color and not color.isalpha()):
+        elif(color and color.isalpha()):
             self.add_error('color', 'El color debe contener solo letras.')
         if (memoria != None and not memoria.isdigit()):
             raise forms.ValidationError("El campo memoria debe contener solo números.")
