@@ -130,6 +130,45 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2025-02-05T10:04:28.574",
+        "user": 1,
+        "content_type": 13,
+        "object_id": "1",
+        "object_repr": "Muebles object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2025-02-05T10:05:13.102",
+        "user": 1,
+        "content_type": 14,
+        "object_id": "2",
+        "object_repr": "Consolas object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2025-02-05T10:05:57.658",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "3",
+        "object_repr": "Calzado object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -1253,6 +1292,14 @@
 },
 {
     "model": "sessions.session",
+    "pk": "bnmbzlezttssrvewht6oujci5xp9a8g1",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlPGZw6d5vIAMDUjU0Ke3K-O_apAvd3nPOfYlA21rD1vMSJhZnocTpd4uUHrntgO_UbrNMc1uXKcpdkQft8jpzfl4O9--gUq_fGrODBIAAI9pIwOQ4Zm-iUsV7zZgSx-LYFIvaDx6woB3QozZ6LITi_QHoWTez:1tfbJ1:yKFZdQPBxjurSitnm7wlbdZvwNsOjFVNzxgi96yFCMw",
+        "expire_date": "2025-02-19T10:02:47.558"
+    }
+},
+{
+    "model": "sessions.session",
     "pk": "gdzw7q0dh2icmfdh2nxbd0ffm6ikt2un",
     "fields": {
         "session_data": ".eJxVjMEOwiAQRP-FsyEg20I9evcbyO6ySNXQpLQn47_bJj1oMqd5b-atIq5LiWuTOY5JXZRVp9-OkJ9Sd5AeWO-T5qku80h6V_RBm75NSV7Xw_07KNjKtu6I0Q4WiUxKnQvkEQZvBNhkH4zl3rmzbMmOQXKADGghkwk9AlBWny_zEzhO:1tchqx:vr06we-J4NFoc2Hx5269UxPA8M7Czl3kL4b1G5ca_pc",
@@ -1292,11 +1339,19 @@
     }
 },
 {
+    "model": "sessions.session",
+    "pk": "tp620wmbv5kz8fl0hq62t2vuubb5mhhz",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSGlPGZw6d5vIAMDUjU0Ke3K-O_apAvd3nPOfYlA21rD1vMSJhZnocTpd4uUHrntgO_UbrNMc1uXKcpdkQft8jpzfl4O9--gUq_fGrODBIAAI9pIwOQ4Zm-iUsV7zZgSx-LYFIvaDx6woB3QozZ6LITi_QHoWTez:1tfI18:l6w6tczHGvzajHRvVLASMd3X_oBLRyQ3Ir0HNMKPuKY",
+        "expire_date": "2025-02-18T13:27:02.501"
+    }
+},
+{
     "model": "tienda.usuario",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$870000$kRuemLlMqYX0wTJAfy5dYN$dnV8wVihSvcP/2ZoF173qp65GZGOqUrrpYADg5llGzM=",
-        "last_login": "2025-01-29T13:28:41.000",
+        "last_login": "2025-02-05T10:02:47.553",
         "is_superuser": true,
         "username": "usuario",
         "first_name": "",
@@ -1478,7 +1533,7 @@
     "pk": 9,
     "fields": {
         "password": "pbkdf2_sha256$870000$L6814vNTGev5pN4VHF0XoO$7PgKmcoagW31BsLuvFT5BMIsRGERgtwozZysPSyLvs0=",
-        "last_login": "2025-01-30T09:12:01.007",
+        "last_login": "2025-02-05T09:58:20.796",
         "is_superuser": false,
         "username": "Jorge_vendedor",
         "first_name": "",
@@ -1635,6 +1690,42 @@
     }
 },
 {
+    "model": "tienda.producto",
+    "pk": 4,
+    "fields": {
+        "nombre": "Zapatillas",
+        "descripcion": "Sapatillas calentitas omeeee",
+        "precio": "200.00",
+        "estado": "MU",
+        "vendedor": 9,
+        "fecha_de_publicacion": "2025-02-05T00:00:00"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 5,
+    "fields": {
+        "nombre": "Pleitesteishon",
+        "descripcion": "Plei",
+        "precio": "800.00",
+        "estado": "CN",
+        "vendedor": 9,
+        "fecha_de_publicacion": "2025-02-05T00:00:00"
+    }
+},
+{
+    "model": "tienda.producto",
+    "pk": 6,
+    "fields": {
+        "nombre": "Schürgutten",
+        "descripcion": "Mueble del Ikea obviamente",
+        "precio": "90.00",
+        "estado": "U",
+        "vendedor": 9,
+        "fecha_de_publicacion": "2025-02-05T00:00:00"
+    }
+},
+{
     "model": "tienda.productocategoria",
     "pk": 1,
     "fields": {
@@ -1656,6 +1747,30 @@
     "fields": {
         "producto": 3,
         "categoria": 2
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 4,
+    "fields": {
+        "producto": 4,
+        "categoria": 2
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 5,
+    "fields": {
+        "producto": 5,
+        "categoria": 1
+    }
+},
+{
+    "model": "tienda.productocategoria",
+    "pk": 6,
+    "fields": {
+        "producto": 6,
+        "categoria": 3
     }
 },
 {
@@ -1681,6 +1796,17 @@
     }
 },
 {
+    "model": "tienda.calzado",
+    "pk": 3,
+    "fields": {
+        "producto": 4,
+        "talla": "44",
+        "marca": "GUCCI",
+        "color": "Negra",
+        "material": "Algodon"
+    }
+},
+{
     "model": "tienda.consolas",
     "pk": 1,
     "fields": {
@@ -1688,6 +1814,28 @@
         "modelo": "Playstation 3",
         "color": "Negra",
         "memoria": "100"
+    }
+},
+{
+    "model": "tienda.consolas",
+    "pk": 2,
+    "fields": {
+        "producto": 5,
+        "modelo": "5",
+        "color": "BLANC",
+        "memoria": "1000"
+    }
+},
+{
+    "model": "tienda.muebles",
+    "pk": 1,
+    "fields": {
+        "producto": 6,
+        "material": "Madera wena",
+        "ancho": 50.0,
+        "alto": 50.0,
+        "profundidad": 40.0,
+        "peso": 7
     }
 },
 {
@@ -1887,6 +2035,38 @@
     }
 },
 {
+    "model": "oauth2_provider.accesstoken",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "source_refresh_token": null,
+        "token": "LocOPRa6k88f3jn9p7LMj182phGs5J",
+        "token_checksum": "68696b742a001332f1ead944d4825c6fc7d43793ddba40647053e9f0efaedc2f",
+        "id_token": null,
+        "application": 1,
+        "expires": "2036-07-03T01:40:58.075",
+        "scope": "read write groups",
+        "created": "2025-02-04T09:40:58.076",
+        "updated": "2025-02-04T09:40:58.076"
+    }
+},
+{
+    "model": "oauth2_provider.accesstoken",
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "source_refresh_token": null,
+        "token": "4gvaGs3GOpBVm7sS6S2LQdjZvz4rd7",
+        "token_checksum": "ed35f21e21fd813f53feb6c80ea500a388b3b2bb93ff777bf4bac30e5cd50f25",
+        "id_token": null,
+        "application": 1,
+        "expires": "2036-07-04T02:08:54.966",
+        "scope": "read write groups",
+        "created": "2025-02-05T10:08:54.967",
+        "updated": "2025-02-05T10:08:54.967"
+    }
+},
+{
     "model": "oauth2_provider.refreshtoken",
     "pk": 1,
     "fields": {
@@ -2037,6 +2217,34 @@
         "token_family": "0d0443be-1552-483d-b042-a4f5f5ff806a",
         "created": "2025-01-29T13:48:17.284",
         "updated": "2025-01-29T13:48:17.284",
+        "revoked": null
+    }
+},
+{
+    "model": "oauth2_provider.refreshtoken",
+    "pk": 12,
+    "fields": {
+        "user": 1,
+        "token": "MerwCpWtT1ciK7hVBt2TVPuZD5QfQ7",
+        "application": 1,
+        "access_token": 12,
+        "token_family": "909a91ee-41b7-4988-9c73-a5ed567259b3",
+        "created": "2025-02-04T09:40:58.077",
+        "updated": "2025-02-04T09:40:58.077",
+        "revoked": null
+    }
+},
+{
+    "model": "oauth2_provider.refreshtoken",
+    "pk": 13,
+    "fields": {
+        "user": 1,
+        "token": "nqNgYL3VelsN0lLFXPd7SfpMGoaa6N",
+        "application": 1,
+        "access_token": 13,
+        "token_family": "b8a5ef95-d579-4efd-9e21-5a928d74b8a4",
+        "created": "2025-02-05T10:08:54.967",
+        "updated": "2025-02-05T10:08:54.967",
         "revoked": null
     }
 }
