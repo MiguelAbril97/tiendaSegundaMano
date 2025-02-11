@@ -8,6 +8,18 @@ from django.db.models import Q,Prefetch
 import datetime
 
 @api_view(['GET'])
+def categoria_listar(request):
+    categorias = Categoria.objects.all()
+    serializer = CategoriaSerializer(categorias, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def vendedores_listar(request):
+    vendedores = Vendedor.objects.select_related('usuario').all()
+    serializer = VendedorSerializer(vendedores, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def producto_listar(request):
     productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
     serializer = ProductoSerializer(productos,many = True)
@@ -105,6 +117,23 @@ def producto_buscar(request):
             return Response(formulario.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def producto_crear(request):
+    print(request.data)
+    productoCreateSerializer = ProductoCreateSerializer(data=request.data)
+    if productoCreateSerializer.is_valid():
+        try:
+            productoCreateSerializer.save()
+            return  Response('Producto creado')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(productoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET'])
 def consola_buscar(request):

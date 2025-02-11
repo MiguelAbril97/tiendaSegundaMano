@@ -239,11 +239,7 @@ class ProductoForm(ModelForm):
       #  vendedor = self.cleaned_data.get('vendedor')
         fecha_de_publicacion = self.cleaned_data.get('fecha_de_publicacion')
         categorias = self.cleaned_data.get('categorias')
-             
-        
-        
-   
-    
+
       #  if(vendedor == None):
        #     self.add_error('vendedor', 'Indique un vendedor')
       
