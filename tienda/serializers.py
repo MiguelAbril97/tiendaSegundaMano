@@ -102,6 +102,42 @@ class CalzadoSerializer(serializers.ModelSerializer):
         fields = ['producto','talla','marca','color','material']
         model = Calzado
         
+class CalzadoCreateSerializer(serializers.ModelSerializer):
+    producto = ProductoCreateSerializer()
+    class Meta:
+        fields = ['producto','talla','marca','color','material']
+        model = Calzado
+        
+        def validate_talla(self,talla):
+            if talla <= 0 and talla > 55:
+                raise serializers.ValidationError('Talla inválida')
+            return talla
+        def validate_marca(self,marca):
+            if marca not in ['NIKE','ADID','PUMA','RBK','NB','CLRK','GUCCI']:
+                raise serializers.ValidationError('Marca inválida')
+            return marca
+        
+        def validate_color(self,color):
+            if len(color) > 20:
+                raise serializers.ValidationError('Color inválido')
+            return color
+        
+        def validate_material(self,material):
+            if len(material) > 30:
+                raise serializers.ValidationError('Material inválido')
+            return material
+        
+        def create(self, validated_data):
+            
+            calzado = Calzado.objects.create(
+               producto = validated_data['producto'],
+               talla = validated_data['talla'],
+               marca = validated_data['marca'],
+               color = validated_data['color'],
+               material = validated_data['material']
+            )
+            return calzado
+                   
 class ConsolasSerializer(serializers.ModelSerializer):
     producto = ProductoSerializerMejorado()
     class Meta:

@@ -9,6 +9,7 @@ urlpatterns = [
     path('productos/crear/',producto_crear),
     path('calzados/',calzado_listar),
     path('calzados/buscar/',calzado_buscar),
+    path('calzados/crear/',calzado_crear),
     path('consolas/',consolas_listar),
     path('consolas/buscar/',consola_buscar),
     path('muebles/buscar/',mueble_buscar),
