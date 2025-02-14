@@ -8,10 +8,21 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
         fields = '__all__'
         
+class CompraSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Compra
+        fields = '__all__'
+        
 class VendedorSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
     class Meta:
         model = Vendedor
+        fields = '__all__'
+
+class CompradorSerializer(serializers.ModelSerializer):
+    usuario = UsuarioSerializer()
+    class Meta:
+        model = Comprador
         fields = '__all__'
         
 class CategoriaSerializer(serializers.ModelSerializer):
@@ -94,7 +105,74 @@ class ProductoSerializerMejorado(serializers.ModelSerializer):
         fields = ['nombre','descripcion','precio','estado',
                   'vendedor','fecha_de_publicacion','categorias']
         model = Producto
+
+class CompraCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ['producto','comprador',
+                  'fecha_de_compra','garantia']
+        model = Compra
         
+        def validate_producto(self,producto):
+            if len(producto) < 1:
+                raise serializers.ValidationError('Debe indicar un producto')
+            return producto
+        
+        def validate_comprador(self,comprador):
+            if len(comprador) != 1:
+                raise serializers.ValidationError('Debe indicar un comprador')
+            return comprador
+        
+        def validate_fecha_de_compra(self,fecha_de_compra):
+            if fecha_de_compra > timezone.now():
+                raise serializers.ValidationError('La fecha de compra no puede ser mayor a la fecha actual')
+            return fecha_de_compra
+        
+        def validate_garantia(self,garantia):
+            if garantia not in ['UNO', 'DOS']:
+                raise serializers.ValidationError('Garantía no válida')
+            return garantia
+        
+        def create(self, validated_data):
+            compra = Compra.objects.create(
+                producto = validated_data['producto'],
+                comprador = validated_data['comprador'],
+                fecha_de_compra = validated_data['fecha_de_compra'],
+                garantia = validated_data['garantia']
+            )
+            return compra
+
+class ValoracionCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ['usuario','compra','puntuacion'
+                  ,'comentario','fecha_valoracion']
+        model = Valoracion
+        
+        def validate_puntuacion(self,puntuacion):
+            if puntuacion < 1 or puntuacion > 5:
+                raise serializers.ValidationError('Puntuación inválida')
+            return puntuacion
+        
+        def validate_comentario(self,comentario):
+            if comentario and len(comentario) > 200:
+                raise serializers.ValidationError('Comentario inválido')
+            return comentario
+        
+        def validate_fecha_valoracion(self,fecha_valoracion):
+            if fecha_valoracion > timezone.now():
+                raise serializers.ValidationError('Fecha inválida')
+            return fecha_valoracion
+        
+        def create(self, validated_data):
+            valoracion = Valoracion.objects.create(
+                usuario = validated_data['usuario'],
+                compra = validated_data['compra'],
+                puntuacion = validated_data['puntuacion'],
+                comentario = validated_data['comentario'],
+                fecha_valoracion = validated_data['fecha_valoracion']
+            )
+            return valoracion
+    
+    
 class CalzadoSerializer(serializers.ModelSerializer):
     producto = ProductoSerializerMejorado()
     marca = serializers.CharField(source='get_marca_display')

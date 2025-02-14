@@ -115,14 +115,8 @@ class Compra(models.Model):
         ("DOS", "Dos años"),
     ]
     garantia = models.CharField(max_length=3, choices=GARANTIA)
-    producto = models.ManyToManyField(Producto, through='CompraProducto', 
-                                      related_name='producto_compra')
+    producto = models.ManyToManyField(Producto)
     
-
-class CompraProducto(models.Model):
-    compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
-
 class Envio(models.Model):
     compra = models.OneToOneField(Compra, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Usuario, on_delete=models.CASCADE)

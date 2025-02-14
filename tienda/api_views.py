@@ -14,10 +14,22 @@ def categoria_listar(request):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def compra_listar(request):
+    compras = Compra.objects.select_related('comprador').all()
+    serializer = CompraSerializer(compras, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def vendedores_listar(request):
     vendedores = Vendedor.objects.select_related('usuario').all()
     serializer = VendedorSerializer(vendedores, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def compradores_listar(request):
+    compradores = Comprador.objects.select_related('usuario').all()
+    serializers = CompradorSerializer(compradores, many=True)
+    return Response(serializers.data)
 
 @api_view(['GET'])
 def producto_listar(request):
@@ -117,7 +129,8 @@ def producto_buscar(request):
             return Response(formulario.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
-    
+
+#CRUD ManyToMany con tabla intermedia
 @api_view(['POST'])
 def producto_crear(request):
     print(request.data)
@@ -134,8 +147,44 @@ def producto_crear(request):
             return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return Response(productoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
+#CRUD ManyToMany SIN tabla intermedia
+@api_view(['POST'])
+def compra_crear(request):
+    print(request.data)
+    compraCreateSerializer = CompraCreateSerializer(
+        data=request.data)
+    if compraCreateSerializer.is_valid():
+        try:
+            compraCreateSerializer.save()
+            return  Response('Compra creada')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(compraCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#CRUD ManyToOne
+@api_view(['POST'])
+def valoracion_crear(request):
+    print(request.data)
+    valoracionCreateSerializer = ValoracionCreateSerializer(
+        data=request.data)
+    if valoracionCreateSerializer.is_valid():
+        try:
+            valoracionCreateSerializer.save()
+            return  Response('Valoracion creada')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(valoracionCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+ 
 @api_view(['GET'])
 def consola_buscar(request):
     if(len(request.query_params) > 0):
