@@ -180,6 +180,25 @@ def consola_buscar(request):
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST'])
+def consola_crear(request):
+    print(request.data)
+    consolaCreateSerializer = ConsolaCreateSerializer(
+        data=request.data)
+    if consolaCreateSerializer.is_valid():
+        try:
+            consolaCreateSerializer.save()
+            return  Response('Consola creada')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(consolaCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 @api_view(['GET'])
 def calzado_buscar(request):
     if(len(request.query_params) > 0):
@@ -306,3 +325,20 @@ def mueble_buscar(request):
                 return Response(formulario.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def mueble_crear(request):
+    print(request.data)
+    muebleCreateSerializer = MuebleCreateSerializer(
+        data=request.data)
+    if muebleCreateSerializer.is_valid():
+        try:
+            muebleCreateSerializer.save()
+            return  Response('Mueble creado')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(muebleCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)

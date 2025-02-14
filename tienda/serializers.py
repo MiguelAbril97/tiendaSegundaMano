@@ -103,7 +103,7 @@ class CalzadoSerializer(serializers.ModelSerializer):
         model = Calzado
         
 class CalzadoCreateSerializer(serializers.ModelSerializer):
-    producto = ProductoCreateSerializer()
+#    producto = ProductoCreateSerializer()
     class Meta:
         fields = ['producto','talla','marca','color','material']
         model = Calzado
@@ -144,12 +144,87 @@ class ConsolasSerializer(serializers.ModelSerializer):
         fields = ['producto','modelo','color',
                   'memoria']
         model = Consolas
+
+class ConsolaCreateSerializer(serializers.ModelSerializer):
+#    producto = ProductoCreateSerializer()
+    class Meta:
+        fields = ['producto','modelo','color',
+                  'memoria']
+        model = Consolas
         
+        def validate_modelo(self,modelo):
+            if len(modelo) > 50:
+                raise serializers.ValidationError('Modelo inválido')
+            return modelo
+        
+        def validate_color(self,color):
+            if len(color) > 20:
+                raise serializers.ValidationError('Color inválido')
+            return color
+        
+        def validate_memoria(self,memoria):
+            if memoria <= 0 or len(memoria) > 20:
+                raise serializers.ValidationError('Memoria inválida')
+            return memoria
+        
+        def create(self, validated_data):
+            consola = Consolas.objects.create(
+                producto = validated_data['producto'],
+                modelo = validated_data['modelo'],
+                color = validated_data['color'],
+                memoria = validated_data['memoria']
+            )
+            return consola
+
+
 class MueblesSerializer(serializers.ModelSerializer):
     producto = ProductoSerializerMejorado()
     class Meta:
         fields = ['producto', 'material', 'ancho', 
                   'alto', 'profundidad', 'peso']
         model = Muebles
+        
+class MuebleCreateSerializer(serializers.ModelSerializer):
+#    producto = ProductoCreateSerializer()
+    class Meta:
+        fields = ['producto', 'material', 'ancho', 
+                  'alto', 'profundidad', 'peso']
+        model = Muebles
+        
+        def validate_material(self,material):
+            if len(material) > 30 or material=='':
+                raise serializers.ValidationError('Material inválido')
+            return material
+        
+        def validate_ancho(self,ancho):
+            if ancho <= 0:
+                raise serializers.ValidationError('Ancho inválido')
+            return ancho
+        
+        def validate_alto(self,alto):
+            if alto <= 0:
+                raise serializers.ValidationError('Alto inválido')
+            return alto
+        
+        def validate_profundidad(self,profundidad):
+            if profundidad <= 0:
+                raise serializers.ValidationError('Profundidad inválida')
+            return profundidad
+        
+        def validate_peso(self,peso):
+            if peso <= 0:
+                raise serializers.ValidationError('Peso inválido')
+            return peso
+        
+        def create(self, validated_data):
+            mueble = Muebles.objects.create(
+                producto = validated_data['producto'],
+                material = validated_data['material'],
+                ancho = validated_data['ancho'],
+                alto = validated_data['alto'],
+                profundidad = validated_data['profundidad'],
+                peso = validated_data['peso']
+            )
+            return mueble
 
        

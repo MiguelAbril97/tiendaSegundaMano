@@ -12,8 +12,10 @@ urlpatterns = [
     path('calzados/crear/',calzado_crear),
     path('consolas/',consolas_listar),
     path('consolas/buscar/',consola_buscar),
-    path('muebles/buscar/',mueble_buscar),
+    path('consolas/crear', consola_crear),
     path('muebles/',mueble_listar),
+    path('muebles/buscar/',mueble_buscar),
+    path('muebles/crear/',mueble_crear),
     path('categorias/',categoria_listar),
     
     path('vendedores/listar/',vendedores_listar),
