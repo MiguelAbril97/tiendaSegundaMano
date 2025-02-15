@@ -8,6 +8,24 @@ from django.db.models import Q,Prefetch
 import datetime
 
 @api_view(['GET'])
+def obtener_producto(request,producto_id):
+    producto = Producto.objects.select_related('vendedor').prefetch_related('categorias').get(id=producto_id)
+    serializer = ProductoSerializerMejorado(producto)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def obtener_compra(request,compra_id):
+    compra = Compra.objects.select_related('comprador').get(id=compra_id)
+    serializer = CompraSerializer(compra)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def obtener_valoracion(request,valoracion_id):
+    valoracion = Valoracion.objects.get(id=valoracion_id)
+    serializer = ValoracionSerializer(valoracion)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def categoria_listar(request):
     categorias = Categoria.objects.all()
     serializer = CategoriaSerializer(categorias, many=True)
@@ -129,8 +147,10 @@ def producto_buscar(request):
             return Response(formulario.errors, status=status.HTTP_400_BAD_REQUEST)
     else:
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
-
+#
 #CRUD ManyToMany con tabla intermedia
+#
+
 @api_view(['POST'])
 def producto_crear(request):
     print(request.data)
@@ -148,7 +168,53 @@ def producto_crear(request):
     else:
         return Response(productoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+def producto_editar(request,producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    productoCreateSerializer = ProductoCreateSerializer(
+        data = request.data, instance = producto)
+    if productoCreateSerializer.is_valid():
+        try:
+            productoCreateSerializer.save()
+            return  Response('Producto editado')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(productoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
+api_view(['PATCH']) 
+def producto_actualizar_nombre(request,producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    serializer = ProductoSerializerActualizarNombre(
+        data=request.data,instance=producto
+    )
+    if serializer.is_valid():
+        try:
+            serializer.save()
+            return Response('Nombre actualizado')
+        except Exception as error:
+            print(repr(error))
+            return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def producto_eliminar(request,producto_id):
+    producto = Producto.objects.get(id=producto_id)
+    try:
+        producto.delete()
+        return Response('Producto eliminado')
+    except Exception as error:
+        return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    
+
+
+#
 #CRUD ManyToMany SIN tabla intermedia
+#
 @api_view(['POST'])
 def compra_crear(request):
     print(request.data)
@@ -166,7 +232,51 @@ def compra_crear(request):
     else:
         return Response(compraCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+def compra_editar(request,compra_id):
+    compra = Compra.objects.get(id=compra_id)
+    compraCreateSerializer = CompraCreateSerializer(
+        data = request.data, instance = compra)
+    if compraCreateSerializer.is_valid():
+        try:
+            compraCreateSerializer.save()
+            return  Response('Compra editada')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(compraCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PATCH'])
+def compra_actualizar_garantia(request,compra_id):
+    compra = Compra.objects.get(id=compra_id)
+    serializer = CompraActualizarGarantiaSerializer(
+        data=request.data,instance=compra
+    )
+    if serializer.is_valid():
+        try:
+            serializer.save()
+            return Response('Garantia actualizada')
+        except Exception as error:
+            print(repr(error))
+            return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def compra_eliminar(request,compra_id):
+    compra = Compra.objects.get(id=compra_id)
+    try:
+        compra.delete()
+        return Response('Compra eliminada')
+    except Exception as error:
+        return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#
 #CRUD ManyToOne
+#
 @api_view(['POST'])
 def valoracion_crear(request):
     print(request.data)
@@ -184,7 +294,53 @@ def valoracion_crear(request):
     else:
         return Response(valoracionCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
- 
+@api_view(['PUT'])
+def valoracion_editar(request,valoracion_id):
+    valoracion = Valoracion.objects.get(id=valoracion_id)
+    valoracionCreateSerializer = ValoracionCreateSerializer(
+        data = request.data, instance = valoracion)
+    if valoracionCreateSerializer.is_valid():
+        try:
+            valoracionCreateSerializer.save()
+            return  Response('Valoracion editada')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(valoracionCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['PATCH'])
+def valoracion_actualizar_puntuacion(request,valoracion_id):
+    valoracion = Valoracion.objects.get(id=valoracion_id)
+    serializer = ValoracionActualizarPuntuacionSerializer(
+        data=request.data,instance=valoracion
+    )
+    if serializer.is_valid():
+        try:
+            serializer.save()
+            return Response('Puntuacion actualizada')
+        except Exception as error:
+            print(repr(error))
+            return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['DELETE'])
+def valoracion_eliminar(request,valoracion_id):
+    valoracion = Valoracion.objects.get(id=valoracion_id)
+    try:
+        valoracion.delete()
+        return Response('Valoracion eliminada')
+    except Exception as error:
+        return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#################                   
+################# OTRAS VIEWS   
+#################
+#################
+#################    
 @api_view(['GET'])
 def consola_buscar(request):
     if(len(request.query_params) > 0):

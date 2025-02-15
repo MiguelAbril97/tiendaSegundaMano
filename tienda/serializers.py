@@ -30,6 +30,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
         model = Categoria
         fields = '__all__'
         
+        
 class ProductoCategoriaSerializer(serializers.ModelSerializer):
     categoria = CategoriaSerializer()
     class Meta:
@@ -43,7 +44,15 @@ class ProductoSerializer(serializers.ModelSerializer):
         fields = ['nombre','descripcion','precio',
                   'estado','fecha_de_publicacion']
         model = Producto
-        
+
+class ValoracionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Valoracion
+        fields = '__all__'
+
+
+
+
 class ProductoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['nombre','descripcion',
@@ -95,6 +104,39 @@ class ProductoCreateSerializer(serializers.ModelSerializer):
                                                  producto=producto)
             return producto
         
+        def update (self, instance, validated_data):
+            categorias = self.initial_data['categorias']
+            
+            if len(categorias) < 1:
+                raise serializers.ValidationError(
+                                                  {'categorias':
+                                                    ['Debe indicar al menos una categoría']
+                                                  })
+            instance.nombre = validated_data['nombre']
+            instance.descripcion = validated_data['descripcion']
+            instance.precio = validated_data['precio']
+            instance.estado = validated_data['estado']
+            instance.vendedor = validated_data['vendedor']
+            instance.fecha_de_publicacion = validated_data['fecha_de_publicacion']
+            
+            instance.save()
+            
+            instance.categorias.clear()
+            for categoria in categorias:
+                modeloCategoria = Categoria.objects.get(id=categoria)
+                ProductoCategoria.objects.create(categoria=modeloCategoria,
+                                                 producto=instance)
+            return instance
+
+class ProductoSerializerActualizarNombre(serializers.ModelSerializer):
+    class Meta:
+        model = Producto
+        fields = ['nombre']
+        
+        def validate_nombre(self,nombre):
+            if len(nombre) > 100:
+                raise serializers.ValidationError('Nombre inválido')
+            return nombre   
         
 class ProductoSerializerMejorado(serializers.ModelSerializer): 
     vendedor = UsuarioSerializer()
@@ -141,6 +183,26 @@ class CompraCreateSerializer(serializers.ModelSerializer):
             )
             return compra
 
+        def update(self, instance, validated_data):
+            instance.comprador = validated_data['comprador']
+            instance.fecha_de_compra = validated_data['fecha_de_compra']
+            instance.garantia = validated_data['garantia']
+            instance.save()
+            
+            instance.producto.set(validated_data['producto'])
+            
+            return instance
+
+class CompraActualizarGarantiaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Compra
+        fields = ['garantia']
+        
+        def validate_garantia(self,garantia):
+            if garantia not in ['UNO', 'DOS']:
+                raise serializers.ValidationError('Garantía no válida')
+            return garantia
+
 class ValoracionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['usuario','compra','puntuacion'
@@ -171,7 +233,25 @@ class ValoracionCreateSerializer(serializers.ModelSerializer):
                 fecha_valoracion = validated_data['fecha_valoracion']
             )
             return valoracion
-    
+
+        def update(self, instance, validated_data):
+            instance.usuario = validated_data['usuario']
+            instance.compra = validated_data['compra']
+            instance.puntuacion = validated_data['puntuacion']
+            instance.comentario = validated_data['comentario']
+            instance.fecha_valoracion = validated_data['fecha_valoracion']
+            instance.save()
+            return instance
+
+class ValoracionActualizarPuntuacionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Valoracion
+        fields = ['puntuacion']
+        
+        def validate_puntuacion(self,puntuacion):
+            if puntuacion < 1 or puntuacion > 5:
+                raise serializers.ValidationError('Puntuación inválida')
+            return puntuacion
     
 class CalzadoSerializer(serializers.ModelSerializer):
     producto = ProductoSerializerMejorado()
