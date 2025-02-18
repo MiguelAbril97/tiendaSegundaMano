@@ -30,7 +30,6 @@ class CategoriaSerializer(serializers.ModelSerializer):
         model = Categoria
         fields = '__all__'
         
-        
 class ProductoCategoriaSerializer(serializers.ModelSerializer):
     categoria = CategoriaSerializer()
     class Meta:
@@ -140,18 +139,17 @@ class ProductoSerializerActualizarNombre(serializers.ModelSerializer):
         
 class ProductoSerializerMejorado(serializers.ModelSerializer): 
     vendedor = UsuarioSerializer()
-    categorias = ProductoCategoriaSerializer(read_only=True, many=True, source='productocategoria_set')
-    fecha_de_publicacion = serializers.DateTimeField(format=('%d-%m-%Y'))
+    categorias = ProductoCategoriaSerializer(many=True, source='productocategoria_set')
+    fecha_de_publicacion = serializers.DateTimeField(format='%Y-%m-%dT%H:%M')
     estado = serializers.CharField(source='get_estado_display')
     class Meta:
-        fields = ['nombre','descripcion','precio','estado',
-                  'vendedor','fecha_de_publicacion','categorias']
+        fields = '__all__'
         model = Producto
 
 class CompraCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['producto','comprador',
-                  'fecha_de_compra','garantia']
+                  'fecha_compra','garantia','total']
         model = Compra
         
         def validate_producto(self,producto):
@@ -164,15 +162,20 @@ class CompraCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Debe indicar un comprador')
             return comprador
         
-        def validate_fecha_de_compra(self,fecha_de_compra):
-            if fecha_de_compra > timezone.now():
+        def validate_fecha_compra(self,fecha_compra):
+            if fecha_compra > timezone.now():
                 raise serializers.ValidationError('La fecha de compra no puede ser mayor a la fecha actual')
-            return fecha_de_compra
+            return fecha_compra
         
         def validate_garantia(self,garantia):
             if garantia not in ['UNO', 'DOS']:
                 raise serializers.ValidationError('Garantía no válida')
             return garantia
+
+        def validate_total(self,total):
+            if total < 1:
+                raise serializers.ValidationError('Total debe ser mayor que 0')
+            return total
         
         def create(self, validated_data):
             compra = Compra.objects.create(
