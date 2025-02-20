@@ -8,11 +8,6 @@ class UsuarioSerializer(serializers.ModelSerializer):
         model = Usuario
         fields = '__all__'
         
-class CompraSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Compra
-        fields = '__all__'
-        
 class VendedorSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
     class Meta:
@@ -40,17 +35,20 @@ class ProductoSerializer(serializers.ModelSerializer):
     fecha_de_publicacion = serializers.DateTimeField(format=('%d-%m-%Y'))
     estado = serializers.CharField(source='get_estado_display')
     class Meta:
-        fields = ['nombre','descripcion','precio',
+        fields = ['id','nombre','descripcion','precio',
                   'estado','fecha_de_publicacion']
         model = Producto
+
+class CompraSerializer(serializers.ModelSerializer):
+    producto = ProductoSerializer(many=True, read_only=True)
+    class Meta:
+        model = Compra
+        fields = '__all__'
 
 class ValoracionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Valoracion
         fields = '__all__'
-
-
-
 
 class ProductoCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -140,7 +138,7 @@ class ProductoSerializerActualizarNombre(serializers.ModelSerializer):
 class ProductoSerializerMejorado(serializers.ModelSerializer): 
     vendedor = UsuarioSerializer()
     categorias = ProductoCategoriaSerializer(many=True, source='productocategoria_set')
-    fecha_de_publicacion = serializers.DateTimeField(format='%Y-%m-%dT%H:%M')
+    fecha_de_publicacion = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S')
     estado = serializers.CharField(source='get_estado_display')
     class Meta:
         fields = '__all__'

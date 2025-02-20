@@ -5,9 +5,9 @@ urlpatterns = [
     path('categorias/',categoria_listar),
     path('productos/',producto_listar),
     
-    path('productos/<int:id>/',obtener_producto),
-    path('compras/<int:id>/',obtener_compra),
-    path('valoraciones/<int:id>/',obtener_valoracion),
+    path('productos/<int:producto_id>/',obtener_producto),
+    path('compras/<int:compras_id>/',obtener_compra),
+    path('valoraciones/<int:valoracion_id>/',obtener_valoracion),
     
     path('productos-mejorado/',producto_listar_mejorado),
     path('productos/buscar_simple/',producto_buscar_simple),
@@ -15,20 +15,20 @@ urlpatterns = [
     
     
     path('productos/crear/',producto_crear),
-    path('productos/editar/<int:id>/',producto_editar),
-    path('productos/actualizar/<int:id>/',producto_actualizar_nombre),
-    path('productos/eliminar/<int:id>/',producto_eliminar),
+    path('productos/editar/<int:producto_id>/',producto_editar),
+    path('productos/actualizar/<int:producto_id>/',producto_actualizar_nombre),
+    path('productos/eliminar/<int:producto_id>/',producto_eliminar),
     
     path('compras/listar/',compra_listar),
     path('compras/crear/',compra_crear),
-    path('compras/editar/<int:id>/',compra_editar),
-    path('compras/actualizar/<int:id>/',compra_actualizar_garantia),
-    path('compras/eliminar/<int:id>/',compra_eliminar),
+    path('compras/editar/<int:compras_id>/',compra_editar),
+    path('compras/actualizar/<int:compras_id>/',compra_actualizar_garantia),
+    path('compras/eliminar/<int:compras_id>/',compra_eliminar),
     
     path('valoraciones/crear/',valoracion_crear),
-    path('valoraciones/editar/<int:id>/',valoracion_editar),
-    path('valoraciones/actualizar/<int:id>/',valoracion_actualizar_puntuacion),
-    path('valoraciones/eliminar/<int:id>/',valoracion_eliminar),
+    path('valoraciones/editar/<int:valoraciones_id>/',valoracion_editar),
+    path('valoraciones/actualizar/<int:valoraciones_id>/',valoracion_actualizar_puntuacion),
+    path('valoraciones/eliminar/<int:valoraciones_id>/',valoracion_eliminar),
     
     path('vendedores/listar/',vendedores_listar),
     path('compradores/listar/',compradores_listar),

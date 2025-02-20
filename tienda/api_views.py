@@ -9,13 +9,14 @@ import datetime
 
 @api_view(['GET'])
 def obtener_producto(request,producto_id):
-    producto = Producto.objects.select_related('vendedor').prefetch_related('categorias').get(id=producto_id)
+    producto = Producto.objects.select_related('vendedor').prefetch_related('categorias')
+    producto = producto.get(id=producto_id)
     serializer = ProductoSerializerMejorado(producto)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def obtener_compra(request,compra_id):
-    compra = Compra.objects.select_related('comprador').get(id=compra_id)
+    compra = Compra.objects.select_related('comprador').prefetch_related('producto').get(id=compra_id)
     serializer = CompraSerializer(compra)
     return Response(serializer.data)
 
@@ -33,7 +34,7 @@ def categoria_listar(request):
 
 @api_view(['GET'])
 def compra_listar(request):
-    compras = Compra.objects.select_related('comprador').all()
+    compras = Compra.objects.select_related('comprador').prefetch_related('producto').all()
     serializer = CompraSerializer(compras, many=True)
     return Response(serializer.data)
 
