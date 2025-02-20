@@ -6,7 +6,7 @@ urlpatterns = [
     path('productos/',producto_listar),
     
     path('productos/<int:producto_id>/',obtener_producto),
-    path('compras/<int:compras_id>/',obtener_compra),
+    path('compras/<int:compra_id>/',obtener_compra),
     path('valoraciones/<int:valoracion_id>/',obtener_valoracion),
     
     path('productos-mejorado/',producto_listar_mejorado),
@@ -21,14 +21,15 @@ urlpatterns = [
     
     path('compras/listar/',compra_listar),
     path('compras/crear/',compra_crear),
-    path('compras/editar/<int:compras_id>/',compra_editar),
-    path('compras/actualizar/<int:compras_id>/',compra_actualizar_garantia),
-    path('compras/eliminar/<int:compras_id>/',compra_eliminar),
-    
+    path('compras/editar/<int:compra_id>/',compra_editar),
+    path('compras/actualizar/<int:compra_id>/',compra_actualizar_garantia),
+    path('compras/eliminar/<int:compra_id>/',compra_eliminar),
+   
+    path('valoraciones/listar/',valoraciones_listar), 
     path('valoraciones/crear/',valoracion_crear),
-    path('valoraciones/editar/<int:valoraciones_id>/',valoracion_editar),
-    path('valoraciones/actualizar/<int:valoraciones_id>/',valoracion_actualizar_puntuacion),
-    path('valoraciones/eliminar/<int:valoraciones_id>/',valoracion_eliminar),
+    path('valoraciones/editar/<int:valoracion_id>/',valoracion_editar),
+    path('valoraciones/actualizar/<int:valoracion_id>/',valoracion_actualizar_puntuacion),
+    path('valoraciones/eliminar/<int:valoracion_id>/',valoracion_eliminar),
     
     path('vendedores/listar/',vendedores_listar),
     path('compradores/listar/',compradores_listar),

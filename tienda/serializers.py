@@ -46,6 +46,8 @@ class CompraSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ValoracionSerializer(serializers.ModelSerializer):
+    usuario = UsuarioSerializer()
+    compra = CompraSerializer()
     class Meta:
         model = Valoracion
         fields = '__all__'

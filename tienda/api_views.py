@@ -51,6 +51,12 @@ def compradores_listar(request):
     return Response(serializers.data)
 
 @api_view(['GET'])
+def valoraciones_listar(request):
+    valoraciones = Valoracion.objects.select_related('usuario','compra').all()
+    serializers = ValoracionSerializer(valoraciones, many=True)
+    return Response(serializers.data)
+
+@api_view(['GET'])
 def producto_listar(request):
     productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
     serializer = ProductoSerializer(productos,many = True)
