@@ -191,8 +191,15 @@ def producto_editar(request,producto_id):
             return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return Response(productoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
- 
-api_view(['PATCH']) 
+
+
+#He tenido que hacer esto porque me he llevado un monton de 
+# tiempo intentando arreglar lo del csrf token y no podia
+#En otras view de patch no me da error, no se por que en esta si
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
+@api_view(['PATCH']) 
 def producto_actualizar_nombre(request,producto_id):
     producto = Producto.objects.get(id=producto_id)
     serializer = ProductoSerializerActualizarNombre(
@@ -410,6 +417,22 @@ def consola_crear(request):
         return Response(consolaCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST'])
+def calzado_crear(request):
+    print(request.data)
+    calzadoCreateSerializer = CalzadoCreateSerializer(
+        data=request.data)
+    if calzadoCreateSerializer.is_valid():
+        try:
+            calzadoCreateSerializer.save()
+            return  Response('Calzado creado')
+        except serializers.ValidationError as error:
+            return Response(error, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as error:
+            print(repr(error))
+            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(calzadoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def calzado_buscar(request):
@@ -424,7 +447,6 @@ def calzado_buscar(request):
             marca = formulario.cleaned_data.get('buscarMarca')
             color = formulario.cleaned_data.get('buscarColor')
             material = formulario.cleaned_data.get('buscarMaterial')
-            precio = formulario.cleaned_data.get('buscarPrecioMax')
 
             if(nombre):
                 QScalzados = QScalzados.filter(producto__nombre__icontains=nombre)
@@ -446,10 +468,6 @@ def calzado_buscar(request):
                 QScalzados = QScalzados.filter(material__icontains=material)
                 mensaje_busqueda += " Material que contenga " + material + "\n"
 
-            if(precio is not None):
-                QScalzados = QScalzados.filter(producto__precio__lte=precio)
-                mensaje_busqueda += " Precio menor o igual a " + str(precio) + "\n"
-
             calzados = QScalzados.all()
             serializer = CalzadoSerializer(calzados, many=True)
 
@@ -459,22 +477,6 @@ def calzado_buscar(request):
     else:
         return Response({}, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-def calzado_crear(request):
-    print(request.data)
-    calzadoCreateSerializer = CalzadoCreateSerializer(
-        data=request.data)
-    if calzadoCreateSerializer.is_valid():
-        try:
-            calzadoCreateSerializer.save()
-            return  Response('Calzado creado')
-        except serializers.ValidationError as error:
-            return Response(error, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as error:
-            print(repr(error))
-            return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    else:
-        return Response(calzadoCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 def mueble_buscar(request):

@@ -32,11 +32,10 @@ class ProductoCategoriaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductoSerializer(serializers.ModelSerializer): 
-    fecha_de_publicacion = serializers.DateTimeField(format=('%d-%m-%Y'))
     estado = serializers.CharField(source='get_estado_display')
     class Meta:
         fields = ['id','nombre','descripcion','precio',
-                  'estado','fecha_de_publicacion']
+                  'estado']
         model = Producto
 
 class CompraSerializer(serializers.ModelSerializer):
@@ -56,7 +55,7 @@ class ProductoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['nombre','descripcion',
                   'precio','estado','vendedor',
-                  'categorias','fecha_de_publicacion']
+                  'categorias']
         model = Producto
         
         def validate_precio(self,precio):
@@ -74,11 +73,6 @@ class ProductoCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Debe indicar un vendedor')
             return vendedor
         
-        def fecha_publicacion(self,fecha_de_publicacion):
-            if fecha_de_publicacion > timezone.now():
-                raise serializers.ValidationError('La fecha de publicación no puede ser mayor a la fecha actual')
-            return fecha_de_publicacion
-
         def create(self, validated_data):
             categorias = self.initial_data['categorias']
             
@@ -94,7 +88,6 @@ class ProductoCreateSerializer(serializers.ModelSerializer):
                 precio = validated_data['precio'],
                 estado = validated_data['estado'],
                 vendedor = validated_data['vendedor'],
-                fecha_de_publicacion = validated_data['fecha_de_publicacion'],    
             )
             
             for categoria in categorias:
@@ -116,7 +109,6 @@ class ProductoCreateSerializer(serializers.ModelSerializer):
             instance.precio = validated_data['precio']
             instance.estado = validated_data['estado']
             instance.vendedor = validated_data['vendedor']
-            instance.fecha_de_publicacion = validated_data['fecha_de_publicacion']
             
             instance.save()
             
@@ -140,7 +132,6 @@ class ProductoSerializerActualizarNombre(serializers.ModelSerializer):
 class ProductoSerializerMejorado(serializers.ModelSerializer): 
     vendedor = UsuarioSerializer()
     categorias = ProductoCategoriaSerializer(many=True, source='productocategoria_set')
-    fecha_de_publicacion = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S')
     estado = serializers.CharField(source='get_estado_display')
     class Meta:
         fields = '__all__'
@@ -149,7 +140,7 @@ class ProductoSerializerMejorado(serializers.ModelSerializer):
 class CompraCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['producto','comprador',
-                  'fecha_compra','garantia','total']
+                  'garantia','total']
         model = Compra
         
         def validate_producto(self,producto):
@@ -161,12 +152,7 @@ class CompraCreateSerializer(serializers.ModelSerializer):
             if len(comprador) != 1:
                 raise serializers.ValidationError('Debe indicar un comprador')
             return comprador
-        
-        def validate_fecha_compra(self,fecha_compra):
-            if fecha_compra > timezone.now():
-                raise serializers.ValidationError('La fecha de compra no puede ser mayor a la fecha actual')
-            return fecha_compra
-        
+           
         def validate_garantia(self,garantia):
             if garantia not in ['UNO', 'DOS']:
                 raise serializers.ValidationError('Garantía no válida')
@@ -181,15 +167,14 @@ class CompraCreateSerializer(serializers.ModelSerializer):
             compra = Compra.objects.create(
                 producto = validated_data['producto'],
                 comprador = validated_data['comprador'],
-                fecha_de_compra = validated_data['fecha_de_compra'],
                 garantia = validated_data['garantia']
             )
             return compra
 
         def update(self, instance, validated_data):
             instance.comprador = validated_data['comprador']
-            instance.fecha_de_compra = validated_data['fecha_de_compra']
             instance.garantia = validated_data['garantia']
+            instance.total = validated_data['total']
             instance.save()
             
             instance.producto.set(validated_data['producto'])
@@ -209,8 +194,13 @@ class CompraActualizarGarantiaSerializer(serializers.ModelSerializer):
 class ValoracionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ['usuario','compra','puntuacion'
-                  ,'comentario','fecha_valoracion']
+                  ,'comentario']
         model = Valoracion
+        
+        def validate_comprador(self,comprador):
+            if len(comprador) != 1:
+                raise serializers.ValidationError('Solo puede ser 1 comprador') 
+            return comprador
         
         def validate_puntuacion(self,puntuacion):
             if puntuacion < 1 or puntuacion > 5:
@@ -222,18 +212,12 @@ class ValoracionCreateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Comentario inválido')
             return comentario
         
-        def validate_fecha_valoracion(self,fecha_valoracion):
-            if fecha_valoracion > timezone.now():
-                raise serializers.ValidationError('Fecha inválida')
-            return fecha_valoracion
-        
         def create(self, validated_data):
             valoracion = Valoracion.objects.create(
                 usuario = validated_data['usuario'],
                 compra = validated_data['compra'],
                 puntuacion = validated_data['puntuacion'],
                 comentario = validated_data['comentario'],
-                fecha_valoracion = validated_data['fecha_valoracion']
             )
             return valoracion
 
@@ -242,7 +226,6 @@ class ValoracionCreateSerializer(serializers.ModelSerializer):
             instance.compra = validated_data['compra']
             instance.puntuacion = validated_data['puntuacion']
             instance.comentario = validated_data['comentario']
-            instance.fecha_valoracion = validated_data['fecha_valoracion']
             instance.save()
             return instance
 
@@ -257,14 +240,13 @@ class ValoracionActualizarPuntuacionSerializer(serializers.ModelSerializer):
             return puntuacion
     
 class CalzadoSerializer(serializers.ModelSerializer):
-    producto = ProductoSerializerMejorado()
+    producto = ProductoSerializerMejorado(read_only=True, many=True)
     marca = serializers.CharField(source='get_marca_display')
     class Meta:
         fields = ['producto','talla','marca','color','material']
         model = Calzado
         
 class CalzadoCreateSerializer(serializers.ModelSerializer):
-#    producto = ProductoCreateSerializer()
     class Meta:
         fields = ['producto','talla','marca','color','material']
         model = Calzado

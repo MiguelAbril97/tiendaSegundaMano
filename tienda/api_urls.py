@@ -31,13 +31,13 @@ urlpatterns = [
     path('valoraciones/actualizar/<int:valoracion_id>/',valoracion_actualizar_puntuacion),
     path('valoraciones/eliminar/<int:valoracion_id>/',valoracion_eliminar),
     
-    path('vendedores/listar/',vendedores_listar),
-    path('compradores/listar/',compradores_listar),
-    
-    
     path('calzados/',calzado_listar),
     path('calzados/buscar/',calzado_buscar),
     path('calzados/crear/',calzado_crear),
+    
+    path('vendedores/listar/',vendedores_listar),
+    path('compradores/listar/',compradores_listar),
+    
     path('consolas/',consolas_listar),
     path('consolas/buscar/',consola_buscar),
     path('consolas/crear', consola_crear),

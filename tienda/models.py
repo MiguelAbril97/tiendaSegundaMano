@@ -54,7 +54,6 @@ class Producto(models.Model):
     )
     vendedor = models.ForeignKey(Usuario, on_delete=models.CASCADE, 
                                  related_name='producto_vendedor')
-    fecha_de_publicacion = models.DateTimeField(default=timezone.now)
     categorias = models.ManyToManyField(Categoria, through='ProductoCategoria', 
                                         related_name="categorias")
     
@@ -103,12 +102,9 @@ class Chat(models.Model):
                                  on_delete=models.CASCADE)
     usuario2 = models.ForeignKey(Usuario, related_name='chat_usuario2', 
                                  on_delete=models.CASCADE)
-    fecha_inicio = models.DateTimeField(default=timezone.now)
-    fecha_fin= models.DateTimeField(blank=True)
 
 class Compra(models.Model):
     comprador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    fecha_compra = models.DateTimeField(default=timezone.now)
     total = models.DecimalField(max_digits=10, decimal_places=2)
     GARANTIA=[
         ("UNO", "Un año"),
@@ -130,7 +126,6 @@ class Valoracion(models.Model):
     compra = models.ForeignKey(Compra, on_delete=models.CASCADE)
     puntuacion = models.IntegerField()
     comentario = models.TextField(blank=True)
-    fecha_valoracion = models.DateTimeField(default=timezone.now)
 
 
 

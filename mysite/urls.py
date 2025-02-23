@@ -27,9 +27,9 @@ urlpatterns = [
 ]
 
 
-from django.conf.urls import handler400, handler403, handler404, handler500
+#from django.conf.urls import handler400, handler403, handler404, handler500
 
-handler400 = 'tienda.views.mi_error_400'
-handler403 = 'tienda.views.mi_error_403'
-handler404 = 'tienda.views.mi_error_404'
-handler500 = 'tienda.views.mi_error_500'
+#handler400 = 'tienda.views.mi_error_400'
+#handler403 = 'tienda.views.mi_error_403'
+#handler404 = 'tienda.views.mi_error_404'
+#handler500 = 'tienda.views.mi_error_500'
