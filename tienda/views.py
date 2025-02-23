@@ -1,22 +1,22 @@
-# from django.shortcuts import render,redirect
-# from django.db.models import Q,F,Prefetch
-# from django.db.models import Avg,Max,Min
-# from django.db.models import Count
-# from .models import *
-# from .forms import *
-# from django.contrib import messages
-# from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
-# from datetime import datetime
-# from django.contrib.auth import login,logout,authenticate
-# from django.contrib.auth.decorators import permission_required
-# from django.contrib.auth.models import Group
+from django.shortcuts import render,redirect
+from django.db.models import Q,F,Prefetch
+from django.db.models import Avg,Max,Min
+from django.db.models import Count
+from .models import *
+from .forms import *
+from django.contrib import messages
+from django.views.defaults import page_not_found, permission_denied, bad_request, server_error
+from datetime import datetime
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group
 
 
 # Preguntar que es lo de las fechas en su view de index y preguntas en la 
 #view de registrar
 #
-# def index(request):
-#     return render(request, "index.html")
+def index(request):
+    return render(request, "index.html")
 
 #3 Esta view muestra toda la informacion de un producto
 # def muestra_producto(request, id_producto):

@@ -6,6 +6,9 @@
 {% endblock %}
 
 {%block contenido%}
+<p>Aqui no hay nada que ver</p>
+
+{%comment%}
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3">
@@ -36,7 +39,6 @@
             </div>
         </div>
         {% if request.user.rol == 1 %}
-        {% comment %}
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
@@ -64,7 +66,6 @@
                 </div>
             </div>
         </div>
-        {% endcomment %}
         <div class="col-md-3">
             <div class="card text-center">
             <div class="card-body">
@@ -77,3 +78,4 @@
         {% endif %}
     </div>
 {% endblock %}
+{% endcomment %}
