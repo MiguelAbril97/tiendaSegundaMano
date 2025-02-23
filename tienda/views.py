@@ -72,36 +72,36 @@ def index(request):
 # segun lo que escoja el usuario en el formulario
 
 #Preguntar tambien si lo de formulario.cleaned_data.get('nombre') esta bien
-# def registrar_usuario(request):
-#     if request.method == 'POST':
-#         formulario = UsuarioForm(request.POST)
-#         if (formulario.is_valid()):
-#             user = formulario.save()
-#             rol = int(formulario.cleaned_data.get('rol'))            
-#             if (rol == Usuario.COMPRADOR):
-#                 grupo = Group.objects.get(name='Compradores')
-#                 grupo.user_set.add(user)
-#                 comprador = Comprador.objects.create(
-#                     usuario=user,
-#                     nombre=formulario.cleaned_data.get('nombre'),
-#                     apellidos=formulario.cleaned_data.get('apellidos'),
-#                 )
-#                 comprador.save()
-#             elif rol == Usuario.VENDEDOR:
-#                 grupo = Group.objects.get(name='Vendedores')
-#                 grupo.user_set.add(user)
-#                 vendedor = Vendedor.objects.create(
-#                     usuario=user,
-#                     razonSocial=formulario.cleaned_data.get('razonSocial'),
-#                     direccionFiscal=formulario.cleaned_data.get('direccionFiscal'),
-#                 )
-#                 vendedor.save()
+def registrar_usuario(request):
+    if request.method == 'POST':
+        formulario = UsuarioForm(request.POST)
+        if (formulario.is_valid()):
+            user = formulario.save()
+            rol = int(formulario.cleaned_data.get('rol'))            
+            if (rol == Usuario.COMPRADOR):
+                grupo = Group.objects.get(name='Compradores')
+                grupo.user_set.add(user)
+                comprador = Comprador.objects.create(
+                    usuario=user,
+                    nombre=formulario.cleaned_data.get('nombre'),
+                    apellidos=formulario.cleaned_data.get('apellidos'),
+                )
+                comprador.save()
+            elif rol == Usuario.VENDEDOR:
+                grupo = Group.objects.get(name='Vendedores')
+                grupo.user_set.add(user)
+                vendedor = Vendedor.objects.create(
+                    usuario=user,
+                    razonSocial=formulario.cleaned_data.get('razonSocial'),
+                    direccionFiscal=formulario.cleaned_data.get('direccionFiscal'),
+                )
+                vendedor.save()
 
-#             login(request, user)
-#             return redirect('index')
-#     else:
-#         formulario = UsuarioForm()
-#     return render(request, 'registration/signup.html', {'formulario': formulario})
+                login(request, user)
+            return redirect('index')
+    else:
+        formulario = UsuarioForm()
+    return render(request, 'registration/signup.html', {'formulario': formulario})
 
    
 """
