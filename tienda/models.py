@@ -64,39 +64,6 @@ class ProductoCategoria(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
-class Calzado(models.Model):
-    MARCAS = [
-        ("NIKE", "Nike"),
-        ("ADID", "Adidas"),
-        ("PUMA", "Puma"),
-        ("RBK", "Reebok"),
-        ("NB", "New Balance"),
-        ("CLRK", "Clarks"),
-        ("GUCCI", "Gucci"),
-    ]
-    producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
-    talla = models.CharField(max_length=2)
-    marca = models.CharField(
-        max_length=5,
-        choices=MARCAS
-    )
-    color = models.CharField(max_length=20, blank=True)
-    material = models.CharField(max_length=30)
-    
-class Consolas (models.Model):
-    producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
-    modelo = models.CharField(max_length=50)
-    color = models.CharField(max_length=20)
-    memoria = models.CharField(max_length=20)
-
-class Muebles(models.Model):
-    producto = models.OneToOneField(Producto, on_delete=models.CASCADE)
-    material = models.CharField(max_length=30)
-    ancho = models.FloatField()
-    alto = models.FloatField()
-    profundidad = models.FloatField()
-    peso = models.IntegerField()
-
 class Chat(models.Model):
     usuario1 = models.ForeignKey(Usuario, related_name='chat_usuario1', 
                                  on_delete=models.CASCADE)

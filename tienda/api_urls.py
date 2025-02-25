@@ -20,10 +20,6 @@ urlpatterns = [
     path('productos/eliminar/<int:producto_id>/',producto_eliminar),
     
     path('compras/listar/',compra_listar),
-    path('compras/crear/',compra_crear),
-    path('compras/editar/<int:compra_id>/',compra_editar),
-    path('compras/actualizar/<int:compra_id>/',compra_actualizar_garantia),
-    path('compras/eliminar/<int:compra_id>/',compra_eliminar),
    
     path('valoraciones/listar/',valoraciones_listar), 
     path('valoraciones/crear/',valoracion_crear),
@@ -31,18 +27,7 @@ urlpatterns = [
     path('valoraciones/actualizar/<int:valoracion_id>/',valoracion_actualizar_puntuacion),
     path('valoraciones/eliminar/<int:valoracion_id>/',valoracion_eliminar),
     
-    path('calzados/',calzado_listar),
-    path('calzados/buscar/',calzado_buscar),
-    path('calzados/crear/',calzado_crear),
-    
     path('vendedores/listar/',vendedores_listar),
     path('compradores/listar/',compradores_listar),
-    
-    path('consolas/',consolas_listar),
-    path('consolas/buscar/',consola_buscar),
-    path('consolas/crear', consola_crear),
-    path('muebles/',mueble_listar),
-    path('muebles/buscar/',mueble_buscar),
-    path('muebles/crear/',mueble_crear),
-    
+
 ]
