@@ -5,6 +5,10 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .forms import *
 from django.db.models import Q,Prefetch
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import Group
+
 import datetime
 
 @api_view(['GET'])
@@ -57,6 +61,7 @@ def valoraciones_listar(request):
     return Response(serializers.data)
 
 @api_view(['GET'])
+#@request.user.has_perm("view_producto")
 def producto_listar(request):
     productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
     serializer = ProductoSerializer(productos,many = True)
@@ -268,3 +273,63 @@ def valoracion_eliminar(request,valoracion_id):
         return Response('Valoracion eliminada')
     except Exception as error:
         return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#################
+##  REGISTRO
+#################
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+
+class registrar_usuario(generics.CreateAPIView):
+    serializer_class = UsuarioSerializerRegistro
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        serializers = UsuarioSerializerRegistro(data=request.data)
+        if serializers.is_valid():
+            try:
+                rol = request.data.get('rol')
+                user = Usuario.objects.create_user(
+                   username = serializers.data.get("username"), 
+                    email = serializers.data.get("email"), 
+                    password = serializers.data.get("password1"),
+                    rol = rol,
+                    telefono = serializers.data.get("telefono"),
+                    direccion = serializers.data.get("direccion")
+                    )
+                
+                if(rol==Usuario.COMPRADOR):
+                    grupo = Group.objects.get("Compradores")
+                    grupo.user_set.add(user)
+                    comprador = Comprador.objects.create(
+                        usuario = user,
+                        nombre = serializers.data.get("nombre"),
+                        apellidos = serializers.data.get("apellidos")
+                    )
+                    comprador.save()
+                elif(rol == Usuario.VENDEDOR):
+                    grupo = Group.objects.get("Vendedores")
+                    grupo.user_set.add(user)
+                    vendedor = Vendedor.objects.create(
+                        usuario = user,
+                        razonSocial = serializers.data.get("razonSocial"),
+                        direccionFiscal = serializers.data.get("direccionFiscal")
+                    )
+                    vendedor.save()
+            
+                usuarioSerializado = UsuarioSerializer(user)
+                return Response(usuarioSerializado.data)
+            
+            except Exception as error:
+               print(repr(error))
+               return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+from oauth2_provider.models import AccessToken     
+@api_view(['GET'])
+def obtener_usuario_token(request,token):
+    ModeloToken = AccessToken.objects.get(token=token)
+    usuario = Usuario.objects.get(id=ModeloToken.user_id)
+    serializer = UsuarioSerializer(usuario)
+    return Response(serializer.data)
