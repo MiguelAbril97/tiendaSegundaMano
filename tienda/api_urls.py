@@ -5,6 +5,10 @@ urlpatterns = [
     path('categorias/',categoria_listar),
     path('productos/',producto_listar),
     
+    ###Usuarios
+    path("registrar/usuario",registrar_usuario.as_view()),
+    path('usuario/token/<str:token>',obtener_usuario_token),
+        
     path('productos/<int:producto_id>/',obtener_producto),
     path('compras/<int:compra_id>/',obtener_compra),
     path('valoraciones/<int:valoracion_id>/',obtener_valoracion),

@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import *
 from .forms import *
-from django.utils import timezone
                 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -238,3 +237,61 @@ class ValoracionActualizarPuntuacionSerializer(serializers.ModelSerializer):
             if puntuacion < 1 or puntuacion > 5:
                 raise serializers.ValidationError('Puntuación inválida')
             return puntuacion
+        
+class UsuarioSerializerRegistro(serializers.Serializer):
+ 
+    username = serializers.CharField()
+    rol = serializers.IntegerField()
+    password1 = serializers.CharField()
+    password2 = serializers.CharField()
+    email = serializers.EmailField()
+    telefono = serializers.CharField()
+    direccion = serializers.CharField()
+    
+    def validate_username(self,username):
+        usuario = Usuario.objects.filter(username=username).first()
+        if(not usuario is None):
+            raise serializers.ValidationError('Ya existe un usuario con ese nombre')
+        return username
+    
+    def validate_rol(self,rol):
+        if(rol < 2 or rol > 3):
+            raise serializers.ValidationError('Rol incorrecto')
+        return rol
+    
+    def validate_password(self,password1,password2):
+        if(password1 != password2):
+            raise serializers.ValidationError('Las contraseñas deben ser iguales')
+        return password1
+    
+    def validate_email(self, email):
+        correo = Usuario.objects.filter(email=email).first()
+        if (not correo is None):
+            raise serializers.ValidationError("El correo no es válido")
+        return email
+    
+    if(rol == str(Usuario.COMPRADOR)):
+        nombre = serializers.CharField()
+        apellidos = serializers.CharField()
+        def validate_nombre(self,nombre):
+            if(len(nombre) > 60):
+                raise serializers.ValidationError("El nombre no puede exceder los 60 carácteres")
+            return nombre
+        
+        def validate_apellidos(self,apellidos):
+           if(len(apellidos) > 60):
+               raise serializers.ValidationError("Los apellidos no pueden exceder los 60 carácteres")
+           return apellidos
+    
+    elif(rol == str(Usuario.VENDEDOR)):
+        razonSocial = serializers.CharField()
+        direccionFiscal = serializers.CharField()
+        def validate_razonSocial(self,razonSocial):
+            if(len(razonSocial) > 150):
+                raise serializers.ValidationError("La razon social no puede exceder los 150 carácteres")   
+            return razonSocial
+        
+        def validate_direccionFiscal(self,direccionFiscal):
+            if(len(direccionFiscal) > 150):
+                raise serializers.ValidationError("La dirección fiscal no puede exceder los 150 carácteres")   
+            return direccionFiscal

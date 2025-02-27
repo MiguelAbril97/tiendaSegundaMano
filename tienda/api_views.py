@@ -5,6 +5,10 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .forms import *
 from django.db.models import Q,Prefetch
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import Group
+
 import datetime
 
 @api_view(['GET'])
@@ -58,9 +62,10 @@ def valoraciones_listar(request):
 
 @api_view(['GET'])
 def producto_listar(request):
-    productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
-    serializer = ProductoSerializer(productos,many = True)
-    return Response(serializer.data)
+    if request.user.has_perm("view_producto"):
+        productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
+        serializer = ProductoSerializer(productos,many = True)
+        return Response(serializer.data)
 
 @api_view(['GET'])
 def producto_listar_mejorado(request):
@@ -268,3 +273,67 @@ def valoracion_eliminar(request,valoracion_id):
         return Response('Valoracion eliminada')
     except Exception as error:
         return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#################
+##  REGISTRO
+#################
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
+
+class registrar_usuario(generics.CreateAPIView):
+    serializer_class = UsuarioSerializerRegistro
+    permission_classes = [AllowAny]
+    
+    def create(self, request, *args, **kwargs):
+        serializers = UsuarioSerializerRegistro(data=request.data)
+        if serializers.is_valid():
+            try:
+                rol = request.data.get('rol')
+                user = Usuario.objects.create_user(
+                   username = serializers.data.get("username"), 
+                    email = serializers.data.get("email"), 
+                    password = serializers.data.get("password1"),
+                    rol = rol,
+                    telefono = serializers.data.get("telefono"),
+                    direccion = serializers.data.get("direccion")
+                    )
+                
+                ####
+                #Obtengo los valores directamente de la request en vez del serializer
+                #porque al definir la variable dentro del metodo no me la devuelve
+                
+                if(rol== '2'):
+                    grupo = Group.objects.get(name="Compradores")
+                    grupo.user_set.add(user)
+                    comprador = Comprador.objects.create(
+                        usuario = user,
+                        nombre = request.data.get("nombre"),
+                        apellidos = request.data.get("apellidos")
+                    )
+                    comprador.save()
+                elif(rol == '3'):
+                    grupo = Group.objects.get(name="Vendedores")
+                    grupo.user_set.add(user)
+                    vendedor = Vendedor.objects.create(
+                        usuario = user,
+                        razonSocial = request.data.get("razonSocial"),
+                        direccionFiscal = request.data.get("direccionFiscal")
+                    )
+                    vendedor.save()
+            
+                usuarioSerializado = UsuarioSerializer(user)
+                return Response(usuarioSerializado.data)
+            
+            except Exception as error:
+               print(repr(error))
+               return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+from oauth2_provider.models import AccessToken     
+@api_view(['GET'])
+def obtener_usuario_token(request,token):
+    ModeloToken = AccessToken.objects.get(token=token)
+    usuario = Usuario.objects.get(id=ModeloToken.user_id)
+    serializer = UsuarioSerializer(usuario)
+    return Response(serializer.data)
