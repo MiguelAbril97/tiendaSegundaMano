@@ -61,6 +61,7 @@ def valoraciones_listar(request):
     return Response(serializers.data)
 
 @api_view(['GET'])
+#@request.user.has_perm("view_producto")
 def producto_listar(request):
     if request.user.has_perm("view_producto"):
         productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
