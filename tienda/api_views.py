@@ -1,19 +1,33 @@
 from .models import *
 from .serializers import *
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
 from rest_framework import status
 from .forms import *
 from django.db.models import Q,Prefetch
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import Group
+import requests
 
 import datetime
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def obtener_vendedor(request, vendedor_id):
+    if request.user.has_perm("tienda.view_vendedor"):
+        vendedor = Vendedor.objects.select_related('usuario').filter(
+                                                                usuario=vendedor_id
+                                                                ).get()
+        serializer = VendedorSerializer(vendedor)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def obtener_producto(request,producto_id):
-    if request.user.has_perm("view_producto"):
+    if request.user.has_perm("tienda.view_producto"):
         producto = Producto.objects.select_related('vendedor').prefetch_related('categorias')
         producto = producto.get(id=producto_id)
         serializer = ProductoSerializerMejorado(producto)
@@ -22,8 +36,9 @@ def obtener_producto(request,producto_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def obtener_compra(request,compra_id):
-    if request.user.has_perm("view_compra"):
+    if request.user.has_perm("tienda.view_compra"):
         compra = Compra.objects.select_related('comprador').prefetch_related('producto').get(id=compra_id)
         serializer = CompraSerializer(compra)
         return Response(serializer.data)
@@ -31,8 +46,9 @@ def obtener_compra(request,compra_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def obtener_valoracion(request,valoracion_id):
-    if request.user.has_perm("view_valoracion"):
+    if request.user.has_perm("tienda.view_valoracion"):
         valoracion = Valoracion.objects.get(id=valoracion_id)
         serializer = ValoracionSerializer(valoracion)
         return Response(serializer.data)
@@ -40,26 +56,20 @@ def obtener_valoracion(request,valoracion_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def categoria_listar(request):
-    if request.user.has_perm("view_categoria"):
+    if request.user.has_perm("tienda.view_categoria"):
         categorias = Categoria.objects.all()
         serializer = CategoriaSerializer(categorias, many=True)
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
-@api_view(['GET'])
-def compra_listar(request):
-    if request.user.has_perm("view_compra"):
-        compras = Compra.objects.select_related('comprador').prefetch_related('producto').all()
-        serializer = CompraSerializer(compras, many=True)
-        return Response(serializer.data)
-    else:
-        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def vendedores_listar(request):
-    if request.user.has_perm("view_vendedor"):
+    if request.user.has_perm("tienda.view_vendedor"):
         vendedores = Vendedor.objects.select_related('usuario').all()
         serializer = VendedorSerializer(vendedores, many=True)
         return Response(serializer.data)
@@ -67,8 +77,9 @@ def vendedores_listar(request):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def compradores_listar(request):
-    if request.user.has_perm("view_comprador"):
+    if request.user.has_perm("tienda.view_comprador"):
         compradores = Comprador.objects.select_related('usuario').all()
         serializers = CompradorSerializer(compradores, many=True)
         return Response(serializers.data)
@@ -76,36 +87,84 @@ def compradores_listar(request):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def compra_listar(request):
+    if request.user.has_perm("tienda.view_compra"):
+        # Si es comprador, solo ve sus propias compras
+        if request.user.rol == 2:  # COMPRADOR
+            compras = Compra.objects.select_related('comprador').prefetch_related('producto').filter(
+                comprador=request.user
+            ).all()
+        # Si es vendedor, ve las compras de sus productos
+        elif request.user.rol == 3:  # VENDEDOR
+            compras = Compra.objects.select_related('comprador').prefetch_related('producto').filter(
+                producto__vendedor=request.user
+            ).all()
+        # Si es administrador (rol 1), ve todas las compras
+        else:
+            compras = Compra.objects.select_related('comprador').prefetch_related('producto').all()
+            
+        serializer = CompraSerializer(compras, many=True)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def valoraciones_listar(request):
-    if request.user.has_perm("view_valoracion"):
-        valoraciones = Valoracion.objects.select_related('usuario','compra').all()
+    if request.user.has_perm("tienda.view_valoracion"):
+        # Si es comprador, solo ve sus valoraciones
+        if request.user.rol == 2:  # COMPRADOR
+            valoraciones = Valoracion.objects.select_related('usuario','compra').filter(
+                usuario=request.user
+            ).all()
+        # Si es vendedor, ve las valoraciones de las compras de sus productos
+        elif request.user.rol == 3:  # VENDEDOR
+            valoraciones = Valoracion.objects.select_related('usuario','compra').filter(
+                compra__producto__vendedor=request.user
+            ).all()
+        # Si es administrador (rol 1), ve todas las valoraciones
+        else:
+            valoraciones = Valoracion.objects.select_related('usuario','compra').all()
+            
         serializers = ValoracionSerializer(valoraciones, many=True)
         return Response(serializers.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
-#@request.user.has_perm("view_producto")
+@permission_classes([IsAuthenticated])
+def producto_listar_mejorado(request):
+    if request.user.has_perm("tienda.view_producto"):
+        # Si es vendedor, solo ve sus productos
+        if request.user.rol == 3:  # VENDEDOR
+            productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').filter(
+                vendedor=request.user
+            ).all()
+        # Si es comprador o administrador, ve todos los productos
+        else:
+            productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
+            
+        serializer = ProductoSerializerMejorado(productos, many=True)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def producto_listar(request):
-    if request.user.has_perm("view_producto"):
+    if request.user.has_perm("tienda.view_producto"):
         productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
         serializer = ProductoSerializer(productos,many = True)
         return Response(serializer.data)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
-@api_view(['GET'])
-def producto_listar_mejorado(request):
-    if request.user.has_perm("view_producto"):
-        productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
-        serializer = ProductoSerializerMejorado(productos,many = True)
-        return Response(serializer.data)
-    else:
-        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def producto_buscar_simple(request):
-    if request.user.has_perm("view_producto"):
+    if request.user.has_perm("tienda.view_producto"):
         formulario = BusquedaProductoSimple(request.query_params)
         if(formulario.is_valid()):
             texto = formulario.data.get('textoBusqueda')
@@ -119,8 +178,9 @@ def producto_buscar_simple(request):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def producto_buscar(request):
-    if request.user.has_perm("view_producto"):
+    if request.user.has_perm("tienda.view_producto"):
         if(len(request.query_params) > 0):
             formulario = BuscarProductoAPI(request.query_params)
             if formulario.is_valid():
@@ -182,8 +242,9 @@ def producto_buscar(request):
 #
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def producto_crear(request):
-    if request.user.has_perm("add_producto"):
+    if request.user.has_perm("tienda.add_producto"):
         print(request.data)
         productoCreateSerializer = ProductoCreateSerializer(
             data=request.data)
@@ -202,8 +263,9 @@ def producto_crear(request):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def producto_editar(request,producto_id):
-    if request.user.has_perm("change_producto"):
+    if request.user.has_perm("tienda.change_producto"):
         producto = Producto.objects.get(id=producto_id)
         productoCreateSerializer = ProductoCreateSerializer(
             data = request.data, instance = producto)
@@ -229,8 +291,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
 @api_view(['PATCH']) 
+@permission_classes([IsAuthenticated])
 def producto_actualizar_nombre(request,producto_id):
-    if request.user.has_perm("change_producto"):
+    if request.user.has_perm("tienda.change_producto"):
         producto = Producto.objects.get(id=producto_id)
         serializer = ProductoSerializerActualizarNombre(
             data=request.data,instance=producto
@@ -248,8 +311,9 @@ def producto_actualizar_nombre(request,producto_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def producto_eliminar(request,producto_id):
-    if request.user.has_perm("delete_producto"):
+    if request.user.has_perm("tienda.delete_producto"):
         producto = Producto.objects.get(id=producto_id)
         try:
             producto.delete()
@@ -264,8 +328,9 @@ def producto_eliminar(request,producto_id):
 #CRUD ManyToOne
 #
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def valoracion_crear(request):
-    if request.user.has_perm("add_valoracion"):
+    if request.user.has_perm("tienda.add_valoracion"):
         print(request.data)
         valoracionCreateSerializer = ValoracionCreateSerializer(
             data=request.data)
@@ -284,8 +349,9 @@ def valoracion_crear(request):
         return Response(status=status.HTTP_403_FORBIDDEN)
     
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def valoracion_editar(request,valoracion_id):
-    if request.user.has_perm("change_valoracion"):
+    if request.user.has_perm("tienda.change_valoracion"):
         valoracion = Valoracion.objects.get(id=valoracion_id)
         valoracionCreateSerializer = ValoracionCreateSerializer(
             data = request.data, instance = valoracion)
@@ -304,8 +370,9 @@ def valoracion_editar(request,valoracion_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
 def valoracion_actualizar_puntuacion(request,valoracion_id):
-    if request.user.has_perm("change_valoracion"):
+    if request.user.has_perm("tienda.change_valoracion"):
         valoracion = Valoracion.objects.get(id=valoracion_id)
         serializer = ValoracionActualizarPuntuacionSerializer(
             data=request.data,instance=valoracion
@@ -323,8 +390,9 @@ def valoracion_actualizar_puntuacion(request,valoracion_id):
         return Response(status=status.HTTP_403_FORBIDDEN)
     
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def valoracion_eliminar(request,valoracion_id):
-    if request.user.has_perm("delete_valoracion"):
+    if request.user.has_perm("tienda.delete_valoracion"):
         valoracion = Valoracion.objects.get(id=valoracion_id)
         try:
             valoracion.delete()
@@ -361,7 +429,7 @@ class registrar_usuario(generics.CreateAPIView):
                 
                 ####
                 #Obtengo los valores directamente de la request en vez del serializer
-                #porque al definir la variable dentro del metodo no me la devuelve
+                #porque al definir la variable dentro del if no me la devuelve
                 
                 if(rol== '2'):
                     grupo = Group.objects.get(name="Compradores")

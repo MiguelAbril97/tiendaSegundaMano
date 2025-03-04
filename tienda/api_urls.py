@@ -32,6 +32,7 @@ urlpatterns = [
     path('valoraciones/eliminar/<int:valoracion_id>/',valoracion_eliminar),
     
     path('vendedores/listar/',vendedores_listar),
+    path('vendedores/<int:vendedor_id>/',obtener_vendedor),
     path('compradores/listar/',compradores_listar),
 
 ]
