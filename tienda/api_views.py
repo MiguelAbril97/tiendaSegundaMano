@@ -8,9 +8,20 @@ from django.db.models import Q,Prefetch
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import Group
-import requests
 
 import datetime
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def obtener_comprador(request, comprador_id):
+    if request.user.has_perm("tienda.view_comprador"):
+        comprador = Comprador.objects.select_related('usuario').filter(
+                                                                usuario=comprador_id
+                                                                ).get()
+        serializer = CompradorSerializer(comprador)
+        return Response(serializer.data)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -113,17 +124,17 @@ def compra_listar(request):
 @permission_classes([IsAuthenticated])
 def valoraciones_listar(request):
     if request.user.has_perm("tienda.view_valoracion"):
-        # Si es comprador, solo ve sus valoraciones
+        # Si es comprador solo ve sus valoraciones
         if request.user.rol == 2:  # COMPRADOR
             valoraciones = Valoracion.objects.select_related('usuario','compra').filter(
                 usuario=request.user
             ).all()
-        # Si es vendedor, ve las valoraciones de las compras de sus productos
+        # Si es vendedor ve las valoraciones de las compras de sus productos
         elif request.user.rol == 3:  # VENDEDOR
             valoraciones = Valoracion.objects.select_related('usuario','compra').filter(
                 compra__producto__vendedor=request.user
             ).all()
-        # Si es administrador (rol 1), ve todas las valoraciones
+        # Si es administrador, ve todas las valoraciones
         else:
             valoraciones = Valoracion.objects.select_related('usuario','compra').all()
             
@@ -136,12 +147,12 @@ def valoraciones_listar(request):
 @permission_classes([IsAuthenticated])
 def producto_listar_mejorado(request):
     if request.user.has_perm("tienda.view_producto"):
-        # Si es vendedor, solo ve sus productos
+        # Si es vendedor solo ve sus productos
         if request.user.rol == 3:  # VENDEDOR
             productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').filter(
                 vendedor=request.user
             ).all()
-        # Si es comprador o administrador, ve todos los productos
+        # Si es comprador o administrador ve todos los productos
         else:
             productos = Producto.objects.select_related('vendedor').prefetch_related('categorias').all()
             
@@ -193,7 +204,6 @@ def producto_buscar(request):
                 precio = formulario.cleaned_data.get('buscarPrecioMax')
                 estado = formulario.cleaned_data.get('buscarEstado')
                 vendedor = formulario.cleaned_data.get('buscarVendedor')
-                fecha = formulario.cleaned_data.get('buscarFecha')
                 categoria = formulario.cleaned_data.get('buscarCategorias')
 
                 if(nombre != ""):
@@ -214,17 +224,19 @@ def producto_buscar(request):
                     for i in estado[1:]:
                         mensaje_busqueda += " o "+i
                     mensaje_busqueda += "\n"
+                
+                if(request.user.rol == Usuario.VENDEDOR):
+                    QSproductos = QSproductos.filter(vendedor=request.user.id)
+                    mensaje_busqueda +=" Vendedor: "+vendedor+"\n"
+                
+                else:
+                    if(vendedor):
+                        QSproductos = QSproductos.filter(vendedor__username__icontains=vendedor)
+                        mensaje_busqueda +=" Vendedor: "+vendedor+"\n"
 
-                if(vendedor):
-                    QSproductos = QSproductos.filter(vendedor__username=vendedor.username)
-                    mensaje_busqueda +=" Vendedor: "+vendedor.username+"\n"
-
-                if(not fecha is None):
-                    QSproductos = QSproductos.filter(fecha_de_publicacion__gte=fecha)
-                    mensaje_busqueda +=" La fecha sea mayor a "+datetime.strftime(fecha, '%d-%m-%Y')+"\n"
-
+                
                 if(categoria):
-                    QSproductos = QSproductos.filter(categorias__nombre=categoria.nombre)
+                    QSproductos = QSproductos.filter(categorias__nombre=categoria)
                     mensaje_busqueda +=" Categoria: "+categoria.nombre+"\n"
                 
                 productos = QSproductos.all()
@@ -401,7 +413,68 @@ def valoracion_eliminar(request,valoracion_id):
             return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
-        
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def compra_crear(request):
+    if request.user.has_perm("tienda.add_compra"):
+        print(request.data)
+        compraCreateSerializer = CompraCreateSerializer(
+            data=request.data)
+        if compraCreateSerializer.is_valid():
+            try:
+                compraCreateSerializer.save()
+                return Response('Compra creada')
+            except serializers.ValidationError as error:
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
+            except Exception as error:
+                print(repr(error))
+                return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response(compraCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def compra_editar(request, compra_id):
+    if request.user.has_perm("tienda.change_compra"):
+        compra = Compra.objects.get(id=compra_id)
+        compraCreateSerializer = CompraCreateSerializer(
+            data=request.data, instance=compra)
+        if compraCreateSerializer.is_valid():
+            try:
+                compraCreateSerializer.save()
+                return Response('Compra editada')
+            except serializers.ValidationError as error:
+                return Response(error, status=status.HTTP_400_BAD_REQUEST)
+            except Exception as error:
+                print(repr(error))
+                return Response(repr(error), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response(compraCreateSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def compra_actualizar_garantia(request, compra_id):
+    if request.user.has_perm("tienda.change_compra"):
+        compra = Compra.objects.get(id=compra_id)
+        serializer = CompraActualizarGarantiaSerializer(
+            data=request.data, instance=compra
+        )
+        if serializer.is_valid():
+            try:
+                serializer.save()
+                return Response('Garantía actualizada')
+            except Exception as error:
+                print(repr(error))
+                return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)  
 
 #################
 ##  REGISTRO

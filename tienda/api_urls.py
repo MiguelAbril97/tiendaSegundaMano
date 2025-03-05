@@ -24,6 +24,10 @@ urlpatterns = [
     path('productos/eliminar/<int:producto_id>/',producto_eliminar),
     
     path('compras/listar/',compra_listar),
+    path('compras/crear/',compra_crear),
+    path('compras/editar/<int:compra_id>/',compra_editar),
+    path('compras/actualizar/<int:compra_id>/',compra_actualizar_garantia),
+    
    
     path('valoraciones/listar/',valoraciones_listar), 
     path('valoraciones/crear/',valoracion_crear),
@@ -34,5 +38,6 @@ urlpatterns = [
     path('vendedores/listar/',vendedores_listar),
     path('vendedores/<int:vendedor_id>/',obtener_vendedor),
     path('compradores/listar/',compradores_listar),
+    path('compradores/<int:comprador_id>/',obtener_comprador),
 
 ]
